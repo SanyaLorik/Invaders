@@ -39,7 +39,7 @@ namespace Invaders.InputSystem
                 y = 0,
                 z = value.y,
             };
-            print(value + " " + direction);
+
             OnMove.Invoke(direction);
         }
 

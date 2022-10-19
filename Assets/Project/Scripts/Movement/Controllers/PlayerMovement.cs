@@ -17,10 +17,11 @@ namespace Invaders.Movement
         private void Construct(IPlayerInputSystem inputSystem) =>
             _inputSystem = inputSystem;
 
+        private void Awake() =>
+             _movement = new VelocityMovement(_rigidbody, _speed);
+
         private void OnEnable()
         {
-            _movement = new VelocityMovement(_rigidbody, _speed);
-            
             _inputSystem.OnMove += SetDirection;
             _inputSystem.OnStopped += Stop;
         }
