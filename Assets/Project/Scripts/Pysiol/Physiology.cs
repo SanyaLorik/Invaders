@@ -2,11 +2,11 @@ using System;
 
 namespace Invaders.Pysiol
 {
-    public abstract class Physiology : IPhysiology<int>
+    public abstract class Physiology : IPhysiology<int>, ICurrentValueProvider<int>
     {
         private const int _minimum = 0;
 
-        public event Action<int> OnChanged; 
+        public event Action<int> OnChanged;
 
         private int _maximum;
         private int _current;
@@ -22,6 +22,10 @@ namespace Invaders.Pysiol
             _current = current;
             _maximum = maximum;
         }
+
+        public ICurrentValueProvider<int> Provider => this;
+
+        public int Current => _current;
 
         public void Add(int value)
         {

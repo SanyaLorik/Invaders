@@ -1,4 +1,5 @@
 ﻿using Invaders.InputSystem;
+using Invaders.Pysiol;
 using UnityEngine;
 using Zenject;
 
@@ -7,18 +8,23 @@ namespace Invaders.Movement
     public class PlayerMovement : MonoBehaviour
     {
         [SerializeField] private Rigidbody _rigidbody;
-        [SerializeField] [Min(0)] private float _speed;
+        [SerializeField] [Min(0)] private int _initialSpeed;
+        [SerializeField] [Min(0)] private int _maximumSpeed;
 
         private IPlayerInputSystem _inputSystem;
-        private Vector3 _direction = Vector3.zero;
         private IMovement _movement;
+        private ICurrentValueProvider<int> _speed;
+        private Vector3 _direction = Vector3.zero;
 
         [Inject]
         private void Construct(IPlayerInputSystem inputSystem) =>
             _inputSystem = inputSystem;
 
-        private void Awake() =>
-             _movement = new VelocityMovement(_rigidbody, _speed);
+        private void Awake()
+        {
+            _speed = new Speed(_initialSpeed, _maximumSpeed);
+            _movement = new VelocityMovement(_rigidbody, _speed);
+        }
 
         private void OnEnable()
         {
