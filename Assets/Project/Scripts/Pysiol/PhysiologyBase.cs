@@ -1,8 +1,9 @@
 using System;
+using UnityEngine;
 
 namespace Invaders.Pysiol
 {
-    public abstract class Physiology : IPhysiology<int>, ICurrentValueProvider<int>
+    public abstract class PhysiologyBase : IPhysiology<int>, ICurrentValueProvider<int>
     {
         private const int _minimum = 0;
 
@@ -11,7 +12,7 @@ namespace Invaders.Pysiol
         private int _maximum;
         private int _current;
 
-        public Physiology(int current, int maximum)
+        public PhysiologyBase(int current, int maximum)
         {
             if (current > maximum)
                 throw new Exception($"Current {current} is greater than maximum {maximum}.");
@@ -32,7 +33,8 @@ namespace Invaders.Pysiol
             if (0 > value)
                 throw new Exception($"Value {value} is less than zero.");
 
-            ChangeHealth(value);
+            ChangeCurrentValue(value);
+            Debug.Log("DA");
         }
 
         public void TakeAway(int value)
@@ -40,10 +42,10 @@ namespace Invaders.Pysiol
             if (0 > value)
                 throw new Exception($"Value {value} is less than zero.");
             
-            ChangeHealth(-value);
+            ChangeCurrentValue(-value);
         }
 
-        private void ChangeHealth(int value)
+        private void ChangeCurrentValue(int value)
         {
             _current += value;
             _current = Math.Clamp(_current, _minimum, _maximum);

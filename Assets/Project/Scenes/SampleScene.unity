@@ -396,7 +396,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 589350832}
+  - component: {fileID: 589350836}
   - component: {fileID: 589350833}
+  - component: {fileID: 589350835}
   - component: {fileID: 589350834}
   m_Layer: 0
   m_Name: Player
@@ -452,6 +454,35 @@ MonoBehaviour:
   _rigidbody: {fileID: 589350833}
   _initialSpeed: 10
   _maximumSpeed: 50
+--- !u!114 &589350835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589350831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2394e564cf64504cafb2b216157c42b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _initialHealth: 100
+  _maximumHealth: 100
+  _initialTemperature: 50
+  _maximumTemperature: 100
+--- !u!65 &589350836
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589350831}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1327,6 +1358,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 347983001}
     m_Modifications:
+    - target: {fileID: 3814380120823528491, guid: 49e211123d6ae1c4f9e5f784a08af695, type: 3}
+      propertyPath: _warmingAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3814380120823528491, guid: 49e211123d6ae1c4f9e5f784a08af695, type: 3}
+      propertyPath: _delayMillisecond
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3814380120823528491, guid: 49e211123d6ae1c4f9e5f784a08af695, type: 3}
+      propertyPath: _delayMillisecondBurning
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3814380120823528491, guid: 49e211123d6ae1c4f9e5f784a08af695, type: 3}
+      propertyPath: _delayMillisecondWarming
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5440401612671304418, guid: 49e211123d6ae1c4f9e5f784a08af695, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6946795123179209794, guid: 49e211123d6ae1c4f9e5f784a08af695, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8502346717626186284, guid: 49e211123d6ae1c4f9e5f784a08af695, type: 3}
       propertyPath: m_RootOrder
       value: 0
