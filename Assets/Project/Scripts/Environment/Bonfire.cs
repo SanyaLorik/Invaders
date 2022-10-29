@@ -53,10 +53,10 @@ namespace Invaders.Environment
                 .OnTriggerEnterAsObservable()
                 .Subscribe(collision =>
                 {
-                    if (collision.transform.TryGetComponent(out IValueProvider<IDamageable<int>> arsonable) == false)
+                    if (collision.transform.TryGetComponent(out IDamageable<int> arsonable) == false)
                         return;
                     
-                    Burn(arsonable.Value);
+                    Burn(arsonable);
                 })
                 .AddTo(_disposable);
             
@@ -64,7 +64,7 @@ namespace Invaders.Environment
                 .OnTriggerExitAsObservable()
                 .Subscribe(collision =>
                 {
-                    if (collision.transform.TryGetComponent(out IValueProvider<IDamageable<int>> arsonable) == false)
+                    if (collision.transform.TryGetComponent(out IDamageable<int> arsonable) == false)
                         return;
                     
                     _arson?.Stop();

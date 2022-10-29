@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 namespace Invaders.Pysiol
 {
@@ -34,7 +33,6 @@ namespace Invaders.Pysiol
                 throw new Exception($"Value {value} is less than zero.");
 
             ChangeCurrentValue(value);
-            Debug.Log("DA");
         }
 
         public void TakeAway(int value)
