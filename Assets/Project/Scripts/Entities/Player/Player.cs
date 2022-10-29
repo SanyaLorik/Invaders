@@ -24,7 +24,7 @@ namespace Invaders.Entities
         [Header("Weapon")] 
         [SerializeField] private Transform _handgunMuzzle;
         [SerializeField] private HandgunBullet _handgunBullet;
-        [SerializeField] [Min(0)] private int _HandgunminimumDamage; 
+        [SerializeField] [Min(0)] private int _HandgunDamage; 
         [SerializeField] [Min(0)] private float _handgunSpeed; 
 
         private IPhysiology<int> _health;
@@ -35,7 +35,7 @@ namespace Invaders.Entities
         {
             _health = new Health(_initialHealth, _maximumHealth);
             _temperature = new Temperature(_initialTemperature, _maximumTemperature);
-            _weapon = new Handgun(_handgunMuzzle, _handgunBullet, _HandgunminimumDamage, _handgunSpeed);
+            _weapon = new Handgun(_handgunMuzzle, _handgunBullet, _HandgunDamage, _handgunSpeed);
         }
         
         public Temperature Value => _temperature as Temperature;
