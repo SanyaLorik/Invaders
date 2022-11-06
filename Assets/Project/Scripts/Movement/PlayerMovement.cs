@@ -11,14 +11,14 @@ namespace Invaders.Movement
         [SerializeField] [Min(0)] private int _initialSpeed;
         [SerializeField] [Min(0)] private int _maximumSpeed;
 
-        private IPlayerInputSystem _inputSystem;
+        private IMovementService _movementService;
         private IMovement _movement;
         private ICurrentValueProvider<int> _speed;
         private Vector3 _direction = Vector3.zero;
 
         [Inject]
-        private void Construct(IPlayerInputSystem inputSystem) =>
-            _inputSystem = inputSystem;
+        private void Construct(IMovementService movementService) =>
+            _movementService = movementService;
 
         private void Awake()
         {
@@ -28,14 +28,14 @@ namespace Invaders.Movement
 
         private void OnEnable()
         {
-            _inputSystem.OnMove += SetDirection;
-            _inputSystem.OnStopped += Stop;
+            _movementService.OnMove += SetDirection;
+            _movementService.OnStopped += Stop;
         }
 
         private void OnDisable()
         { 
-            _inputSystem.OnMove -= SetDirection;
-            _inputSystem.OnStopped -= Stop;
+            _movementService.OnMove -= SetDirection;
+            _movementService.OnStopped -= Stop;
         }
         
         private void FixedUpdate()

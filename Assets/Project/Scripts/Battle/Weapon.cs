@@ -3,24 +3,23 @@ using UnityEngine;
 
 namespace Invaders.Battle
 {
-    public abstract class Weapon : IWeapon
+    public abstract class Weapon : MonoBehaviour, IWeapon
     {
-        private const int _minimum = 0;
+        [SerializeField] private Missile _missile;
+        [SerializeField] private Transform _muzzle;
+        [SerializeField] [Min(0)] private int _damage;
+        [SerializeField] [Min(0)] private float _speed;
 
-        protected readonly Transform muzzle;
-        protected readonly IMissile missile;
-        protected readonly int damage;
-
-        public Weapon(Transform muzzle, IMissile missile, int damage)
+        public void Launch(Vector3 direction)
         {
-            if (_minimum > damage)
-                throw new Exception($"Minimum {_minimum} is greater than current {damage}.");
-
-            this.muzzle = muzzle;
-            this.missile = missile;
-            this.damage = damage;
+            IMissile missile = Spawn(_missile, _muzzle);
+            missile.Damage = _damage;
+            
+            Shoot(missile, direction, _speed);
         }
+        
+        protected abstract IMissile Spawn(Missile missile, Transform muzzle);
 
-        public abstract void Shoot(Vector3 direction);
+        protected abstract void Shoot(IMissile missile, Vector3 direction, float speed);
     }
 }

@@ -4,14 +4,10 @@ namespace Invaders.Battle
 {
     public class Handgun : Weapon
     {
-        private readonly float _handgunSpeed;
+        protected override IMissile Spawn(Missile missile, Transform muzzle) =>
+            Instantiate(missile, muzzle.transform.position, muzzle.rotation);
 
-        public Handgun(Transform muzzle, IMissile missile, int damage, float handgunSpeed) : base(muzzle, missile, damage) =>
-            _handgunSpeed = handgunSpeed;
-
-        public override void Shoot(Vector3 direction)
-        {
-            
-        }
+        protected override void Shoot(IMissile missile, Vector3 direction, float speed) =>
+            missile.Rigidbody.velocity = direction * speed;
     }
 }

@@ -6,13 +6,13 @@ namespace Invaders.Effect
 {
     public class Heater : IEffect
     {
-        private readonly PhysiologyBase _temperature;
+        private readonly Physiology _temperature;
         private readonly int _warmingAmount;
         private readonly int _delay;
 
         private CancellationTokenSource _tokenSource;
         
-        public Heater(PhysiologyBase temperature, int warmingAmount, int delayMillisecond)
+        public Heater(Physiology temperature, int warmingAmount, int delayMillisecond)
         {
             _temperature = temperature;
             _warmingAmount = warmingAmount;

@@ -4,6 +4,6 @@ namespace Invaders.Movement
 {
     public interface IRotator
     {
-        void Rotate(Vector3 direction);
+        void Rotate(float angle);
     }
 }

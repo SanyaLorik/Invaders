@@ -8,16 +8,40 @@ namespace Invaders.Di
     {
         [SerializeField] private PlayerInputSystem _inputSystem;
         
-        public override void InstallBindings() =>
-            Bind();
+        public override void InstallBindings()
+        { 
+            BindMovement();
+            BindLook();
+            BindClick();
+        }
 
-        private void Bind()
+        private void BindMovement()
         {
             Container
-                .Bind<IPlayerInputSystem>()
+                .Bind<IMovementService>()
                 .To<PlayerInputSystem>()
                 .FromInstance(_inputSystem)
-                .AsSingle()
+                .AsCached()
+                .NonLazy();
+        }
+
+        private void BindLook()
+        {
+            Container
+                .Bind<IPointPositionOnScreenService>()
+                .To<PlayerInputSystem>()
+                .FromInstance(_inputSystem)
+                .AsCached()
+                .NonLazy();
+        }
+
+        private void BindClick()
+        {
+            Container
+                .Bind<IClickedService>()
+                .To<PlayerInputSystem>()
+                .FromInstance(_inputSystem)
+                .AsCached()
                 .NonLazy();
         }
     }

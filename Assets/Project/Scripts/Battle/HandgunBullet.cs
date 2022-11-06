@@ -1,15 +1,6 @@
-using System;
-using UnityEngine;
-
 namespace Invaders.Battle
 {
-    [RequireComponent(typeof(Collider))]
-    [RequireComponent(typeof(Rigidbody))]
-    public class HandgunBullet : MonoBehaviour, IMissile
+    public class HandgunBullet : Missile
     {
-        private void Awake() =>
-            Rigidbody = GetComponent<Rigidbody>();
-
-        public Rigidbody Rigidbody { get; private set; }
     }
 }

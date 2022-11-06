@@ -2,7 +2,7 @@ using System;
 
 namespace Invaders.Pysiol
 {
-    public abstract class PhysiologyBase : IPhysiology<int>, ICurrentValueProvider<int>
+    public abstract class Physiology : IPhysiology<int>, ICurrentValueProvider<int>
     {
         private const int _minimum = 0;
 
@@ -11,7 +11,7 @@ namespace Invaders.Pysiol
         private int _maximum;
         private int _current;
 
-        public PhysiologyBase(int current, int maximum)
+        public Physiology(int current, int maximum)
         {
             if (current > maximum)
                 throw new Exception($"Current {current} is greater than maximum {maximum}.");

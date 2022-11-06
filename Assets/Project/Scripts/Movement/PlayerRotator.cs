@@ -1,4 +1,5 @@
-﻿using Invaders.InputSystem;
+﻿using System;
+using Invaders.InputSystem;
 using UnityEngine;
 using Zenject;
 
@@ -6,35 +7,33 @@ namespace Invaders.Movement
 {
     public class PlayerRotator : MonoBehaviour
     {
+        [SerializeField] private Camera _camera;
         [SerializeField] private Rigidbody _rigidbody;
-        [SerializeField][Min(0)] private float _speed;
-
-        private IPlayerInputSystem _inputSystem;
-        private Vector3 _direction = Vector3.zero;
+        [SerializeField] [Min(0)] private float _angleOffset;
+        
+        private IPointPositionOnScreenService _pointPositionOnScreenService;
         private IRotator _rotator;
 
         [Inject]
-        private void Construct(IPlayerInputSystem inputSystem) =>
-            _inputSystem = inputSystem;
+        private void Construct(IPointPositionOnScreenService pointPositionOnScreenService) =>
+            _pointPositionOnScreenService = pointPositionOnScreenService;
 
         private void Awake() =>
-            _rotator = new MovingRotator(_rigidbody, _speed);
+            _rotator = new MovingRotator(_rigidbody);
 
         private void OnEnable() =>
-            _inputSystem.OnMove += SetDirection;
+            _pointPositionOnScreenService.OnLooked += PointPositionOnScreen;
 
         private void OnDisable() =>
-            _inputSystem.OnMove -= SetDirection;
-
-        private void FixedUpdate() =>
-            _rotator.Rotate(_direction);
-
-        private void SetDirection(Vector3 direction)
+            _pointPositionOnScreenService.OnLooked -= PointPositionOnScreen;
+        
+        private void PointPositionOnScreen(Vector2 mouse)
         {
-            if (direction == Vector3.zero)
-                return;
+            var player = (Vector2)_camera.WorldToScreenPoint(_rigidbody.transform.position);
+            float atan2 = Mathf.Atan2(mouse.y - player.y, mouse.x - player.x) * Mathf.Rad2Deg;
+            float angle = -atan2 + _angleOffset;
             
-            _direction = direction;
+            _rotator.Rotate(angle);
         }
     }
 }

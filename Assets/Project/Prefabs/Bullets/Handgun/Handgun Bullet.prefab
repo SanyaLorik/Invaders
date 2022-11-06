@@ -46,8 +46,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.11789462, y: 0.12956125, z: 0.32150674}
-  m_Center: {x: 0.004594341, y: 0.43521938, z: -0.008457154}
+  m_Size: {x: 0.11789462, y: 0.11617404, z: 0.32150674}
+  m_Center: {x: 0, y: 0.05037403, z: 0}
 --- !u!54 &1096864757961286532
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -76,6 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebc3ec63ec79422586a2a9e16811b0d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Rigidbody>k__BackingField: {fileID: 1096864757961286532}
 --- !u!1 &1096864758515449289
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,7 +138,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 88b11d3744eee094aa18ef41c91c4419, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.385
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 88b11d3744eee094aa18ef41c91c4419, type: 3}
       propertyPath: m_LocalPosition.z

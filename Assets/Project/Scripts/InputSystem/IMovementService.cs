@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Invaders.InputSystem
 {
-    public interface IPlayerInputSystem
+    public interface IMovementService
     {
         event Action<Vector3> OnMove;
         

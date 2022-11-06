@@ -48,7 +48,7 @@ namespace Invaders.InputSystem
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Fire"",
+                    ""name"": ""Click"",
                     ""type"": ""Button"",
                     ""id"": ""00611b20-495b-49a0-a37c-bfe316516090"",
                     ""expectedControlType"": ""Button"",
@@ -213,7 +213,7 @@ namespace Invaders.InputSystem
                 {
                     ""name"": """",
                     ""id"": ""8c8e490b-c610-4785-884f-f04217b23ca4"",
-                    ""path"": ""<Pointer>/delta"",
+                    ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse;Touch"",
@@ -239,7 +239,7 @@ namespace Invaders.InputSystem
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Fire"",
+                    ""action"": ""Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -250,7 +250,7 @@ namespace Invaders.InputSystem
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Fire"",
+                    ""action"": ""Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -261,7 +261,7 @@ namespace Invaders.InputSystem
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Touch"",
-                    ""action"": ""Fire"",
+                    ""action"": ""Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -272,7 +272,7 @@ namespace Invaders.InputSystem
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Joystick"",
-                    ""action"": ""Fire"",
+                    ""action"": ""Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -283,7 +283,7 @@ namespace Invaders.InputSystem
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""XR"",
-                    ""action"": ""Fire"",
+                    ""action"": ""Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -884,7 +884,7 @@ namespace Invaders.InputSystem
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
             m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
-            m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
+            m_Player_Click = m_Player.FindAction("Click", throwIfNotFound: true);
             m_Player_Use = m_Player.FindAction("Use", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -959,7 +959,7 @@ namespace Invaders.InputSystem
         private IPlayerActions m_PlayerActionsCallbackInterface;
         private readonly InputAction m_Player_Move;
         private readonly InputAction m_Player_Look;
-        private readonly InputAction m_Player_Fire;
+        private readonly InputAction m_Player_Click;
         private readonly InputAction m_Player_Use;
         public struct PlayerActions
         {
@@ -967,7 +967,7 @@ namespace Invaders.InputSystem
             public PlayerActions(@InvadersInputSystem wrapper) { m_Wrapper = wrapper; }
             public InputAction @Move => m_Wrapper.m_Player_Move;
             public InputAction @Look => m_Wrapper.m_Player_Look;
-            public InputAction @Fire => m_Wrapper.m_Player_Fire;
+            public InputAction @Click => m_Wrapper.m_Player_Click;
             public InputAction @Use => m_Wrapper.m_Player_Use;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
@@ -984,9 +984,9 @@ namespace Invaders.InputSystem
                     @Look.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
                     @Look.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
                     @Look.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
-                    @Fire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
-                    @Fire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
-                    @Fire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
+                    @Click.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClick;
+                    @Click.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClick;
+                    @Click.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClick;
                     @Use.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUse;
                     @Use.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUse;
                     @Use.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUse;
@@ -1000,9 +1000,9 @@ namespace Invaders.InputSystem
                     @Look.started += instance.OnLook;
                     @Look.performed += instance.OnLook;
                     @Look.canceled += instance.OnLook;
-                    @Fire.started += instance.OnFire;
-                    @Fire.performed += instance.OnFire;
-                    @Fire.canceled += instance.OnFire;
+                    @Click.started += instance.OnClick;
+                    @Click.performed += instance.OnClick;
+                    @Click.canceled += instance.OnClick;
                     @Use.started += instance.OnUse;
                     @Use.performed += instance.OnUse;
                     @Use.canceled += instance.OnUse;
@@ -1164,7 +1164,7 @@ namespace Invaders.InputSystem
         {
             void OnMove(InputAction.CallbackContext context);
             void OnLook(InputAction.CallbackContext context);
-            void OnFire(InputAction.CallbackContext context);
+            void OnClick(InputAction.CallbackContext context);
             void OnUse(InputAction.CallbackContext context);
         }
         public interface IUIActions

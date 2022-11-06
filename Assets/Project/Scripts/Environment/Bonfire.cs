@@ -85,7 +85,7 @@ namespace Invaders.Environment
             _arson.Start();
         }
 
-        private void Warmup(PhysiologyBase temperature)
+        private void Warmup(Physiology temperature)
         {
             _warmed = new Heater(temperature, _warmingAmount, _delayMillisecondWarming);
             _warmed.Start();
