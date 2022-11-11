@@ -24,24 +24,28 @@ namespace Invaders.Entities
         [SerializeField] [Min(0)] private int _maximumTemperature;
 
         [Header("Weapon")] 
-        [SerializeField] private Weapon _handgun;
+        [SerializeField] private WeaponRapidFire _handgun;
         
         private IPhysiology<int> _health;
         private IPhysiology<int> _temperature;
-        private IWeapon _weapon;
+        private IWeaponRapidFire _weaponRapidFire;
         private IPlayerShooter _playerShooter;
         private IClickedService _clickedService;
+        private IHolderService _holderService;
 
         [Inject]
-        private void Construct(IClickedService clickedService) =>
+        private void Construct(IClickedService clickedService, IHolderService holderService)
+        {
             _clickedService = clickedService;
+            _holderService = holderService;
+        }
         
         private void Awake()
         {
             _health = new Health(_initialHealth, _maximumHealth);
             _temperature = new Temperature(_initialTemperature, _maximumTemperature);
-            _weapon = _handgun;
-            _playerShooter = new PlayerShooter(this, _clickedService, _weapon);
+            _weaponRapidFire = _handgun;
+            _playerShooter = new PlayerShooterHolding(this, _holderService, _weaponRapidFire);
         }
 
         private void OnEnable() =>

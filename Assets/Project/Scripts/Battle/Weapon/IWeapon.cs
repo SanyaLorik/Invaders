@@ -4,6 +4,6 @@ namespace Invaders.Battle
 {
     public interface IWeapon
     {
-        void Launch(Vector3 direction);
+        void Shoot(Vector3 direction);
     }
 }

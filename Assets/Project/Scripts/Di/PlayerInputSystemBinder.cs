@@ -13,6 +13,7 @@ namespace Invaders.Di
             BindMovement();
             BindLook();
             BindClick();
+            BindHold();
         }
 
         private void BindMovement()
@@ -39,6 +40,16 @@ namespace Invaders.Di
         {
             Container
                 .Bind<IClickedService>()
+                .To<PlayerInputSystem>()
+                .FromInstance(_inputSystem)
+                .AsCached()
+                .NonLazy();
+        }
+        
+        private void BindHold()
+        {
+            Container
+                .Bind<IHolderService>()
                 .To<PlayerInputSystem>()
                 .FromInstance(_inputSystem)
                 .AsCached()

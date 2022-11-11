@@ -4,12 +4,16 @@ using UnityEngine.InputSystem;
 
 namespace Invaders.InputSystem
 {
-    public class PlayerInputSystem : MonoBehaviour, IMovementService, IPointPositionOnScreenService, IClickedService
+    public class PlayerInputSystem : 
+        MonoBehaviour, 
+        IMovementService, IPointPositionOnScreenService, IClickedService, IHolderService
     {
         public event Action<Vector3> OnMove = delegate { };
         public event Action OnStopped = delegate { };
         public event Action<Vector2> OnLooked = delegate { };
         public event Action OnClicked = delegate { };
+        public event Action OnHeld = delegate { };
+        public event Action OnUnheld = delegate { };
 
         private InvadersInputSystem _inputSystem;
 
@@ -20,8 +24,13 @@ namespace Invaders.InputSystem
         {
             _inputSystem.Player.Move.performed += MoveStarted;
             _inputSystem.Player.Move.canceled += MoveEnded;
+            
             _inputSystem.Player.Look.performed += LookAt;
+            
             _inputSystem.Player.Click.performed += Click;
+
+            _inputSystem.Player.Click.started += Hold;
+            _inputSystem.Player.Click.canceled += Unhold;
             
             _inputSystem.Enable();
         }
@@ -30,8 +39,13 @@ namespace Invaders.InputSystem
         {
             _inputSystem.Player.Move.performed -= MoveStarted;
             _inputSystem.Player.Move.canceled -= MoveEnded;
+            
             _inputSystem.Player.Look.performed -= LookAt;
+            
             _inputSystem.Player.Click.performed -= Click;
+            
+            _inputSystem.Player.Click.started -= Hold;
+            _inputSystem.Player.Click.canceled -= Unhold;
             
             _inputSystem.Disable();
         }
@@ -60,5 +74,11 @@ namespace Invaders.InputSystem
 
         private void Click(InputAction.CallbackContext _) =>
             OnClicked.Invoke();
+        
+        private void Hold(InputAction.CallbackContext _) =>
+            OnHeld.Invoke();
+        
+        private void Unhold(InputAction.CallbackContext _) =>
+            OnUnheld.Invoke();
     }
 }
