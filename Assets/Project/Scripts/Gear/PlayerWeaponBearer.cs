@@ -9,25 +9,35 @@ namespace Invaders.Gear
     [RequireComponent(typeof(IPlayerLookService))]
     public class PlayerWeaponBearer : WeaponBearer
     {
+        [SerializeField] private Transform _droppedWeaponPoint;
+
         private IPlayerLookService _look;
         private IPlayerShooter _shooter;
         private IClickedService _clicked;
         private IHolderService _holder;
+        private IPlayerWeaponBearer _playerWeaponBearer;
 
         [Inject]
-        private void Construct(IHolderService holderService, IClickedService clicked)
+        private void Construct(IHolderService holderService, IClickedService clicked, IPlayerWeaponBearer playerWeaponBearer)
         {
             _clicked = clicked;
             _holder = holderService;
+            _playerWeaponBearer = playerWeaponBearer;
         }
 
         private void Awake() =>
             _look = GetComponent<IPlayerLookService>();
 
-        private void OnDisable() =>
-            _shooter?.Disable();
+        private void OnEnable() =>
+            _playerWeaponBearer.OnDroppedWeapon += DropWeapon;
 
-        protected override void Take(IWeapon weapon)
+        private void OnDisable()
+        {
+            _playerWeaponBearer.OnDroppedWeapon -= DropWeapon;
+            _shooter?.Disable();
+        }
+
+        protected sealed override void Take(IWeapon weapon)
         {
             base.Take(weapon);
 
@@ -36,6 +46,11 @@ namespace Invaders.Gear
                 new PlayerShooterHolding(_look, _holder, weapon as IWeaponRapidFire);
 
             _shooter.Enable();
+        }
+
+        private void DropWeapon()
+        {
+            Debug.Log("awdwa");
         }
     }
 }

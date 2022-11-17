@@ -1,4 +1,5 @@
 ﻿using Invaders.InputSystem;
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -14,7 +15,9 @@ namespace Invaders.Di
             BindLook();
             BindClick();
             BindHold();
+            BindDropWeapon();
         }
+
 
         private void BindMovement()
         {
@@ -54,6 +57,16 @@ namespace Invaders.Di
                 .FromInstance(_inputSystem)
                 .AsCached()
                 .NonLazy();
+        }
+
+        private void BindDropWeapon()
+        {
+            Container
+               .Bind<IPlayerWeaponBearer>()
+               .To<PlayerInputSystem>()
+               .FromInstance(_inputSystem)
+               .AsCached()
+               .NonLazy();
         }
     }
 }

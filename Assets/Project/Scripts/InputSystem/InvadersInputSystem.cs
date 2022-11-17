@@ -64,6 +64,15 @@ namespace Invaders.InputSystem
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DroppedWeapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""24af3d77-eb70-4d30-8483-d0994a004007"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -295,6 +304,17 @@ namespace Invaders.InputSystem
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Use"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ae527842-7f7a-4d64-92bc-779e0cfe3dd8"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""DroppedWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -886,6 +906,7 @@ namespace Invaders.InputSystem
             m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
             m_Player_Click = m_Player.FindAction("Click", throwIfNotFound: true);
             m_Player_Use = m_Player.FindAction("Use", throwIfNotFound: true);
+            m_Player_DroppedWeapon = m_Player.FindAction("DroppedWeapon", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -961,6 +982,7 @@ namespace Invaders.InputSystem
         private readonly InputAction m_Player_Look;
         private readonly InputAction m_Player_Click;
         private readonly InputAction m_Player_Use;
+        private readonly InputAction m_Player_DroppedWeapon;
         public struct PlayerActions
         {
             private @InvadersInputSystem m_Wrapper;
@@ -969,6 +991,7 @@ namespace Invaders.InputSystem
             public InputAction @Look => m_Wrapper.m_Player_Look;
             public InputAction @Click => m_Wrapper.m_Player_Click;
             public InputAction @Use => m_Wrapper.m_Player_Use;
+            public InputAction @DroppedWeapon => m_Wrapper.m_Player_DroppedWeapon;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -990,6 +1013,9 @@ namespace Invaders.InputSystem
                     @Use.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUse;
                     @Use.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUse;
                     @Use.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUse;
+                    @DroppedWeapon.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDroppedWeapon;
+                    @DroppedWeapon.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDroppedWeapon;
+                    @DroppedWeapon.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDroppedWeapon;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -1006,6 +1032,9 @@ namespace Invaders.InputSystem
                     @Use.started += instance.OnUse;
                     @Use.performed += instance.OnUse;
                     @Use.canceled += instance.OnUse;
+                    @DroppedWeapon.started += instance.OnDroppedWeapon;
+                    @DroppedWeapon.performed += instance.OnDroppedWeapon;
+                    @DroppedWeapon.canceled += instance.OnDroppedWeapon;
                 }
             }
         }
@@ -1166,6 +1195,7 @@ namespace Invaders.InputSystem
             void OnLook(InputAction.CallbackContext context);
             void OnClick(InputAction.CallbackContext context);
             void OnUse(InputAction.CallbackContext context);
+            void OnDroppedWeapon(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {
