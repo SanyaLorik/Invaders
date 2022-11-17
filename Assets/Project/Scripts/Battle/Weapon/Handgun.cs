@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Invaders.Battle
 {
-    public class Handgun : WeaponRapidFire
+    public class Handgun : WeaponFire
     {
         protected override IMissile Spawn(Missile missile, Transform muzzle) =>
             Instantiate(missile, muzzle.transform.position, muzzle.rotation);
