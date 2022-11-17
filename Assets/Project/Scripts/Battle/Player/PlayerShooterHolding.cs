@@ -30,6 +30,8 @@ namespace Invaders.Battle
         {
             _holder.OnHeld -= StartShooting;
             _holder.OnUnheld -= StopShooting;
+
+            _tokenSource?.Cancel();
         }
         
         private void StartShooting()

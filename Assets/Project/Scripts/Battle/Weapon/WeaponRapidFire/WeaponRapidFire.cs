@@ -2,7 +2,7 @@
 
 namespace Invaders.Battle
 {
-    public abstract class WeaponRapidFire : WeaponFire, IWeaponRapidFire
+    public abstract class WeaponRapidFire : WeaponFireReal, IWeaponRapidFire
     {
         [field: SerializeField] public float ShootedDelay { get; private set; }
     }

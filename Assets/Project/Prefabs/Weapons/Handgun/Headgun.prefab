@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6792483044424119314}
   - component: {fileID: 923721973044800333}
+  - component: {fileID: 8990977266339321954}
   - component: {fileID: 7577157392004419361}
   m_Layer: 0
   m_Name: Headgun
@@ -46,8 +47,24 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.43579924, y: 0.7027347, z: 1}
-  m_Center: {x: 0.011251986, y: 0.30047017, z: 0}
+  m_Size: {x: 0.22368005, y: 0.6238699, z: 0.8277553}
+  m_Center: {x: 0.0030935556, y: 0.2936715, z: -0.000000029802322}
+--- !u!54 &8990977266339321954
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6792483044424119315}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &7577157392004419361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,7 +81,6 @@ MonoBehaviour:
   _muzzle: {fileID: 6792483045023962326}
   _speed: 50
   damage: 10
-  <ShootedDelay>k__BackingField: 0.75
 --- !u!1 &6792483044553100214
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,4 @@
-namespace Invaders.Pysiol
+namespace Invaders.Additional
 {
     public interface ICurrentValueProvider<T>
     {

@@ -39,8 +39,6 @@ namespace Invaders.Gear
 
         protected sealed override void Take(IWeapon weapon)
         {
-            base.Take(weapon);
-
             _shooter = weapon as IWeaponRapidFire == null ?
                 new PlayerShooterTapping(_look, _clicked, weapon) : 
                 new PlayerShooterHolding(_look, _holder, weapon as IWeaponRapidFire);
@@ -48,9 +46,15 @@ namespace Invaders.Gear
             _shooter.Enable();
         }
 
-        private void DropWeapon()
+        protected override void DropWeapon()
         {
-            Debug.Log("awdwa");
+            if (HasWeapon == false)
+                return;
+
+            Transfer.Throw(_droppedWeaponPoint.position);
+            _shooter?.Disable();
+
+            base.DropWeapon();
         }
     }
 }

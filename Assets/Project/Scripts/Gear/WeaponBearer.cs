@@ -1,4 +1,5 @@
-﻿using Invaders.Battle;
+﻿using Invaders.Additional;
+using Invaders.Battle;
 using UnityEngine;
 
 namespace Invaders.Gear
@@ -7,21 +8,24 @@ namespace Invaders.Gear
     {
         [SerializeField] private Transform _bearer;
 
-        private IWeapon _having;
-
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.transform.TryGetComponent(out IWeapon weapon) == false)
+            if (collision.transform.TryGetComponent(out IWeaponTransfer weaponTransfer) == false)
                 return;
 
             if (HasWeapon == false)
             {
+                Transfer = weaponTransfer;
+
+                weaponTransfer.Take();
                 FixOnBearer(collision.transform);
-                Take(weapon);
+                Take(weaponTransfer.Weapon);
             }
         }
 
-        private bool HasWeapon => _having != null;
+        protected ITransfer Transfer { get; private set; }
+
+        protected bool HasWeapon => Transfer != null;
 
         private void FixOnBearer(Transform weapon)
         {
@@ -30,7 +34,9 @@ namespace Invaders.Gear
             weapon.transform.localRotation = Quaternion.identity;
         }
 
-        protected virtual void Take(IWeapon weapon) =>
-            _having = weapon;
+        protected abstract void Take(IWeapon weapon);
+
+        protected virtual void DropWeapon() =>
+            Transfer = null;
     }
 }
