@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1096864757961286532}
   - component: {fileID: 1096864757961286586}
   m_Layer: 0
-  m_Name: Handgun Bullet
+  m_Name: RapidFire Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
