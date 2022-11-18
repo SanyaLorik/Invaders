@@ -9,7 +9,7 @@ namespace Invaders.Battle
         [SerializeField] [Min(0)] private float _speed;
         [SerializeField] [Min(0)] private int damage;
 
-        public sealed override void Shoot(Vector3 direction)
+        public override void Shoot(Vector3 direction)
         {
             IMissile missile = Spawn(_missile, _muzzle);
             missile.Damage = damage;

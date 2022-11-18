@@ -1,12 +1,11 @@
-﻿using Invaders.Additional;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Invaders.Battle
 {
     [RequireComponent(typeof(Rigidbody))]
     public abstract class WeaponFireReal : WeaponFire, IWeaponTransfer
     {
-        private readonly Transform _world = null;
+        private readonly Transform _world = null; // temporarily
         private Rigidbody _rigidbody;
 
         private void Awake() =>
