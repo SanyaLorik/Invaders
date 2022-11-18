@@ -25,9 +25,7 @@ namespace Invaders.Battle
         protected override void LaunchMissile(IMissile missile, Vector3 direction, float speed) =>
             missile.Rigidbody.velocity = direction * speed;
 
-        private Vector3 RotateDirectionUsedAngle(Vector3 direction, int ratioAngle)
-        {
-            return Quaternion.Euler(0, _angleBetweenBullet * ratioAngle, 0) * direction;
-        }
+        private Vector3 RotateDirectionUsedAngle(Vector3 direction, int ratioAngle) => 
+            Quaternion.Euler(0, _angleBetweenBullet * ratioAngle, 0) * direction;
     }
 }
