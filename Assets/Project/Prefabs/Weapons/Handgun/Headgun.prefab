@@ -81,6 +81,7 @@ MonoBehaviour:
   _muzzle: {fileID: 6792483045023962326}
   _speed: 50
   damage: 10
+  <TappedDelay>k__BackingField: 0.25
 --- !u!1 &6792483044553100214
 GameObject:
   m_ObjectHideFlags: 0

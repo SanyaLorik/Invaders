@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using Invaders.InputSystem;
 using Invaders.Movement;
 
@@ -8,6 +9,8 @@ namespace Invaders.Battle
         private readonly IPlayerLookService _look;
         private readonly IClickedService _clicked;
         private readonly IWeaponTappingFire _weapon;
+
+        private bool _canShooting = true;
 
         public PlayerShooterTapping(IPlayerLookService look, IClickedService clicked, IWeaponTappingFire weapon)
         {
@@ -21,8 +24,23 @@ namespace Invaders.Battle
 
         public void Disable() =>
             _clicked.OnClicked -= Shoot;
-        
-        private void Shoot() =>
+
+        private void Shoot()
+        {
+            if (_canShooting == false)
+                return;
+
             _weapon.Shoot(_look.Direction);
+            DelayShoot().Forget();
+
+            _canShooting = false;
+        }
+
+        private async UniTaskVoid DelayShoot()
+        {
+            int millisecond = (int)(_weapon.TappedDelay * 1000);
+            await UniTask.Delay(millisecond);
+            _canShooting = true;
+        }
     }
 }
