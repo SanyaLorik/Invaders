@@ -7,9 +7,9 @@ namespace Invaders.Battle
     {
         private readonly IPlayerLookService _look;
         private readonly IClickedService _clicked;
-        private readonly IWeapon _weapon;
+        private readonly IWeaponTappingFire _weapon;
 
-        public PlayerShooterTapping(IPlayerLookService look, IClickedService clicked, IWeapon weapon)
+        public PlayerShooterTapping(IPlayerLookService look, IClickedService clicked, IWeaponTappingFire weapon)
         {
             _look = look;
             _clicked = clicked;

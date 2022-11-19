@@ -40,7 +40,7 @@ namespace Invaders.Gear
         protected sealed override void Take(IWeapon weapon)
         {
             _shooter = weapon as IWeaponRapidFire == null ?
-                new PlayerShooterTapping(_look, _clicked, weapon) : 
+                new PlayerShooterTapping(_look, _clicked, weapon as IWeaponTappingFire) : 
                 new PlayerShooterHolding(_look, _holder, weapon as IWeaponRapidFire);
 
             _shooter.Enable();
