@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1096864757961286535}
   - component: {fileID: 1096864757961286533}
   - component: {fileID: 1096864757961286532}
-  - component: {fileID: 1096864757961286586}
+  - component: {fileID: 7625829949898017995}
   m_Layer: 6
-  m_Name: Bullet
+  m_Name: Shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!114 &1096864757961286586
+--- !u!114 &7625829949898017995
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -73,10 +73,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1096864757961286534}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebc3ec63ec79422586a2a9e16811b0d3, type: 3}
+  m_Script: {fileID: 11500000, guid: e0f0769c0ba56bf46b777fa508b98f2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Rigidbody>k__BackingField: {fileID: 1096864757961286532}
 --- !u!1 &1096864758515449289
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,11 +104,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 626670855942491568}
+  - {fileID: 4504576610581472476}
   m_Father: {fileID: 1096864757961286535}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1096864758637242971
+--- !u!1001 &4110029383828276023
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -134,7 +133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 88b11d3744eee094aa18ef41c91c4419, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 88b11d3744eee094aa18ef41c91c4419, type: 3}
       propertyPath: m_LocalPosition.y
@@ -150,7 +149,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 88b11d3744eee094aa18ef41c91c4419, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 88b11d3744eee094aa18ef41c91c4419, type: 3}
       propertyPath: m_LocalRotation.y
@@ -158,7 +157,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 88b11d3744eee094aa18ef41c91c4419, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 88b11d3744eee094aa18ef41c91c4419, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -174,20 +173,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 88b11d3744eee094aa18ef41c91c4419, type: 3}
       propertyPath: m_Name
-      value: Handgun Bullet
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 88b11d3744eee094aa18ef41c91c4419, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8164078558771037576, guid: 88b11d3744eee094aa18ef41c91c4419, type: 3}
-      propertyPath: m_Layer
-      value: 6
+      value: Shotgun
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88b11d3744eee094aa18ef41c91c4419, type: 3}
---- !u!4 &626670855942491568 stripped
+--- !u!4 &4504576610581472476 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 88b11d3744eee094aa18ef41c91c4419, type: 3}
-  m_PrefabInstance: {fileID: 1096864758637242971}
+  m_PrefabInstance: {fileID: 4110029383828276023}
   m_PrefabAsset: {fileID: 0}

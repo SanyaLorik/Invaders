@@ -7,9 +7,12 @@ namespace Invaders.Battle
     [RequireComponent(typeof(Rigidbody))]
     public abstract class Missile : MonoBehaviour, IMissile
     {
-        [field: SerializeField] public Rigidbody Rigidbody { get; private set; }
-        
+        public Rigidbody Rigidbody { get; private set; }
+
         public int Damage { private get; set; }
+
+        private void Awake() =>
+            Rigidbody = GetComponent<Rigidbody>();
 
         private void OnCollisionEnter(Collision collision)
         {

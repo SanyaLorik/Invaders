@@ -28,8 +28,13 @@ namespace Invaders.Battle
                 var objects = Physics.OverlapSphere(transform.position, _radius);
                 foreach (var o in objects)
                 {
-                    if (o.TryGetComponent(out IDamageable<int> damage) == true && damage != this)
-                        yield return damage;
+                    if (o.TryGetComponent(out IDamageable<int> damage) == false)
+                        continue;
+
+                    if (damage == this)
+                        continue;
+
+                    yield return damage;
                 }
             }
         }
