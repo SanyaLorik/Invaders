@@ -73,6 +73,15 @@ namespace Invaders.InputSystem
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ReloadWeapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""c8b4047c-ff53-4dde-a08d-dd99b7479140"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -315,6 +324,17 @@ namespace Invaders.InputSystem
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""DroppedWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c9ec6b97-5de2-45e5-b5b3-fccdd052701e"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""ReloadWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -907,6 +927,7 @@ namespace Invaders.InputSystem
             m_Player_Click = m_Player.FindAction("Click", throwIfNotFound: true);
             m_Player_Use = m_Player.FindAction("Use", throwIfNotFound: true);
             m_Player_DroppedWeapon = m_Player.FindAction("DroppedWeapon", throwIfNotFound: true);
+            m_Player_ReloadWeapon = m_Player.FindAction("ReloadWeapon", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -983,6 +1004,7 @@ namespace Invaders.InputSystem
         private readonly InputAction m_Player_Click;
         private readonly InputAction m_Player_Use;
         private readonly InputAction m_Player_DroppedWeapon;
+        private readonly InputAction m_Player_ReloadWeapon;
         public struct PlayerActions
         {
             private @InvadersInputSystem m_Wrapper;
@@ -992,6 +1014,7 @@ namespace Invaders.InputSystem
             public InputAction @Click => m_Wrapper.m_Player_Click;
             public InputAction @Use => m_Wrapper.m_Player_Use;
             public InputAction @DroppedWeapon => m_Wrapper.m_Player_DroppedWeapon;
+            public InputAction @ReloadWeapon => m_Wrapper.m_Player_ReloadWeapon;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1016,6 +1039,9 @@ namespace Invaders.InputSystem
                     @DroppedWeapon.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDroppedWeapon;
                     @DroppedWeapon.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDroppedWeapon;
                     @DroppedWeapon.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDroppedWeapon;
+                    @ReloadWeapon.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReloadWeapon;
+                    @ReloadWeapon.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReloadWeapon;
+                    @ReloadWeapon.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReloadWeapon;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -1035,6 +1061,9 @@ namespace Invaders.InputSystem
                     @DroppedWeapon.started += instance.OnDroppedWeapon;
                     @DroppedWeapon.performed += instance.OnDroppedWeapon;
                     @DroppedWeapon.canceled += instance.OnDroppedWeapon;
+                    @ReloadWeapon.started += instance.OnReloadWeapon;
+                    @ReloadWeapon.performed += instance.OnReloadWeapon;
+                    @ReloadWeapon.canceled += instance.OnReloadWeapon;
                 }
             }
         }
@@ -1196,6 +1225,7 @@ namespace Invaders.InputSystem
             void OnClick(InputAction.CallbackContext context);
             void OnUse(InputAction.CallbackContext context);
             void OnDroppedWeapon(InputAction.CallbackContext context);
+            void OnReloadWeapon(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {

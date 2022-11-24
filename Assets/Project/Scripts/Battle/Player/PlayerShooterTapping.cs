@@ -4,33 +4,33 @@ using Invaders.Movement;
 
 namespace Invaders.Battle
 {
-    public class PlayerShooterTapping : IPlayerShooter
+    public class PlayerShooterTapping : PlayerShooterFire<IWeaponTappingFire>
     {
-        private readonly IPlayerLookService _look;
         private readonly IClickedService _clicked;
-        private readonly IWeaponTappingFire _weapon;
 
         private bool _canShooting = true;
 
-        public PlayerShooterTapping(IPlayerLookService look, IClickedService clicked, IWeaponTappingFire weapon)
-        {
-            _look = look;
+        public PlayerShooterTapping(IPlayerLookService look, IWeaponTappingFire weapon, IReloaderObserverService reloader, IClickedService clicked) : base(look, weapon, reloader) =>
             _clicked = clicked;
-            _weapon = weapon;
+
+        public override void Enable()
+        {
+            base.Enable();
+            _clicked.OnClicked += ShootingWithDelay;
         }
 
-        public void Enable() =>
-            _clicked.OnClicked += Shoot;
+        public override void Disable()
+        {
+            base.Disable();
+            _clicked.OnClicked -= ShootingWithDelay;
+        }
 
-        public void Disable() =>
-            _clicked.OnClicked -= Shoot;
-
-        private void Shoot()
+        protected void ShootingWithDelay()
         {
             if (_canShooting == false)
                 return;
 
-            _weapon.Shoot(_look.Direction);
+            Shoot();
             DelayShoot().Forget();
 
             _canShooting = false;
@@ -38,7 +38,7 @@ namespace Invaders.Battle
 
         private async UniTaskVoid DelayShoot()
         {
-            int millisecond = (int)(_weapon.TappedDelay * 1000);
+            int millisecond = (int)(Weapon.TappedDelay * 1000);
             await UniTask.Delay(millisecond);
             _canShooting = true;
         }

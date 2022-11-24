@@ -78,8 +78,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.10643421, y: 0.6104305, z: 1.5569587}
-  m_Center: {x: -0.0012312159, y: 0.2990681, z: 0.027722508}
+  m_Size: {x: 0.10643421, y: 0.60558856, z: 1.5514734}
+  m_Center: {x: -0.0012312159, y: 0.30148906, z: 0.02583909}
 --- !u!54 &-8740151296320870455
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -111,7 +111,11 @@ MonoBehaviour:
   _missile: {fileID: 4231796700084888183, guid: db8279ea2f1d1b6469845a13b1165a28, type: 3}
   _muzzle: {fileID: 6627226162521177758}
   _speed: 50
-  damage: 10
+  _damage: 10
+  _initialNumberOfBullet: 7
+  _numberOfBulletInMagazin: 30
+  _allNumberOfBullet: 70
+  _reloadedTime: 5
   <ShootedDelay>k__BackingField: 0.075
 --- !u!1 &6627226163546066248
 GameObject:

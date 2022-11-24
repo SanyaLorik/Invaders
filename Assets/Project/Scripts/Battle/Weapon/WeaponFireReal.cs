@@ -8,8 +8,11 @@ namespace Invaders.Battle
         private readonly Transform _world = null; // temporarily
         private Rigidbody _rigidbody;
 
-        private void Awake() =>
+        protected override void Awake()
+        {
+            base.Awake();
             _rigidbody = GetComponent<Rigidbody>();
+        }
 
         public IWeapon Weapon => this;
 

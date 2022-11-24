@@ -1,6 +1,6 @@
 ﻿namespace Invaders.Battle
 {
-    public interface IWeaponTappingFire : IWeapon
+    public interface IWeaponTappingFire : IWeaponFire
     {
         float TappedDelay { get; }
     }

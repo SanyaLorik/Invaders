@@ -6,7 +6,7 @@ namespace Invaders.InputSystem
 {
     public class PlayerInputSystem : 
         MonoBehaviour, 
-        IMovementService, IPointPositionOnScreenService, IClickedService, IHolderService, IPlayerWeaponBearer
+        IMovementService, IPointPositionOnScreenService, IClickedService, IHolderService, IPlayerWeaponBearer, IReloaderObserverService
     {
         public event Action<Vector3> OnMove = delegate { };
         public event Action OnStopped = delegate { };
@@ -15,6 +15,7 @@ namespace Invaders.InputSystem
         public event Action OnHeld = delegate { };
         public event Action OnUnheld = delegate { };
         public event Action OnDroppedWeapon = delegate { };
+        public event Action OnReloaded = delegate { };
 
         private InvadersInputSystem _inputSystem;
 
@@ -35,6 +36,8 @@ namespace Invaders.InputSystem
 
             _inputSystem.Player.DroppedWeapon.performed += Drop;
 
+            _inputSystem.Player.ReloadWeapon.performed += Reload;
+
             _inputSystem.Enable();
         }
 
@@ -51,6 +54,8 @@ namespace Invaders.InputSystem
             _inputSystem.Player.Click.canceled -= Unhold;
 
             _inputSystem.Player.DroppedWeapon.performed -= Drop;
+
+            _inputSystem.Player.ReloadWeapon.performed -= Reload;
 
             _inputSystem.Disable();
         }
@@ -88,5 +93,8 @@ namespace Invaders.InputSystem
 
         private void Drop(InputAction.CallbackContext _) =>
             OnDroppedWeapon.Invoke();
+
+        private void Reload(InputAction.CallbackContext _) =>
+            OnReloaded.Invoke();
     }
 }

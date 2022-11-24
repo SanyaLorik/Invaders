@@ -1,33 +1,31 @@
-using System.Threading;
 using Cysharp.Threading.Tasks;
 using Invaders.InputSystem;
 using Invaders.Movement;
+using System.Threading;
 
 namespace Invaders.Battle
 {
-    public class PlayerShooterHolding : IPlayerShooter
+    public class PlayerShooterHolding : PlayerShooterFire<IWeaponRapidFire>
     {
-        private readonly IPlayerLookService _look;
         private readonly IHolderService _holder;
-        private readonly IWeaponRapidFire _weaponRapidFire;
 
         private CancellationTokenSource _tokenSource;
 
-        public PlayerShooterHolding(IPlayerLookService look, IHolderService holder, IWeaponRapidFire weaponRapidFire)
-        {
-            _look = look;
+        public PlayerShooterHolding(IPlayerLookService look, IWeaponRapidFire weapon, IReloaderObserverService reloader, IHolderService holder) : base(look, weapon, reloader) =>
             _holder = holder;
-            _weaponRapidFire = weaponRapidFire;
-        }
 
-        public void Enable()
+        public override void Enable()
         {
+            base.Enable();
+            
             _holder.OnHeld += StartShooting;
             _holder.OnUnheld += StopShooting;
         }
 
-        public void Disable()
+        public override void Disable()
         {
+            base.Disable();
+
             _holder.OnHeld -= StartShooting;
             _holder.OnUnheld -= StopShooting;
 
@@ -37,16 +35,16 @@ namespace Invaders.Battle
         private void StartShooting()
         {
             _tokenSource = new CancellationTokenSource();
-            Shoot(_tokenSource.Token).Forget();
+            ShootProcess(_tokenSource.Token).Forget();
         }
 
-        private async UniTaskVoid Shoot(CancellationToken token)
+        private async UniTaskVoid ShootProcess(CancellationToken token)
         {
-            int delay = (int)(_weaponRapidFire.ShootedDelay * 1000);
-            
+            int delay = (int)(Weapon.ShootedDelay * 1000);
+     
             do
             {
-                _weaponRapidFire.Shoot(_look.Direction);
+                Shoot();
                 await UniTask.Delay(delay, cancellationToken: token);
             } 
             while (token.IsCancellationRequested == false);

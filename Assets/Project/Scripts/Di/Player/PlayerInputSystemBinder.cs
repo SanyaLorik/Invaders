@@ -16,8 +16,8 @@ namespace Invaders.Di
             BindClick();
             BindHold();
             BindDropWeapon();
+            BindReloadWeapon();
         }
-
 
         private void BindMovement()
         {
@@ -63,6 +63,16 @@ namespace Invaders.Di
         {
             Container
                .Bind<IPlayerWeaponBearer>()
+               .To<PlayerInputSystem>()
+               .FromInstance(_inputSystem)
+               .AsCached()
+               .NonLazy();
+        }
+
+        private void BindReloadWeapon()
+        {
+            Container
+               .Bind<IReloaderObserverService>()
                .To<PlayerInputSystem>()
                .FromInstance(_inputSystem)
                .AsCached()

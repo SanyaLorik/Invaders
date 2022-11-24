@@ -12,36 +12,39 @@ namespace Invaders.Gear
         [SerializeField] private Transform _droppedWeaponPoint;
 
         private IPlayerLookService _look;
-        private IPlayerShooter _shooter;
         private IClickedService _clicked;
         private IHolderService _holder;
-        private IPlayerWeaponBearer _playerWeaponBearer;
+        private IReloaderObserverService _reloader;
+
+        private IPlayerShooter _shooter;
+        private IPlayerWeaponBearer _bearer;
 
         [Inject]
-        private void Construct(IHolderService holderService, IClickedService clicked, IPlayerWeaponBearer playerWeaponBearer)
+        private void Construct(IHolderService holderService, IClickedService clicked, IPlayerWeaponBearer bearer, IReloaderObserverService reloader)
         {
             _clicked = clicked;
             _holder = holderService;
-            _playerWeaponBearer = playerWeaponBearer;
+            _bearer = bearer;
+            _reloader = reloader;
         }
 
         private void Awake() =>
             _look = GetComponent<IPlayerLookService>();
 
         private void OnEnable() =>
-            _playerWeaponBearer.OnDroppedWeapon += DropWeapon;
+            _bearer.OnDroppedWeapon += DropWeapon;
 
         private void OnDisable()
         {
-            _playerWeaponBearer.OnDroppedWeapon -= DropWeapon;
+            _bearer.OnDroppedWeapon -= DropWeapon;
             _shooter?.Disable();
         }
 
         protected sealed override void Take(IWeapon weapon)
         {
             _shooter = weapon as IWeaponRapidFire == null ?
-                new PlayerShooterTapping(_look, _clicked, weapon as IWeaponTappingFire) : 
-                new PlayerShooterHolding(_look, _holder, weapon as IWeaponRapidFire);
+                new PlayerShooterTapping(_look, weapon as IWeaponTappingFire, _reloader, _clicked) : 
+                new PlayerShooterHolding(_look, weapon as IWeaponRapidFire, _reloader, _holder);
 
             _shooter.Enable();
         }
