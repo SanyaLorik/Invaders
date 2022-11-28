@@ -1,5 +1,5 @@
 using Cysharp.Threading.Tasks;
-using System;
+using System.ComponentModel;
 using UnityEngine;
 
 namespace Invaders.Battle
@@ -19,9 +19,10 @@ namespace Invaders.Battle
         [SerializeField] [Min(0)] private int _numberOfBulletInMagazin;
         [SerializeField] [Min(0)] private int _allNumberOfBullet;
         [SerializeField] [Min(0)] private float _reloadedTime;
-
+        
         private int _currentBullet; 
-        private int _currentAllBullet; 
+        private int _currentAllBullet;
+        private bool _isReloading = false;
 
         protected virtual void Awake()
         {
@@ -31,24 +32,31 @@ namespace Invaders.Battle
 
         public override void Shoot(Vector3 direction)
         {
-            /*
-            if (_currentBullet < 0)
-                return;
-            */
             IMissile missile = Spawn(_missile, _muzzle);
             missile.Damage = _damage;
             
             LaunchMissile(missile, direction, _speed);
-            /*
-            _currentBullet--;*/
         }
 
         public void Reload()
         {
+            if (_isReloading == true)
+                return;
+
             if (_currentAllBullet <= 0)
                 return;
 
+            _isReloading = true;
             DealyReload().Forget();
+        }
+
+        private async UniTaskVoid DealyReload()
+        {
+            int millisecond = (int)(_reloadedTime * 1000);
+            await UniTask.Delay(millisecond);
+            Debug.Log("da");
+            _currentAllBullet += _currentBullet;
+            _currentBullet = 0;
 
             if (_currentAllBullet < _currentBullet)
             {
@@ -59,12 +67,8 @@ namespace Invaders.Battle
                 _currentBullet = _numberOfBulletInMagazin;
                 _currentAllBullet -= _numberOfBulletInMagazin;
             }
-        }
 
-        private async UniTaskVoid DealyReload()
-        {
-            int millisecond = (int)(_reloadedTime * 1000);
-            await UniTask.Delay(millisecond);
+            _isReloading = false;
         }
 
         protected abstract IMissile Spawn(Missile missile, Transform muzzle);

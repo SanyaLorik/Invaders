@@ -9,6 +9,7 @@ namespace Invaders.Entities
     [RequireComponent(typeof(Rigidbody))]
     public class Player : 
         MonoBehaviour, 
+        IPlayer,
         IDamageable<int>, 
         IValueProvider<Temperature>,
         IPlayerLookService
@@ -23,8 +24,6 @@ namespace Invaders.Entities
         
         private IPhysiology<int> _health;
         private IPhysiology<int> _temperature;
-        private IPhysiology<int> _hunger;
-        private IPhysiology<int> _thirst;
 
         private void Awake()
         {

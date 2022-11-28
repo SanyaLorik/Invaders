@@ -31,12 +31,12 @@ namespace Invaders.Battle
                 return;
 
             Shoot();
-            DelayShoot().Forget();
+            DelayForShooting().Forget();
 
             _canShooting = false;
         }
 
-        private async UniTaskVoid DelayShoot()
+        private async UniTaskVoid DelayForShooting()
         {
             int millisecond = (int)(Weapon.TappedDelay * 1000);
             await UniTask.Delay(millisecond);
