@@ -10,7 +10,7 @@ namespace Invaders.Battle
 
         private bool _canShooting = true;
 
-        public PlayerShooterTapping(IPlayerLookService look, IWeaponTappingFire weapon, IReloaderObserverService reloader, IClickedService clicked) : base(look, weapon, reloader) =>
+        public PlayerShooterTapping(IPlayerLookService look, IWeaponTappingFire weapon, IWeaponReloaderObserverService reloader, IClickedService clicked) : base(look, weapon, reloader) =>
             _clicked = clicked;
 
         public override void Enable()

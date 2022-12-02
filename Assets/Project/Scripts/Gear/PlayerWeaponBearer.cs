@@ -14,13 +14,13 @@ namespace Invaders.Gear
         private IPlayerLookService _look;
         private IClickedService _clicked;
         private IHolderService _holder;
-        private IReloaderObserverService _reloader;
+        private IWeaponReloaderObserverService _reloader;
 
         private IPlayerShooter _shooter;
         private IPlayerWeaponBearer _bearer;
 
         [Inject]
-        private void Construct(IHolderService holderService, IClickedService clicked, IPlayerWeaponBearer bearer, IReloaderObserverService reloader)
+        private void Construct(IHolderService holderService, IClickedService clicked, IPlayerWeaponBearer bearer, IWeaponReloaderObserverService reloader)
         {
             _clicked = clicked;
             _holder = holderService;

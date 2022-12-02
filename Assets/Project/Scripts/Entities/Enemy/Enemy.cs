@@ -7,6 +7,7 @@ using UnityEngine.AI;
 namespace Invaders.Entities
 {
     [RequireComponent(typeof(Collider))]
+    [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(NavMeshAgent))]
     public class Enemy : MonoBehaviour, IDamageable<int>
     {

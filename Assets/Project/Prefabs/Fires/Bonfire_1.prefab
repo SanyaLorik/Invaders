@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 721408293945993509}
   m_Layer: 0
-  m_Name: Effects
+  m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

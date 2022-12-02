@@ -1,6 +1,6 @@
 ﻿namespace Invaders.Entities
 {
-    internal interface IPlayer
+    public interface IPlayer
     {
     }
 }

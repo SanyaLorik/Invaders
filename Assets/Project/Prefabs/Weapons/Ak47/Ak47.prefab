@@ -116,6 +116,7 @@ MonoBehaviour:
   _numberOfBulletInMagazin: 30
   _allNumberOfBullet: 70
   _reloadedTime: 5
+  _dropppedLenght: 0.25
   <ShootedDelay>k__BackingField: 0.075
 --- !u!1 &6627226163546066248
 GameObject:

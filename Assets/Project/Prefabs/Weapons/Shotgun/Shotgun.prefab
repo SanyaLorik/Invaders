@@ -85,6 +85,7 @@ MonoBehaviour:
   _numberOfBulletInMagazin: 5
   _allNumberOfBullet: 10
   _reloadedTime: 2
+  _dropppedLenght: 0.25
   <TappedDelay>k__BackingField: 0.75
   _numberOfBullet: 5
   _angleBetweenBullet: 10
