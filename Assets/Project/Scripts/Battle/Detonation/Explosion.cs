@@ -30,10 +30,10 @@ namespace Invaders.Battle
                 {
                     if (o.TryGetComponent(out IDamageable<int> damage) == false)
                         continue;
-
+                    /*
                     if (damage == this)
                         continue;
-
+                    */
                     yield return damage;
                 }
             }
