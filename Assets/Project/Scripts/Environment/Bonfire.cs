@@ -32,7 +32,7 @@ namespace Invaders.Environment
                 .OnTriggerEnterAsObservable()
                 .Subscribe(collision =>
                 {
-                    if (collision.transform.TryGetComponent(out IValueProvider<Temperature> temperature) == false)
+                    if (collision.TryGetComponent(out IValueProvider<Temperature> temperature) == false)
                         return;
                     
                     Warmup(temperature.Value);
@@ -43,7 +43,7 @@ namespace Invaders.Environment
                 .OnTriggerExitAsObservable()
                 .Subscribe(collision =>
                 {
-                    if (collision.transform.TryGetComponent(out IValueProvider<Temperature> temperature) == false)
+                    if (collision.TryGetComponent(out IValueProvider<Temperature> temperature) == false)
                         return;
                     
                     _warmed?.Stop();

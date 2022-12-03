@@ -11,10 +11,10 @@ namespace Invaders.Battle
         public PlayerShooterFire(IPlayerLookService look, T weapon, IWeaponReloaderObserverService reloader) : base(look, weapon) =>
             _reloader = reloader;
 
-        public override void Disable() =>
-             _reloader.OnWeaponReloaded += Weapon.Reload;
-
         public override void Enable() =>
              _reloader.OnWeaponReloaded += Weapon.Reload;
+
+        public override void Disable() =>
+            _reloader.OnWeaponReloaded -= Weapon.Reload;
     }
 }

@@ -1,5 +1,4 @@
 using Cysharp.Threading.Tasks;
-using System.ComponentModel;
 using UnityEngine;
 
 namespace Invaders.Battle
@@ -19,8 +18,8 @@ namespace Invaders.Battle
         [SerializeField] [Min(0)] private int _numberOfBulletInMagazin;
         [SerializeField] [Min(0)] private int _allNumberOfBullet;
         [SerializeField] [Min(0)] private float _reloadedTime;
-        
-        private int _currentBullet; 
+
+        private int _currentBullet;
         private int _currentAllBullet;
         private bool _isReloading = false;
 
@@ -32,6 +31,12 @@ namespace Invaders.Battle
 
         public override void Shoot(Vector3 direction)
         {
+            if (_isReloading == true)
+                return;
+
+            if (_currentBullet <= 0)
+                return;
+
             IMissile missile = Spawn(_missile, _muzzle);
             missile.Damage = _damage;
             
@@ -50,11 +55,18 @@ namespace Invaders.Battle
             DealyReload().Forget();
         }
 
+        public void Replenish(float ratioOfTotalAmmo)
+        {
+            int bullet = (int)(_allNumberOfBullet * ratioOfTotalAmmo);
+            int currentAllBullet = _currentAllBullet + bullet;
+            _currentAllBullet = Mathf.Clamp(currentAllBullet, 0, _allNumberOfBullet);
+        }
+
         private async UniTaskVoid DealyReload()
         {
             int millisecond = (int)(_reloadedTime * 1000);
             await UniTask.Delay(millisecond);
-            Debug.Log("da");
+
             _currentAllBullet += _currentBullet;
             _currentBullet = 0;
 
@@ -69,6 +81,14 @@ namespace Invaders.Battle
             }
 
             _isReloading = false;
+        }
+
+        protected void ReduceBullet()
+        {
+            if (_currentBullet <= 0)
+                return;
+
+            _currentBullet--;
         }
 
         protected abstract IMissile Spawn(Missile missile, Transform muzzle);

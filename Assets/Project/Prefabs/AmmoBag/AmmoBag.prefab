@@ -74,6 +74,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4880726262462469190}
   - component: {fileID: 1190562269293822341}
+  - component: {fileID: 2443592671514827819}
   m_Layer: 0
   m_Name: AmmoBag
   m_TagString: Untagged
@@ -111,6 +112,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.46288306, y: 0.36628842, z: 0.4955004}
   m_Center: {x: 0, y: -0.026211768, z: 0.014978141}
+--- !u!114 &2443592671514827819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4880726262462469185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01cee4102f90d0f4a9bf8c1e08f33d13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _detector: {fileID: 2920755502122986919}
+  _ratioOfTotalAmmo: 1
+  _delay: 5
 --- !u!1 &4946984650167362682
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,7 +138,7 @@ GameObject:
   - component: {fileID: 1812912073382761982}
   - component: {fileID: 2920755502122986919}
   m_Layer: 0
-  m_Name: Taker
+  m_Name: Detector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -151,7 +167,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4946984650167362682}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.75

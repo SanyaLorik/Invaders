@@ -26,7 +26,7 @@ namespace Invaders.Gear
                .OnTriggerEnterAsObservable()
                .Subscribe(collision =>
                {
-                   if (collision.transform.TryGetComponent(out IWeaponTransfer weaponTransfer) == false)
+                   if (collision.TryGetComponent(out IWeaponTransfer weaponTransfer) == false)
                        return;
 
                    _weaponTransfers.Add(new WeaponContainer(weaponTransfer, collision.transform));
@@ -37,7 +37,7 @@ namespace Invaders.Gear
                .OnTriggerExitAsObservable()
                .Subscribe(collision =>
                {
-                   if (collision.transform.TryGetComponent(out IWeaponTransfer weaponTransfer) == false)
+                   if (collision.TryGetComponent(out IWeaponTransfer weaponTransfer) == false)
                        return;
 
                    WeaponContainer container = _weaponTransfers.First(i => i.Transfer == weaponTransfer);

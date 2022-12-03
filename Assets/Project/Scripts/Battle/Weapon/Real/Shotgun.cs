@@ -17,6 +17,8 @@ namespace Invaders.Battle
                 Vector3 newDirection = RotateDirectionUsedAngle(direction, i);
                 base.Shoot(newDirection);
             }
+
+            ReduceBullet();
         }
 
         protected override IMissile Spawn(Missile missile, Transform muzzle) =>
