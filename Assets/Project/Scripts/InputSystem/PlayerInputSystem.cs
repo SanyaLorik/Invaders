@@ -15,7 +15,7 @@ namespace Invaders.InputSystem
         public event Action OnClicked = delegate { };
         public event Action OnHeld = delegate { };
         public event Action OnUnheld = delegate { };
-        public event Action OnDroppedWeapon = delegate { };
+        public event Action OnTakenOrDroppedWeapon = delegate { };
         public event Action OnWeaponReloaded = delegate { };
         public event Action OnSceneReloaded = delegate { };
 
@@ -36,7 +36,7 @@ namespace Invaders.InputSystem
             _inputSystem.Player.Click.started += Hold;
             _inputSystem.Player.Click.canceled += Unhold;
 
-            _inputSystem.Player.DroppedWeapon.performed += Drop;
+            _inputSystem.Player.DroppedWeapon.performed += TakeOrDrop;
 
             _inputSystem.Player.ReloadWeapon.performed += ReloadWeapon;
 
@@ -57,7 +57,7 @@ namespace Invaders.InputSystem
             _inputSystem.Player.Click.started -= Hold;
             _inputSystem.Player.Click.canceled -= Unhold;
 
-            _inputSystem.Player.DroppedWeapon.performed -= Drop;
+            _inputSystem.Player.DroppedWeapon.performed -= TakeOrDrop;
 
             _inputSystem.Player.ReloadWeapon.performed -= ReloadWeapon;
 
@@ -97,8 +97,8 @@ namespace Invaders.InputSystem
         private void Unhold(InputAction.CallbackContext _) =>
             OnUnheld.Invoke();
 
-        private void Drop(InputAction.CallbackContext _) =>
-            OnDroppedWeapon.Invoke();
+        private void TakeOrDrop(InputAction.CallbackContext _) =>
+            OnTakenOrDroppedWeapon.Invoke();
 
         private void ReloadWeapon(InputAction.CallbackContext _) =>
             OnWeaponReloaded.Invoke();

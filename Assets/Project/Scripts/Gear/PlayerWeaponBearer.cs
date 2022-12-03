@@ -31,16 +31,22 @@ namespace Invaders.Gear
         private void Awake() =>
             _look = GetComponent<IPlayerLookService>();
 
-        private void OnEnable() =>
-            _bearer.OnDroppedWeapon += DropWeapon;
-
-        private void OnDisable()
+        protected override void OnEnable()
         {
-            _bearer.OnDroppedWeapon -= DropWeapon;
+            base.OnEnable();
+
+            _bearer.OnTakenOrDroppedWeapon += ChangeDropOrTakeWeapon;
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+
+            _bearer.OnTakenOrDroppedWeapon -= ChangeDropOrTakeWeapon;
             _shooter?.Disable();
         }
 
-        protected sealed override void Take(IWeapon weapon)
+        protected sealed override void Arm(IWeapon weapon)
         {
             _shooter = weapon as IWeaponRapidFire == null ?
                 new PlayerShooterTapping(_look, weapon as IWeaponTappingFire, _reloader, _clicked) : 
@@ -49,15 +55,18 @@ namespace Invaders.Gear
             _shooter.Enable();
         }
 
-        protected override void DropWeapon()
+        private void ChangeDropOrTakeWeapon()
         {
-            if (HasWeapon == false)
+            if (HasWeaponOnBearer == true)
+            {
+                DropWeapon(_droppedWeaponPoint.position);
+                _shooter?.Disable();
+
                 return;
+            }
 
-            Transfer.Throw(_droppedWeaponPoint.position);
-            _shooter?.Disable();
-
-            base.DropWeapon();
+            if (HasNearWeapon == true)
+                Take();
         }
     }
 }

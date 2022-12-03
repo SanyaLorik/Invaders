@@ -1,31 +1,74 @@
 ﻿using Invaders.Additional;
 using Invaders.Battle;
+using System.Collections.Generic;
+using System.Linq;
+using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 
 namespace Invaders.Gear
 {
     public abstract class WeaponBearer : MonoBehaviour
     {
+        [SerializeField] private Collider _detector;
         [SerializeField] private Transform _bearer;
 
-        private void OnCollisionEnter(Collision collision)
+        private readonly IList<WeaponContainer> _weaponTransfers = new List<WeaponContainer>();
+
+        private ITransfer _transfer;
+        private CompositeDisposable _disposable;
+
+        protected virtual void OnEnable()
         {
-            if (collision.transform.TryGetComponent(out IWeaponTransfer weaponTransfer) == false)
-                return;
+            _disposable = new CompositeDisposable();
 
-            if (HasWeapon == false)
-            {
-                Transfer = weaponTransfer;
+            _detector
+               .OnTriggerEnterAsObservable()
+               .Subscribe(collision =>
+               {
+                   if (collision.transform.TryGetComponent(out IWeaponTransfer weaponTransfer) == false)
+                       return;
 
-                weaponTransfer.Take();
-                FixOnBearer(collision.transform);
-                Take(weaponTransfer.Weapon);
-            }
+                   _weaponTransfers.Add(new WeaponContainer(weaponTransfer, collision.transform));
+               })
+               .AddTo(_disposable);
+
+            _detector
+               .OnTriggerExitAsObservable()
+               .Subscribe(collision =>
+               {
+                   if (collision.transform.TryGetComponent(out IWeaponTransfer weaponTransfer) == false)
+                       return;
+
+                   WeaponContainer container = _weaponTransfers.First(i => i.Transfer == weaponTransfer);
+                   _weaponTransfers.Remove(container);
+               })
+               .AddTo(_disposable);
         }
 
-        protected ITransfer Transfer { get; private set; }
+        protected virtual void OnDisable() =>
+            _disposable?.Dispose();
 
-        protected bool HasWeapon => Transfer != null;
+        protected bool HasNearWeapon => _weaponTransfers.Count != 0;
+
+        protected bool HasWeaponOnBearer => _transfer != null;
+
+        protected void Take()
+        {
+            WeaponContainer weaponContainer = _weaponTransfers[0];
+
+            _transfer = weaponContainer.Transfer;
+
+            _transfer.Take();
+            FixOnBearer(weaponContainer.Position);
+            Arm(weaponContainer.Transfer.Weapon);
+        }
+
+        protected void DropWeapon(Vector3 position)
+        {
+            _transfer.Throw(position);
+            _transfer = null;
+        }
 
         private void FixOnBearer(Transform weapon)
         {
@@ -34,9 +77,6 @@ namespace Invaders.Gear
             weapon.transform.localRotation = Quaternion.identity;
         }
 
-        protected abstract void Take(IWeapon weapon);
-
-        protected virtual void DropWeapon() =>
-            Transfer = null;
+        protected abstract void Arm(IWeapon weapon);
     }
 }
