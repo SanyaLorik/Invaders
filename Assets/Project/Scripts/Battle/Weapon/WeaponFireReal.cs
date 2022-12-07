@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Invaders.Battle
 {
     [RequireComponent(typeof(Rigidbody))]
-    public abstract class WeaponFireReal : WeaponFire, IWeaponTransfer
+    public abstract class WeaponFireReal : WeaponFire, IWeaponPortable
     {
         [SerializeField][Min(0)] private float _dropppedLenght;
 

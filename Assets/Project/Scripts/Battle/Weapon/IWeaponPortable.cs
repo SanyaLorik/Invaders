@@ -2,7 +2,7 @@
 
 namespace Invaders.Battle
 {
-    public interface IWeaponTransfer : ITransfer
+    public interface IWeaponPortable : IPortable
     {
         IWeapon Weapon { get; }
     }

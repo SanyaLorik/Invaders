@@ -7,7 +7,7 @@ using Zenject;
 namespace Invaders.Gear
 {
     [RequireComponent(typeof(IPlayerLookService))]
-    public class PlayerWeaponBearer : WeaponBearer
+    public class PlayerWeaponCarrier : WeaponCarrier
     {
         [SerializeField] private Transform _droppedWeaponPoint;
 
@@ -57,15 +57,15 @@ namespace Invaders.Gear
 
         private void ChangeDropOrTakeWeapon()
         {
-            if (HasWeaponOnBearer == true)
+            if (HasPortable == true)
             {
-                DropWeapon(_droppedWeaponPoint.position);
+                Drop(_droppedWeaponPoint.position);
                 _shooter?.Disable();
 
                 return;
             }
 
-            if (HasNearWeapon == true)
+            if (IsNearbyPortable == true)
                 Take();
         }
     }

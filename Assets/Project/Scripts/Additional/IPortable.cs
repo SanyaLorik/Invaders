@@ -2,10 +2,10 @@
 
 namespace Invaders.Additional
 {
-    public interface ITransfer
+    public interface IPortable
     {
         void Take();
 
-        void Throw(Vector3 position);
+        void Throw(Vector3 direction);
     }
 }
