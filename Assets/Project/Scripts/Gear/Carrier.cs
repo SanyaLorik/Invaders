@@ -40,7 +40,7 @@ namespace Invaders.Gear
                    if (collision.TryGetComponent(out T portable) == false)
                    return;
 
-                   CarrierContainer<T> container = _portables.First(i => i.Portable.Equals(portable));
+                   CarrierContainer<T> container = _portables.FirstOrDefault(i => i.Portable.Equals(portable));
                    _portables.Remove(container);
                })
                .AddTo(_disposable);
@@ -48,6 +48,8 @@ namespace Invaders.Gear
 
         protected virtual void OnDisable() =>
             _disposable?.Dispose();
+
+        protected T Weapon => _portable.Value.Portable;
 
         protected bool IsNearbyPortable => _portables.Count != 0;
 

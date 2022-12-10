@@ -66,7 +66,10 @@ namespace Invaders.Gear
             }
 
             if (IsNearbyPortable == true)
+            {
                 Take();
+                Arm(Weapon.Weapon);
+            }
         }
     }
 }

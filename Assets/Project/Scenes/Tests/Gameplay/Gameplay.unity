@@ -3790,7 +3790,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _detector: {fileID: 75831675}
-  _bearer: {fileID: 791013151}
+  _carrier: {fileID: 791013151}
   _droppedWeaponPoint: {fileID: 1056550017}
 --- !u!1001 &637920672
 PrefabInstance:
