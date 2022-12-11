@@ -62,6 +62,14 @@ namespace Invaders.Battle
             _currentAllBullet = Mathf.Clamp(currentAllBullet, 0, _allNumberOfBullet);
         }
 
+        protected void ReduceBullet()
+        {
+            if (_currentBullet <= 0)
+                return;
+
+            _currentBullet--;
+        }
+
         private async UniTaskVoid DealyReload()
         {
             int millisecond = (int)(_reloadedTime * 1000);
@@ -81,14 +89,6 @@ namespace Invaders.Battle
             }
 
             _isReloading = false;
-        }
-
-        protected void ReduceBullet()
-        {
-            if (_currentBullet <= 0)
-                return;
-
-            _currentBullet--;
         }
 
         protected abstract IMissile Spawn(Missile missile, Transform muzzle);
