@@ -2,7 +2,7 @@
 using Invaders.Movement;
 
 namespace Invaders.Battle
-{ 
+{
     public abstract class PlayerShooterFire<T> : PlayerShooter<T>
         where T : IWeaponFire
     {
@@ -14,7 +14,10 @@ namespace Invaders.Battle
         public override void Enable() =>
              _reloader.OnWeaponReloaded += Weapon.Reload;
 
-        public override void Disable() =>
+        public override void Disable()
+        {
             _reloader.OnWeaponReloaded -= Weapon.Reload;
+            Weapon.BreakReload();
+        }
     }
 }

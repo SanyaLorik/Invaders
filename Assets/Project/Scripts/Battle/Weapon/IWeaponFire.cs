@@ -3,5 +3,7 @@
     public interface IWeaponFire : IWeapon, IAmmoReplenishable
     {
         void Reload();
+
+        void BreakReload();
     }
 }

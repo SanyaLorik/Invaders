@@ -1,5 +1,6 @@
 using Invaders.Entities;
 using Invaders.Movement;
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -9,10 +10,8 @@ namespace Invaders.Di
     {
         [SerializeField] private Player _player;
         
-        public override void InstallBindings()
-        {
+        public override void InstallBindings() =>
             BindLook();
-        }
 
         private void BindLook()
         {

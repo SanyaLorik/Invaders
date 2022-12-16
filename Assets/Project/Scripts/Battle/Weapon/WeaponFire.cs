@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using System.Threading;
 using UnityEngine;
 
 namespace Invaders.Battle
@@ -19,6 +20,8 @@ namespace Invaders.Battle
         [SerializeField] [Min(0)] private int _allNumberOfBullet;
         [SerializeField] [Min(0)] private float _reloadedTime;
 
+        private CancellationTokenSource _tokenSource;
+
         private int _currentBullet;
         private int _currentAllBullet;
         private bool _isReloading = false;
@@ -27,6 +30,12 @@ namespace Invaders.Battle
         {
             _currentBullet = _initialNumberOfBullet;
             _currentAllBullet = _allNumberOfBullet;
+        }
+
+        private void OnDisable()
+        {
+            _tokenSource?.Cancel();
+            _tokenSource?.Dispose();
         }
 
         public override void Shoot(Vector3 direction)
@@ -45,6 +54,9 @@ namespace Invaders.Battle
 
         public void Reload()
         {
+            if (_currentBullet == _numberOfBulletInMagazin)
+                return;
+
             if (_isReloading == true)
                 return;
 
@@ -52,8 +64,13 @@ namespace Invaders.Battle
                 return;
 
             _isReloading = true;
-            DealyReload().Forget();
+
+            _tokenSource = new CancellationTokenSource();
+            DealyReload(_tokenSource.Token).Forget();
         }
+
+        public void BreakReload() =>
+            _tokenSource?.Cancel();
 
         public void Replenish(float ratioOfTotalAmmo)
         {
@@ -70,10 +87,12 @@ namespace Invaders.Battle
             _currentBullet--;
         }
 
-        private async UniTaskVoid DealyReload()
+        private async UniTaskVoid DealyReload(CancellationToken token)
         {
+            token.Register(() => _isReloading = false);
+
             int millisecond = (int)(_reloadedTime * 1000);
-            await UniTask.Delay(millisecond);
+            await UniTask.Delay(millisecond, cancellationToken: token);
 
             _currentAllBullet += _currentBullet;
             _currentBullet = 0;
