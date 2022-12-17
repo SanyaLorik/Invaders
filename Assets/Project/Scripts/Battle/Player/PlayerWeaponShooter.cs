@@ -1,16 +1,18 @@
-﻿using Invaders.Battle;
+﻿using Invaders.Gear;
 using Invaders.InputSystem;
 using Invaders.Movement;
 using UnityEngine;
 using Zenject;
 
-namespace Invaders.Gear
+namespace Invaders.Battle
 {
     [RequireComponent(typeof(IPlayerLookService))]
-    public class PlayerWeaponCarrier : WeaponCarrier
+    [RequireComponent(typeof(ICarrier<IThingPortable<IWeapon>>))]
+    public class PlayerWeaponShooter : MonoBehaviour
     {
         [SerializeField] private Transform _droppedWeaponPoint;
 
+        private ICarrier<IThingPortable<IWeapon>> _carier;
         private IPlayerLookService _look;
         private IClickedService _clicked;
         private IHolderService _holder;
@@ -28,28 +30,25 @@ namespace Invaders.Gear
             _reloader = reloader;
         }
 
-        private void Awake() =>
-            _look = GetComponent<IPlayerLookService>();
-
-        protected override void OnEnable()
+        private void Awake()
         {
-            base.OnEnable();
-
-            _bearer.OnTakenOrDroppedWeapon += ChangeDropOrTakeWeapon;
+            _look = GetComponent<IPlayerLookService>();
+            _carier = GetComponent<ICarrier<IThingPortable<IWeapon>>>();
         }
 
-        protected override void OnDisable()
-        {
-            base.OnDisable();
+        private void OnEnable() =>
+            _bearer.OnTakenOrDroppedWeapon += ChangeDropOrTakeWeapon;
 
+        private void OnDisable()
+        {
             _bearer.OnTakenOrDroppedWeapon -= ChangeDropOrTakeWeapon;
             _shooter?.Disable();
         }
 
-        protected sealed override void Arm(IWeapon weapon)
+        private void Arm(IWeapon weapon)
         {
             _shooter = weapon as IWeaponRapidFire == null ?
-                new PlayerShooterTapping(_look, weapon as IWeaponTappingFire, _reloader, _clicked) : 
+                new PlayerShooterTapping(_look, weapon as IWeaponTappingFire, _reloader, _clicked) :
                 new PlayerShooterHolding(_look, weapon as IWeaponRapidFire, _reloader, _holder);
 
             _shooter.Enable();
@@ -57,18 +56,18 @@ namespace Invaders.Gear
 
         private void ChangeDropOrTakeWeapon()
         {
-            if (HasPortable == true)
+            if (_carier.HasPortable == true)
             {
-                Drop(_droppedWeaponPoint.position);
+                _carier.Drop(_droppedWeaponPoint.position);
                 _shooter?.Disable();
 
                 return;
             }
 
-            if (IsNearbyPortable == true)
+            if (_carier.IsNearbyPortable == true)
             {
-                Take();
-                Arm(Weapon.Weapon);
+                IWeapon weapon = _carier.Take().Thing;
+                Arm(weapon);
             }
         }
     }

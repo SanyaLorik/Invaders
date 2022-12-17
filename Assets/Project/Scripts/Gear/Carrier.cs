@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Invaders.Gear
 {
-    public abstract class Carrier<T> : MonoBehaviour
+    public abstract class Carrier<T> : MonoBehaviour, ICarrier<T>
         where T: IPortable
     {
         [SerializeField] private Collider _detector;
@@ -18,7 +18,7 @@ namespace Invaders.Gear
 
         private CompositeDisposable _disposable;
 
-        protected virtual void OnEnable()
+        private void OnEnable()
         {
             _disposable = new CompositeDisposable();
 
@@ -46,24 +46,24 @@ namespace Invaders.Gear
                .AddTo(_disposable);
         }
 
-        protected virtual void OnDisable() =>
+        private void OnDisable() =>
             _disposable?.Dispose();
 
-        protected T Weapon => _portable.Value.Portable;
-
-        protected bool IsNearbyPortable => _portables.Count != 0;
-
-        protected bool HasPortable => _portable != null;
-
-        protected void Take()
+        public T Take()
         {
             _portable = _portables[0];
             _portable?.Portable.Take();
 
             Fix(_portable?.Position);
+
+            return _portable.Value.Portable;
         }
 
-        protected void Drop(Vector3 direction)
+        public bool IsNearbyPortable => _portables.Count != 0;
+
+        public bool HasPortable => _portable != null;
+
+        public void Drop(Vector3 direction)
         {
             _portable?.Portable.Throw(direction);
             _portables.Remove(_portable.Value);

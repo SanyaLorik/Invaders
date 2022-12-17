@@ -12,6 +12,7 @@ namespace Invaders.Ui
         private IWeaponAmmoInformationProvider _ammo;
         private IWeaponReloadedInformationProvider _reloaded;
 
+        /*
         [Inject]
         private void Construct(IWeaponAmmoInformationProvider ammo, IWeaponReloadedInformationProvider reloaded)
         {
@@ -34,6 +35,7 @@ namespace Invaders.Ui
             _reloaded.OnStartReloaded -= StartAnimtionReloading;
             _reloaded.OnStopReloaded -= StopAnimationReloading;
         }
+        */
 
         private void ChangeNumberOfBullet(int current, int magazin) =>
             _numberOfBullet.text = $"{current} / {magazin}";

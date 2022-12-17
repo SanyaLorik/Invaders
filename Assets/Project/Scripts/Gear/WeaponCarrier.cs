@@ -2,8 +2,8 @@
 
 namespace Invaders.Gear
 {
-    public abstract class WeaponCarrier : Carrier<IWeaponPortable>
+    public class WeaponCarrier : Carrier<IThingPortable<IWeapon>>
     {
-        protected abstract void Arm(IWeapon weapon);
+
     }
 }

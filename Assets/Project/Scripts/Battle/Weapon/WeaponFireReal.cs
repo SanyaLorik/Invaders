@@ -5,7 +5,7 @@ namespace Invaders.Battle
 {
     [RequireComponent(typeof(Collider))]
     [RequireComponent(typeof(Rigidbody))]
-    public abstract class WeaponFireReal : WeaponFire, IWeaponPortable
+    public abstract class WeaponFireReal : WeaponFire, IThingPortable<IWeapon>
     {
         [SerializeField][Min(0)] private float _dropppedLenght;
 
@@ -21,7 +21,7 @@ namespace Invaders.Battle
             _collider = GetComponent<Collider>();
         }
 
-        public IWeapon Weapon => this;
+        public IWeapon Thing => this;
 
         public void Take()
         {

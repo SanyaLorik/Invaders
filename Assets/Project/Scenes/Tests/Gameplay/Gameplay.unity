@@ -3811,7 +3811,8 @@ GameObject:
   - component: {fileID: 589350835}
   - component: {fileID: 589350834}
   - component: {fileID: 589350837}
-  - component: {fileID: 589350838}
+  - component: {fileID: 589350841}
+  - component: {fileID: 589350840}
   - component: {fileID: 589350839}
   m_Layer: 0
   m_Name: Player
@@ -3914,21 +3915,6 @@ MonoBehaviour:
   _camera: {fileID: 963194227}
   _rigidbody: {fileID: 589350833}
   _angleOffset: 135
---- !u!114 &589350838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 589350831}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fd33d9ea681cbd4cb230138f2fcfeaa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _detector: {fileID: 75831675}
-  _carrier: {fileID: 791013151}
-  _droppedWeaponPoint: {fileID: 1056550017}
 --- !u!114 &589350839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3942,6 +3928,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _numberOfBullet: {fileID: 349123976}
+--- !u!114 &589350840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589350831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a7424c44de29d429b3c384a5e4ba83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _detector: {fileID: 75831675}
+  _carrier: {fileID: 791013151}
+--- !u!114 &589350841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589350831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd10fd8a10157f6498d166b9d30e551d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _droppedWeaponPoint: {fileID: 1056550017}
 --- !u!1001 &637920672
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5358,7 +5371,7 @@ GameObject:
   m_Component:
   - component: {fileID: 791013151}
   m_Layer: 0
-  m_Name: WeaponBearer
+  m_Name: Weapon Carier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
