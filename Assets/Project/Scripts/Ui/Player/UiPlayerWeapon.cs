@@ -1,6 +1,7 @@
 using Invaders.Battle;
 using TMPro;
 using UnityEngine;
+using Zenject;
 
 namespace Invaders.Ui
 {
@@ -10,6 +11,13 @@ namespace Invaders.Ui
 
         private IWeaponAmmoInformationProvider _ammo;
         private IWeaponReloadedInformationProvider _reloaded;
+
+        [Inject]
+        private void Construct(IWeaponAmmoInformationProvider ammo, IWeaponReloadedInformationProvider reloaded)
+        {
+            _ammo = ammo;
+            _reloaded = reloaded;
+        }
 
         private void OnEnable()
         {
