@@ -10,7 +10,7 @@ namespace Invaders.Battle
     [RequireComponent(typeof(ICarrier<IThingPortable<IWeapon>>))]
     public class PlayerWeaponShooter : MonoBehaviour
     {
-        [SerializeField] private Transform _droppedWeaponPoint;
+        [SerializeField] private Transform _droppedPoint;
 
         private ICarrier<IThingPortable<IWeapon>> _carier;
         private IPlayerLookService _look;
@@ -19,14 +19,14 @@ namespace Invaders.Battle
         private IWeaponReloaderObserverService _reloader;
 
         private IPlayerShooter _shooter;
-        private IPlayerWeaponBearer _bearer;
+        private IPlayerThingCarier _picker;
 
         [Inject]
-        private void Construct(IHolderService holderService, IClickedService clicked, IPlayerWeaponBearer bearer, IWeaponReloaderObserverService reloader)
+        private void Construct(IHolderService holder, IClickedService clicked, IPlayerThingCarier picker, IWeaponReloaderObserverService reloader)
         {
             _clicked = clicked;
-            _holder = holderService;
-            _bearer = bearer;
+            _holder = holder;
+            _picker = picker;
             _reloader = reloader;
         }
 
@@ -37,11 +37,11 @@ namespace Invaders.Battle
         }
 
         private void OnEnable() =>
-            _bearer.OnTakenOrDroppedWeapon += ChangeDropOrTakeWeapon;
+            _picker.OnTakenOrDropped += ChangeDropOrTake;
 
         private void OnDisable()
         {
-            _bearer.OnTakenOrDroppedWeapon -= ChangeDropOrTakeWeapon;
+            _picker.OnTakenOrDropped -= ChangeDropOrTake;
             _shooter?.Disable();
         }
 
@@ -54,21 +54,28 @@ namespace Invaders.Battle
             _shooter.Enable();
         }
 
-        private void ChangeDropOrTakeWeapon()
+        private void ChangeDropOrTake()
         {
             if (_carier.HasPortable == true)
             {
-                _carier.Drop(_droppedWeaponPoint.position);
-                _shooter?.Disable();
-
+                Drop();
                 return;
             }
 
             if (_carier.IsNearbyPortable == true)
-            {
-                IWeapon weapon = _carier.Take().Thing;
-                Arm(weapon);
-            }
+                Take();
+        }
+
+        private void Drop()
+        {
+            _carier.Drop(_droppedPoint.position);
+            _shooter?.Disable();
+        }
+
+        private void Take()
+        {
+            IWeapon weapon = _carier.Take().Thing;
+            Arm(weapon);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Invaders.InputSystem
 {
     public class PlayerInputSystem : 
         MonoBehaviour, 
-        IMovementService, IPointPositionOnScreenService, IClickedService, IHolderService, IPlayerWeaponBearer, IWeaponReloaderObserverService,
+        IMovementService, IPointPositionOnScreenService, IClickedService, IHolderService, IPlayerThingCarier, IWeaponReloaderObserverService,
         ISceneReloaderObserverService
     {
         public event Action<Vector3> OnMove = delegate { };
@@ -15,7 +15,7 @@ namespace Invaders.InputSystem
         public event Action OnClicked = delegate { };
         public event Action OnHeld = delegate { };
         public event Action OnUnheld = delegate { };
-        public event Action OnTakenOrDroppedWeapon = delegate { };
+        public event Action OnTakenOrDropped = delegate { };
         public event Action OnWeaponReloaded = delegate { };
         public event Action OnSceneReloaded = delegate { };
 
@@ -98,7 +98,7 @@ namespace Invaders.InputSystem
             OnUnheld.Invoke();
 
         private void TakeOrDrop(InputAction.CallbackContext _) =>
-            OnTakenOrDroppedWeapon.Invoke();
+            OnTakenOrDropped.Invoke();
 
         private void ReloadWeapon(InputAction.CallbackContext _) =>
             OnWeaponReloaded.Invoke();

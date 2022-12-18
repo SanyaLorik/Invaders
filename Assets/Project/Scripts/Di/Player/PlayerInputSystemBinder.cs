@@ -63,7 +63,7 @@ namespace Invaders.Di
         private void BindDropWeapon()
         {
             Container
-               .Bind<IPlayerWeaponBearer>()
+               .Bind<IPlayerThingCarier>()
                .To<PlayerInputSystem>()
                .FromInstance(_inputSystem)
                .AsCached()
