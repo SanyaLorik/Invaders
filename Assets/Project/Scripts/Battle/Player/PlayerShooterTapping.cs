@@ -16,16 +16,16 @@ namespace Invaders.Battle
         public override void Enable()
         {
             base.Enable();
-            _clicked.OnClicked += ShootingWithDelay;
+            _clicked.OnClicked += OnShootingWithDelay;
         }
 
         public override void Disable()
         {
             base.Disable();
-            _clicked.OnClicked -= ShootingWithDelay;
+            _clicked.OnClicked -= OnShootingWithDelay;
         }
 
-        protected void ShootingWithDelay()
+        protected void OnShootingWithDelay()
         {
             if (_canShooting == false)
                 return;

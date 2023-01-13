@@ -29,14 +29,14 @@ namespace Invaders.Movement
 
         private void OnEnable()
         {
-            _movementService.OnMove += SetDirection;
-            _movementService.OnStopped += Stop;
+            _movementService.OnMove += OnSetDirection;
+            _movementService.OnStopped += OnStop;
         }
 
         private void OnDisable()
         { 
-            _movementService.OnMove -= SetDirection;
-            _movementService.OnStopped -= Stop;
+            _movementService.OnMove -= OnSetDirection;
+            _movementService.OnStopped -= OnStop;
         }
         
         private void FixedUpdate()
@@ -47,13 +47,13 @@ namespace Invaders.Movement
             _movement.Move(_direction);
         }
 
-        private void SetDirection(Vector3 direction) =>
+        private void OnSetDirection(Vector3 direction) =>
             _direction = direction;
         
-        private void Stop()
+        private void OnStop()
         {
             _direction = Vector3.zero;
-            _movement.Stop();
-        }
+            _movement.Move(_direction);
+        }    
     }
 }

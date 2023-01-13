@@ -18,21 +18,21 @@ namespace Invaders.Battle
         {
             base.Enable();
             
-            _holder.OnHeld += StartShooting;
-            _holder.OnUnheld += StopShooting;
+            _holder.OnHeld += OnStartShooting;
+            _holder.OnUnheld += OnStopShooting;
         }
 
         public override void Disable()
         {
             base.Disable();
 
-            _holder.OnHeld -= StartShooting;
-            _holder.OnUnheld -= StopShooting;
+            _holder.OnHeld -= OnStartShooting;
+            _holder.OnUnheld -= OnStopShooting;
 
             _tokenSource?.Cancel();
         }
         
-        private void StartShooting()
+        private void OnStartShooting()
         {
             _tokenSource = new CancellationTokenSource();
             ShootProcess(_tokenSource.Token).Forget();
@@ -50,7 +50,7 @@ namespace Invaders.Battle
             while (token.IsCancellationRequested == false);
         }
         
-        private void StopShooting() =>
+        private void OnStopShooting() =>
             _tokenSource?.Cancel();
     }
 }

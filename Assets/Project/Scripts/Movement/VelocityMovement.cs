@@ -16,8 +16,5 @@ namespace Invaders.Movement
 
         public void Move(Vector3 direction) =>
             _rigidbody.velocity = direction * _speed.Current;
-
-        public void Stop() =>
-            _rigidbody.velocity = Vector2.zero;
     }
 }

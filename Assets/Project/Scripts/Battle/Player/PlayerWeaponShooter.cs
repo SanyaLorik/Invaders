@@ -37,11 +37,11 @@ namespace Invaders.Battle
         }
 
         private void OnEnable() =>
-            _picker.OnTakenOrDropped += ChangeDropOrTake;
+            _picker.OnTakenOrDropped += OnChangeDropOrTake;
 
         private void OnDisable()
         {
-            _picker.OnTakenOrDropped -= ChangeDropOrTake;
+            _picker.OnTakenOrDropped -= OnChangeDropOrTake;
             _shooter?.Disable();
         }
 
@@ -54,7 +54,7 @@ namespace Invaders.Battle
             _shooter.Enable();
         }
 
-        private void ChangeDropOrTake()
+        private void OnChangeDropOrTake()
         {
             if (_carier.HasPortable == true)
             {

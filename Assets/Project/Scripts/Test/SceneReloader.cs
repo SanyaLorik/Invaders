@@ -14,12 +14,12 @@ namespace Invaders.Test
             _reloader = reloader;
 
         private void OnEnable() =>
-            _reloader.OnSceneReloaded += Reload;
+            _reloader.OnSceneReloaded += OnReload;
 
         private void OnDisable() =>
-            _reloader.OnSceneReloaded += Reload;
+            _reloader.OnSceneReloaded += OnReload;
 
-        private void Reload() =>
+        private void OnReload() =>
             SceneManager.LoadScene(0);
     }
 }
