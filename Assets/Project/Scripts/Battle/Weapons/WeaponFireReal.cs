@@ -1,4 +1,5 @@
 ﻿using Invaders.Additionals;
+using Invaders.Gear;
 using UnityEngine;
 
 namespace Invaders.Battle

@@ -1,12 +1,7 @@
 ﻿using Invaders.Additionals;
 
-namespace Invaders.Battle
+namespace Invaders.Gear
 {
-    public interface IThingPortable : IPortable
-    {
-        object Thing { get; }
-    }
-
     public interface IThingPortable<T> : IPortable
     {
         T Thing { get; }
