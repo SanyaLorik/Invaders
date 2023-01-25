@@ -1,4 +1,4 @@
-namespace Invaders.Effect
+namespace Invaders.Effects
 {
     public interface IEffect
     {

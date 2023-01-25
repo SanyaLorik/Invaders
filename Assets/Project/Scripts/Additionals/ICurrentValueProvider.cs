@@ -1,4 +1,4 @@
-namespace Invaders.Additional
+namespace Invaders.Additionals
 {
     public interface ICurrentValueProvider<T>
     {

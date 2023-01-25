@@ -6,7 +6,7 @@ using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 
-namespace Invaders.Environment.Building
+namespace Invaders.Environment.Buildings
 {
     public class AmmoBag : MonoBehaviour
     {

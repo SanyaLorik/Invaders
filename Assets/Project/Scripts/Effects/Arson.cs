@@ -2,7 +2,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using Invaders.Pysiol;
 
-namespace Invaders.Effect
+namespace Invaders.Effects
 {
     public class Arson : IEffect
     {

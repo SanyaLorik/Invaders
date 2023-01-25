@@ -1,4 +1,4 @@
-﻿using Invaders.Additional;
+﻿using Invaders.Additionals;
 using System.Collections.Generic;
 using System.Linq;
 using UniRx;

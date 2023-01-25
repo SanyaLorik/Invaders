@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Invaders.Additional
+namespace Invaders.Additionals
 {
     public interface IPortable
     {

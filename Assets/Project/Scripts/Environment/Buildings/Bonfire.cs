@@ -1,11 +1,11 @@
-using Invaders.Additional;
-using Invaders.Effect;
+using Invaders.Additionals;
+using Invaders.Effects;
 using Invaders.Pysiol;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 
-namespace Invaders.Environment
+namespace Invaders.Environment.Buildings
 {
     public class Bonfire : MonoBehaviour
     {
