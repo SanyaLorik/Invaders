@@ -69,8 +69,16 @@ namespace Invaders.Battle
             DealyReload(_tokenSource.Token).Forget();
         }
 
-        public void BreakReload() =>
-            _tokenSource?.Cancel();
+        public void BreakReload()
+        {
+            if (_tokenSource == null)
+                return;
+
+            if (_tokenSource.IsCancellationRequested == true)
+                return;
+
+            _tokenSource.Cancel();
+        }
 
         public void Replenish(float ratioOfTotalAmmo)
         {
