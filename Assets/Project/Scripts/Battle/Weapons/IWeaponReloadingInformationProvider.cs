@@ -2,7 +2,7 @@
 
 namespace Invaders.Battle
 {
-    public interface IWeaponReloadedInformationProvider
+    public interface IWeaponReloadingInformationProvider
     {
         event Action OnStartReloaded;
 

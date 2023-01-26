@@ -10,7 +10,7 @@ namespace Invaders.Ui
         [SerializeField] private TMP_Text _numberOfBullet;
 
         private IWeaponAmmoInformationProvider _ammo;
-        private IWeaponReloadedInformationProvider _reloaded;
+        private IWeaponReloadingInformationProvider _reloaded;
 
         /*
         [Inject]
