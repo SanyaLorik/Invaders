@@ -6,7 +6,7 @@ namespace Invaders.Di
 {
     public class PlayerUiWraponBinder : MonoInstaller
     {
-        [SerializeField] private PlayerWeaponShooter _information;
+        [SerializeField] private PlayerWeaponUiObserver _information;
 
         public override void InstallBindings()
         {

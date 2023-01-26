@@ -1,7 +1,6 @@
 ﻿using Invaders.Gear;
 using Invaders.InputSystem;
 using Invaders.Movement;
-using System;
 using UnityEngine;
 using Zenject;
 
@@ -9,13 +8,9 @@ namespace Invaders.Battle
 {
     [RequireComponent(typeof(IPlayerLookService))]
     [RequireComponent(typeof(ICarrier<IThingPortable<IWeapon>>))]
-    public class PlayerWeaponShooter : MonoBehaviour, IWeaponAmmoObserver, IWeaponReloadingObserver
+    public class PlayerWeaponShooter : MonoBehaviour
     {
         [SerializeField] private Transform _droppedPoint;
-
-        public event Action<int, int> OnNumberOfBulletChanged = delegate { };
-        public event Action OnStartReloaded = delegate { };
-        public event Action OnStopReloaded = delegate { };
 
         private ICarrier<IThingPortable<IWeapon>> _carier;
         private IPlayerLookService _look;
@@ -66,8 +61,6 @@ namespace Invaders.Battle
                 new PlayerShooterTapping(_look, weapon as IWeaponTappingFire, _reloader, _clicked) :
                 new PlayerShooterHolding(_look, weapon as IWeaponRapidFire, _reloader, _holder);
 
-            SetInformationAboutWeaponFire(weaponFire);
-
             _shooter.Enable();
         }
 
@@ -87,24 +80,12 @@ namespace Invaders.Battle
         {
             _carier.Drop(_droppedPoint.position);
             _shooter?.Disable();
-
-            // The weapon was dropped, which means there is no information about bullets (0, 0).
-            OnNumberOfBulletChanged.Invoke(0, 0); 
         }
 
         private void Take()
         {
             IWeapon weapon = _carier.Take().Thing;
             Arm(weapon);
-        }
-        
-        private void SetInformationAboutWeaponFire(IWeaponFire weaponFire)
-        {
-            weaponFire.OnChangeNubmerOfBullet((remaining, total) => OnNumberOfBulletChanged.Invoke(remaining, total));
-
-            weaponFire.OnReloadingStarted(() => OnStartReloaded.Invoke());
-            weaponFire.OnReloadingStopped(() => OnStopReloaded.Invoke());
-            ReloadedTime = weaponFire.ReloaingTime;
         }
     }
 }

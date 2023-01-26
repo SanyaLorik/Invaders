@@ -111,6 +111,9 @@ namespace Invaders.Battle
 
         protected void ReduceBullet()
         {
+            if (_isReloading == true)
+                return;
+
             if (HaveBulletInMagazin == false)
                 return;
 
