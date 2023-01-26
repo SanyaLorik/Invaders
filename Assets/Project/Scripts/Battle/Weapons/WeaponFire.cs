@@ -40,10 +40,10 @@ namespace Invaders.Battle
 
         public override void Shoot(Vector3 direction)
         {
-            if (_isReloading == true)
+            if (HaveBulletInMagazin == false)
                 return;
 
-            if (_currentBullet <= 0)
+            if (_isReloading == true)
                 return;
 
             IMissile missile = Spawn(_missile, _muzzle);
@@ -89,7 +89,7 @@ namespace Invaders.Battle
 
         protected void ReduceBullet()
         {
-            if (_currentBullet <= 0)
+            if (HaveBulletInMagazin == false)
                 return;
 
             _currentBullet--;
@@ -117,6 +117,8 @@ namespace Invaders.Battle
 
             _isReloading = false;
         }
+
+        private bool HaveBulletInMagazin => _currentBullet > 0;
 
         protected abstract IMissile Spawn(Missile missile, Transform muzzle);
 

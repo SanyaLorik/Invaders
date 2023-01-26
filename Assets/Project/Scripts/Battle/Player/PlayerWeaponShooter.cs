@@ -1,6 +1,7 @@
 ﻿using Invaders.Gear;
 using Invaders.InputSystem;
 using Invaders.Movement;
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -8,9 +9,13 @@ namespace Invaders.Battle
 {
     [RequireComponent(typeof(IPlayerLookService))]
     [RequireComponent(typeof(ICarrier<IThingPortable<IWeapon>>))]
-    public class PlayerWeaponShooter : MonoBehaviour
+    public class PlayerWeaponShooter : MonoBehaviour, IWeaponAmmoInformationObserver, IWeaponReloadingInformationObserver
     {
         [SerializeField] private Transform _droppedPoint;
+
+        public event Action<int, int> OnNumberOfBulletChanged = delegate { };
+        public event Action OnStartReloaded = delegate { };
+        public event Action OnStopReloaded = delegate { };
 
         private ICarrier<IThingPortable<IWeapon>> _carier;
         private IPlayerLookService _look;
@@ -20,6 +25,8 @@ namespace Invaders.Battle
 
         private IPlayerShooter _shooter;
         private IPlayerThingCarier _picker;
+
+        public float ReloadedTime => throw new NotImplementedException();
 
         [Inject]
         private void Construct(IHolderService holder, IClickedService clicked, IPlayerThingCarier picker, IWeaponReloaderObserverService reloader)
@@ -47,7 +54,15 @@ namespace Invaders.Battle
 
         private void Arm(IWeapon weapon)
         {
-            _shooter = weapon as IWeaponRapidFire == null ?
+            /*
+             * This method developed only for firearms, but is a temporary solution.
+             * In the future, it will be developed for handguns.
+             */
+
+            if (weapon is IWeaponFire weaponFire == false)
+                return;
+
+            _shooter = weaponFire as IWeaponRapidFire == null ?
                 new PlayerShooterTapping(_look, weapon as IWeaponTappingFire, _reloader, _clicked) :
                 new PlayerShooterHolding(_look, weapon as IWeaponRapidFire, _reloader, _holder);
 
