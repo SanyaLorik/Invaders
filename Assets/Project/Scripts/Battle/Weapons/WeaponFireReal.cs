@@ -11,36 +11,31 @@ namespace Invaders.Battle
         [SerializeField][Min(0)] private float _dropppedLenght;
 
         private readonly Transform _world = null; // temporarily
-        private Rigidbody _rigidbody;
         private Collider _collider;
+        private Rigidbody _rigidbody;
 
         protected override void Awake()
         {
             base.Awake();
 
-            _rigidbody = GetComponent<Rigidbody>();
             _collider = GetComponent<Collider>();
+            _rigidbody = GetComponent<Rigidbody>();
         }
 
         public IWeapon Thing => this;
 
-        public void Take()
-        {
-            _rigidbody.isKinematic = true;
-            _collider.isTrigger = true;
-        }
+        public void Take() =>
+            ChangePhysics(true);
 
         public void Throw(Vector3 position)
         {
-            _rigidbody.isKinematic = false;
-            _collider.isTrigger = false;
-
+            ChangePhysics(false);
             Transfer(position);
             Drop();
         }
 
         private void Drop()
-       {
+        {
             Vector3 direction = transform.forward + Vector3.up;
             float lenght = SpecificMath.CalculateLenght(_rigidbody.mass, _dropppedLenght);
 
@@ -52,5 +47,8 @@ namespace Invaders.Battle
             transform.SetParent(_world);
             transform.position = position;
         }
+
+        private void ChangePhysics(bool isActive) =>
+            _collider.isTrigger = _rigidbody.isKinematic = isActive;
     }
 }
