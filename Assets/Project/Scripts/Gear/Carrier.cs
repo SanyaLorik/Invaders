@@ -38,7 +38,7 @@ namespace Invaders.Gear
                .Subscribe(collision =>
                {
                    if (collision.TryGetComponent(out T portable) == false)
-                   return;
+                       return;
 
                    CarrierContainer<T> container = _portables.FirstOrDefault(i => i.Portable.Equals(portable));
                    _portables.Remove(container);
@@ -49,6 +49,10 @@ namespace Invaders.Gear
         private void OnDisable() =>
             _disposable?.Dispose();
 
+        public bool IsNearbyPortable => _portables.Count != 0;
+
+        public bool HasPortable => _portable != null;
+
         public T Take()
         {
             _portable = _portables[0];
@@ -58,10 +62,6 @@ namespace Invaders.Gear
 
             return _portable.Value.Portable;
         }
-
-        public bool IsNearbyPortable => _portables.Count != 0;
-
-        public bool HasPortable => _portable != null;
 
         public void Drop(Vector3 direction)
         {
