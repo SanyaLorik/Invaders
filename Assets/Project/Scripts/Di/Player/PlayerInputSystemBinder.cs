@@ -23,7 +23,6 @@ namespace Invaders.Di
         {
             Container
                 .Bind<IMovementService>()
-                .To<PlayerInputSystem>()
                 .FromInstance(_inputSystem)
                 .AsCached()
                 .NonLazy();
@@ -33,7 +32,6 @@ namespace Invaders.Di
         {
             Container
                 .Bind<IPointPositionOnScreenService>()
-                .To<PlayerInputSystem>()
                 .FromInstance(_inputSystem)
                 .AsCached()
                 .NonLazy();
@@ -43,7 +41,6 @@ namespace Invaders.Di
         {
             Container
                 .Bind<IClickedService>()
-                .To<PlayerInputSystem>()
                 .FromInstance(_inputSystem)
                 .AsCached()
                 .NonLazy();
@@ -53,7 +50,6 @@ namespace Invaders.Di
         {
             Container
                 .Bind<IHolderService>()
-                .To<PlayerInputSystem>()
                 .FromInstance(_inputSystem)
                 .AsCached()
                 .NonLazy();
@@ -62,31 +58,28 @@ namespace Invaders.Di
         private void BindDropWeapon()
         {
             Container
-               .Bind<IPlayerThingCarier>()
-               .To<PlayerInputSystem>()
-               .FromInstance(_inputSystem)
-               .AsCached()
-               .NonLazy();
+                .Bind<IPlayerThingCarier>()
+                .FromInstance(_inputSystem)
+                .AsCached()
+                .NonLazy();
         }
 
         private void BindReloadWeapon()
         {
             Container
-               .Bind<IWeaponReloaderObserverService>()
-               .To<PlayerInputSystem>()
-               .FromInstance(_inputSystem)
-               .AsCached()
-               .NonLazy();
+                .Bind<IWeaponReloaderObserverService>()
+                .FromInstance(_inputSystem)
+                .AsCached()
+                .NonLazy();
         }
 
         private void BindReloadScene()
         {
             Container
-               .Bind<ISceneReloaderObserverService>()
-               .To<PlayerInputSystem>()
-               .FromInstance(_inputSystem)
-               .AsCached()
-               .NonLazy();
+                .Bind<ISceneReloaderObserverService>()
+                .FromInstance(_inputSystem)
+                .AsCached()
+                .NonLazy();
         }
     }
 }

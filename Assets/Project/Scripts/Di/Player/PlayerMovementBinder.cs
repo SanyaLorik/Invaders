@@ -1,6 +1,5 @@
 using Invaders.Entities;
 using Invaders.Movement;
-using System;
 using UnityEngine;
 using Zenject;
 
@@ -17,7 +16,6 @@ namespace Invaders.Di
         {
             Container
                 .Bind<IPlayerLookService>()
-                .To<Player>()
                 .FromInstance(_player)
                 .AsCached()
                 .NonLazy();
