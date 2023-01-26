@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using System;
 using System.Threading;
 using UnityEngine;
 
@@ -17,19 +18,23 @@ namespace Invaders.Battle
         [Header("Bullets")]
         [SerializeField] [Min(0)] private int _initialNumberOfBullet;
         [SerializeField] [Min(0)] private int _numberOfBulletInMagazin;
-        [SerializeField] [Min(0)] private int _allNumberOfBullet;
+        [SerializeField] [Min(0)] private int _totalNumberOfBullet;
         [SerializeField] [Min(0)] private float _reloadedTime;
+
+        private Action<int, int> _reducingBullets;
+        private Action _startedReloading;
+        private Action _stoppedReloading;
 
         private CancellationTokenSource _tokenSource;
 
         private int _currentBullet;
-        private int _currentAllBullet;
+        private int _currentTotalBullet;
         private bool _isReloading = false;
 
         protected virtual void Awake()
         {
             _currentBullet = _initialNumberOfBullet;
-            _currentAllBullet = _allNumberOfBullet;
+            _currentTotalBullet = _totalNumberOfBullet;
         }
 
         private void OnDisable()
@@ -37,6 +42,8 @@ namespace Invaders.Battle
             _tokenSource?.Cancel();
             _tokenSource?.Dispose();
         }
+
+        public float ReloaingTime => _reloadedTime;
 
         public override void Shoot(Vector3 direction)
         {
@@ -60,10 +67,11 @@ namespace Invaders.Battle
             if (_isReloading == true)
                 return;
 
-            if (_currentAllBullet <= 0)
+            if (_currentTotalBullet <= 0)
                 return;
 
             _isReloading = true;
+            _startedReloading?.Invoke();
 
             _tokenSource = new CancellationTokenSource();
             DealyReload(_tokenSource.Token).Forget();
@@ -82,10 +90,19 @@ namespace Invaders.Battle
 
         public void Replenish(float ratioOfTotalAmmo)
         {
-            int bullet = (int)(_allNumberOfBullet * ratioOfTotalAmmo);
-            int currentAllBullet = _currentAllBullet + bullet;
-            _currentAllBullet = Mathf.Clamp(currentAllBullet, 0, _allNumberOfBullet);
+            int bullet = (int)(_totalNumberOfBullet * ratioOfTotalAmmo);
+            int currentAllBullet = _currentTotalBullet + bullet;
+            _currentTotalBullet = Mathf.Clamp(currentAllBullet, 0, _totalNumberOfBullet);
         }
+
+        public void OnReduceBullet(Action<int, int> callback) =>
+           _reducingBullets = callback;
+
+        public void OnReloadingStarted(Action callback) =>
+            _startedReloading = callback;
+
+        public void OnReloadingStopped(Action callback) =>
+            _stoppedReloading = callback;
 
         protected void ReduceBullet()
         {
@@ -93,26 +110,31 @@ namespace Invaders.Battle
                 return;
 
             _currentBullet--;
+            _reducingBullets?.Invoke(_currentBullet, _currentTotalBullet);
         }
 
         private async UniTaskVoid DealyReload(CancellationToken token)
         {
-            token.Register(() => _isReloading = false);
+            token.Register(() =>
+            {
+                _isReloading = false;
+                _stoppedReloading?.Invoke();
+            });
 
             int millisecond = (int)(_reloadedTime * 1000);
             await UniTask.Delay(millisecond, cancellationToken: token);
 
-            _currentAllBullet += _currentBullet;
+            _currentTotalBullet += _currentBullet;
             _currentBullet = 0;
 
-            if (_currentAllBullet < _currentBullet)
+            if (_currentTotalBullet < _currentBullet)
             {
-                _currentBullet = _currentAllBullet;
+                _currentBullet = _currentTotalBullet;
             }
             else
             {
                 _currentBullet = _numberOfBulletInMagazin;
-                _currentAllBullet -= _numberOfBulletInMagazin;
+                _currentTotalBullet -= _numberOfBulletInMagazin;
             }
 
             _isReloading = false;

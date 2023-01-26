@@ -26,8 +26,6 @@ namespace Invaders.Battle
         private IPlayerShooter _shooter;
         private IPlayerThingCarier _picker;
 
-        public float ReloadedTime => throw new NotImplementedException();
-
         [Inject]
         private void Construct(IHolderService holder, IClickedService clicked, IPlayerThingCarier picker, IWeaponReloaderObserverService reloader)
         {
@@ -52,6 +50,8 @@ namespace Invaders.Battle
             _shooter?.Disable();
         }
 
+        public float ReloadedTime { get; private set; }
+
         private void Arm(IWeapon weapon)
         {
             /*
@@ -65,6 +65,8 @@ namespace Invaders.Battle
             _shooter = weaponFire as IWeaponRapidFire == null ?
                 new PlayerShooterTapping(_look, weapon as IWeaponTappingFire, _reloader, _clicked) :
                 new PlayerShooterHolding(_look, weapon as IWeaponRapidFire, _reloader, _holder);
+
+            SetInformationAboutWeaponFire(weaponFire);
 
             _shooter.Enable();
         }
@@ -91,6 +93,15 @@ namespace Invaders.Battle
         {
             IWeapon weapon = _carier.Take().Thing;
             Arm(weapon);
+        }
+        
+        private void SetInformationAboutWeaponFire(IWeaponFire weaponFire)
+        {
+            weaponFire.OnReduceBullet((remaining, total) => OnNumberOfBulletChanged.Invoke(remaining, total));
+
+            weaponFire.OnReloadingStarted(() => OnStartReloaded.Invoke());
+            weaponFire.OnReloadingStopped(() => OnStopReloaded.Invoke());
+            ReloadedTime = weaponFire.ReloaingTime;
         }
     }
 }
