@@ -9,12 +9,11 @@ namespace Invaders.Ui
     {
         [SerializeField] private TMP_Text _numberOfBullet;
 
-        private IWeaponAmmoInformationObserver _ammo;
-        private IWeaponReloadingInformationObserver _reloaded;
+        private IWeaponAmmoObserver _ammo;
+        private IWeaponReloadingObserver _reloaded;
 
-        /*
         [Inject]
-        private void Construct(IWeaponAmmoInformationProvider ammo, IWeaponReloadedInformationProvider reloaded)
+        private void Construct(IWeaponAmmoObserver ammo, IWeaponReloadingObserver reloaded)
         {
             _ammo = ammo;
             _reloaded = reloaded;
@@ -35,14 +34,13 @@ namespace Invaders.Ui
             _reloaded.OnStartReloaded -= StartAnimtionReloading;
             _reloaded.OnStopReloaded -= StopAnimationReloading;
         }
-        */
 
         private void ChangeNumberOfBullet(int current, int magazin) =>
             _numberOfBullet.text = $"{current} / {magazin}";
 
         private void StartAnimtionReloading()
         {
-
+            Debug.Log("Reloading is started.");
         }
 
         private void ProgressAnimationReloading()
@@ -52,7 +50,7 @@ namespace Invaders.Ui
 
         private void StopAnimationReloading()
         {
-
+            Debug.Log("Reloading is stopped.");
         }
     }
 }

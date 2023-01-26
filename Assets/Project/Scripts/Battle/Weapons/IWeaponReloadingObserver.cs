@@ -2,7 +2,7 @@
 
 namespace Invaders.Battle
 {
-    public interface IWeaponReloadingInformationObserver
+    public interface IWeaponReloadingObserver
     {
         event Action OnStartReloaded;
 

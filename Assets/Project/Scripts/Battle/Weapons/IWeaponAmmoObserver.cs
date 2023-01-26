@@ -2,7 +2,7 @@
 
 namespace Invaders.Battle
 {
-    public interface IWeaponAmmoInformationObserver
+    public interface IWeaponAmmoObserver
     {
         event Action<int, int> OnNumberOfBulletChanged;
     }

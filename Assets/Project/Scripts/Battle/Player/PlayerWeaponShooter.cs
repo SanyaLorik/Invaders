@@ -9,7 +9,7 @@ namespace Invaders.Battle
 {
     [RequireComponent(typeof(IPlayerLookService))]
     [RequireComponent(typeof(ICarrier<IThingPortable<IWeapon>>))]
-    public class PlayerWeaponShooter : MonoBehaviour, IWeaponAmmoInformationObserver, IWeaponReloadingInformationObserver
+    public class PlayerWeaponShooter : MonoBehaviour, IWeaponAmmoObserver, IWeaponReloadingObserver
     {
         [SerializeField] private Transform _droppedPoint;
 
