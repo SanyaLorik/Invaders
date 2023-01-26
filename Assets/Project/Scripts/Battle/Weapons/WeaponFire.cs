@@ -21,7 +21,7 @@ namespace Invaders.Battle
         [SerializeField] [Min(0)] private int _totalNumberOfBullet;
         [SerializeField] [Min(0)] private float _reloadedTime;
 
-        private Action<int, int> _reducingBullets;
+        private Action<int, int> _changingNumberOfBullets;
         private Action _startedReloading;
         private Action _stoppedReloading;
 
@@ -93,10 +93,15 @@ namespace Invaders.Battle
             int bullet = (int)(_totalNumberOfBullet * ratioOfTotalAmmo);
             int currentAllBullet = _currentTotalBullet + bullet;
             _currentTotalBullet = Mathf.Clamp(currentAllBullet, 0, _totalNumberOfBullet);
+
+            _changingNumberOfBullets?.Invoke(_currentBullet, _currentTotalBullet);
         }
 
-        public void OnReduceBullet(Action<int, int> callback) =>
-           _reducingBullets = callback;
+        public void OnChangeNubmerOfBullet(Action<int, int> callback)
+        {
+            _changingNumberOfBullets = callback; 
+            _changingNumberOfBullets?.Invoke(_currentBullet, _currentTotalBullet);
+        }
 
         public void OnReloadingStarted(Action callback) =>
             _startedReloading = callback;
@@ -110,7 +115,7 @@ namespace Invaders.Battle
                 return;
 
             _currentBullet--;
-            _reducingBullets?.Invoke(_currentBullet, _currentTotalBullet);
+            _changingNumberOfBullets?.Invoke(_currentBullet, _currentTotalBullet);
         }
 
         private async UniTaskVoid DealyReload(CancellationToken token)
@@ -138,6 +143,7 @@ namespace Invaders.Battle
             }
 
             _isReloading = false;
+            _changingNumberOfBullets?.Invoke(_currentBullet, _currentTotalBullet);
         }
 
         private bool HaveBulletInMagazin => _currentBullet > 0;

@@ -87,6 +87,9 @@ namespace Invaders.Battle
         {
             _carier.Drop(_droppedPoint.position);
             _shooter?.Disable();
+
+            // The weapon was dropped, which means there is no information about bullets (0, 0).
+            OnNumberOfBulletChanged.Invoke(0, 0); 
         }
 
         private void Take()
@@ -97,7 +100,7 @@ namespace Invaders.Battle
         
         private void SetInformationAboutWeaponFire(IWeaponFire weaponFire)
         {
-            weaponFire.OnReduceBullet((remaining, total) => OnNumberOfBulletChanged.Invoke(remaining, total));
+            weaponFire.OnChangeNubmerOfBullet((remaining, total) => OnNumberOfBulletChanged.Invoke(remaining, total));
 
             weaponFire.OnReloadingStarted(() => OnStartReloaded.Invoke());
             weaponFire.OnReloadingStopped(() => OnStopReloaded.Invoke());

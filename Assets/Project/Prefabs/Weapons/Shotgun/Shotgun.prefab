@@ -44,9 +44,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7399963980558862821}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 0.2058682, y: 0.54950213, z: 1.4425752}
   m_Center: {x: -0.0003613457, y: 0.2747941, z: -0.07956433}
 --- !u!54 &7399963980558862818
@@ -56,10 +64,21 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7399963980558862821}
-  serializedVersion: 2
+  serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -83,7 +102,7 @@ MonoBehaviour:
   _damage: 0
   _initialNumberOfBullet: 2
   _numberOfBulletInMagazin: 5
-  _allNumberOfBullet: 10
+  _totalNumberOfBullet: 25
   _reloadedTime: 2
   _dropppedLenght: 0.25
   <TappedDelay>k__BackingField: 0.75
@@ -157,6 +176,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 7399963981552760043}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 8af62514d83ca9d42b66144eabf9e7a7, type: 3}
@@ -220,6 +240,9 @@ PrefabInstance:
       value: Shotgun
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8af62514d83ca9d42b66144eabf9e7a7, type: 3}
 --- !u!4 &7006278812582148535 stripped
 Transform:
