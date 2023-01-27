@@ -6,10 +6,11 @@ namespace Invaders.Movement
 {
     public class PlayerRotator : MonoBehaviour
     {
-        [SerializeField] private Camera _camera;
         [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] [Min(0)] private float _angleOffset;
-        
+
+        private Camera _camera;
+
         private IPointPositionOnScreenService _pointPositionOnScreenService;
         private IRotator _rotator;
 
@@ -17,8 +18,11 @@ namespace Invaders.Movement
         private void Construct(IPointPositionOnScreenService pointPositionOnScreenService) =>
             _pointPositionOnScreenService = pointPositionOnScreenService;
 
-        private void Awake() =>
+        private void Awake()
+        {
+            _camera = Camera.main;
             _rotator = new MovingRotator(_rigidbody);
+        }
 
         private void OnEnable() =>
             _pointPositionOnScreenService.OnLooked += PointPositionOnScreen;

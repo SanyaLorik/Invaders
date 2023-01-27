@@ -11,9 +11,11 @@ namespace Invaders.Di
         [SerializeField] private Transform _container;
 
         public override void InstallBindings() =>
-            Spawn();
+            SpawnedPlayer = Spawn();
 
-        private void Spawn() =>
-            Container.InstantiatePrefab(_player, _spawnpoint.position, _spawnpoint.rotation, _container);
+        public Player SpawnedPlayer { get; private set; }
+
+        private Player Spawn() =>
+            Container.InstantiatePrefabForComponent<Player>(_player, _spawnpoint.position, _spawnpoint.rotation, _container);
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Invaders.Additionals;
-using Invaders.Entities;
 using UnityEngine;
 using Zenject;
 
@@ -7,7 +6,7 @@ namespace Invaders.Di
 {
     public class PlayerUiHealthBinder: MonoInstaller
     {
-        [SerializeField] private Player _player;
+        [SerializeField] private PlayerSpawner _spawner;
 
         public override void InstallBindings() =>
             BindHealthObserver();
@@ -16,7 +15,7 @@ namespace Invaders.Di
         {
             Container
                .Bind<IValueObserver<int, int>>()
-               .FromInstance(_player.Value)
+               .FromInstance(_spawner.SpawnedPlayer.Value)
                .AsCached()
                .NonLazy();
         }
