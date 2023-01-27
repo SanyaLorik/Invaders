@@ -107,10 +107,10 @@ namespace Invaders.Battle
         public void OnOutOfAmmo(Action callaback) =>
             _outingOfAmmo = callaback;
 
-        public void OnReloadingStarted(Action callback) =>
+        public void OnStartReloading(Action callback) =>
             _startedReloading = callback;
 
-        public void OnReloadingStopped(Action callback) =>
+        public void OnStopReloading(Action callback) =>
             _stoppedReloading = callback;
 
         protected void ReduceBullet()

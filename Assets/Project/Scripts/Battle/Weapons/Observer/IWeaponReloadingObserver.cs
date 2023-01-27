@@ -4,9 +4,9 @@ namespace Invaders.Battle
 {
     public interface IWeaponReloadingObserver
     {
-        event Action OnStartReloaded;
+        event Action OnReloadingStarted;
 
-        event Action OnStopReloaded;
+        event Action OnReloadingStopped;
 
         float ReloadedTime { get; }
     }

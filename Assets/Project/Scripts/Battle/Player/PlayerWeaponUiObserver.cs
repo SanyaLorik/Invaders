@@ -9,8 +9,8 @@ namespace Invaders.Battle
     {
         public event Action<int, int> OnNumberOfBulletChanged = delegate { };
         public event Action OnOutOfAmmo = delegate { };
-        public event Action OnStartReloaded = delegate { };
-        public event Action OnStopReloaded = delegate { };
+        public event Action OnReloadingStarted = delegate { };
+        public event Action OnReloadingStopped = delegate { };
 
         private ICarrierObserver<IThingPortable<IWeapon>> _carrier;
         private IWeaponFire _weapon;
@@ -44,9 +44,9 @@ namespace Invaders.Battle
         private void SetInformationAboutWeaponFire()
         {
             _weapon.OnChangeNubmerOfBullet((remaining, total) => OnNumberOfBulletChanged.Invoke(remaining, total));
-            _weapon.OnOutOfAmmo(() => OnOutOfAmmo.Invoke());
-            _weapon.OnReloadingStarted(() => OnStartReloaded.Invoke());
-            _weapon.OnReloadingStopped(() => OnStopReloaded.Invoke());
+            _weapon.OnOutOfAmmo(OnOutOfAmmo.Invoke);
+            _weapon.OnStartReloading(OnReloadingStarted.Invoke);
+            _weapon.OnStopReloading(OnReloadingStopped.Invoke);
 
             ReloadedTime = _weapon.ReloaingTime;
         }
@@ -55,8 +55,8 @@ namespace Invaders.Battle
         {
             _weapon.OnChangeNubmerOfBullet(null);
             _weapon.OnOutOfAmmo(null);
-            _weapon.OnReloadingStarted(null);
-            _weapon.OnReloadingStopped(null);
+            _weapon.OnStartReloading(null);
+            _weapon.OnStopReloading(null);
 
             ReloadedTime = 0;
 
