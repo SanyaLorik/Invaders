@@ -17,7 +17,7 @@ namespace Invaders.Test
             _reloader.OnSceneReloaded += OnReload;
 
         private void OnDisable() =>
-            _reloader.OnSceneReloaded += OnReload;
+            _reloader.OnSceneReloaded -= OnReload;
 
         private void OnReload() =>
             SceneManager.LoadScene(0);
