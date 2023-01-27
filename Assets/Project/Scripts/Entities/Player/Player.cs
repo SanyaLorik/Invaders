@@ -1,6 +1,4 @@
-﻿using Invaders.Additionals;
-using Invaders.Movement;
-using Invaders.Pysiol;
+﻿using Invaders.Pysiol;
 using UnityEngine;
 
 namespace Invaders.Entities

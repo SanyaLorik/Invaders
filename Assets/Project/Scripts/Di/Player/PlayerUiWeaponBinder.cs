@@ -1,12 +1,11 @@
 ﻿using Invaders.Battle;
 using Invaders.Gear;
-using System.Threading;
 using UnityEngine;
 using Zenject;
 
 namespace Invaders.Di
 {
-    public class PlayerUiWraponBinder : MonoInstaller
+    public class PlayerUiWeaponBinder : MonoInstaller
     {
         [SerializeField] private WeaponCarrier _weaponCarrier;
         
@@ -16,12 +15,12 @@ namespace Invaders.Di
         {
             _information = new PlayerWeaponUiObserver(_weaponCarrier);
 
-            BindAmmoInformation();
-            BindReloadingInformation();
-            BindHaving();
+            BindAmmoInformationObserver();
+            BindReloadingInformationObserver();
+            BindHavingObserver();
         }
 
-        private void BindAmmoInformation()
+        private void BindAmmoInformationObserver()
         {
             Container
                 .Bind<IWeaponAmmoObserver>()
@@ -30,7 +29,7 @@ namespace Invaders.Di
                 .NonLazy();
         }
 
-        private void BindReloadingInformation()
+        private void BindReloadingInformationObserver()
         {
             Container
                 .Bind<IWeaponReloadingObserver>()
@@ -39,7 +38,7 @@ namespace Invaders.Di
                 .NonLazy();
         }
 
-        private void BindHaving()
+        private void BindHavingObserver()
         {
             Container
                .Bind<IWeaponHavingObserver>()

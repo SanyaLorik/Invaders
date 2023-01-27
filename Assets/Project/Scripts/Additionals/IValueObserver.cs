@@ -2,8 +2,8 @@
 
 namespace Invaders.Additionals
 {
-    public interface IValueObserver<T>
+    public interface IValueObserver<T1, T2>
     {
-        event Action<T> OnChanged;
+        event Action<T1, T2> OnChanged;
     }
 }

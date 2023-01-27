@@ -7,7 +7,7 @@ namespace Invaders.Pysiol
     {
         private const int _minimum = 0;
 
-        public event Action<int> OnChanged;
+        public event Action<int, int> OnChanged;
 
         private int _maximum;
         private int _current;
@@ -49,7 +49,7 @@ namespace Invaders.Pysiol
             _current += value;
             _current = Math.Clamp(_current, _minimum, _maximum);
             
-            OnChanged?.Invoke(_current);
+            OnChanged?.Invoke(_current, _maximum);
         }
     }
 }
