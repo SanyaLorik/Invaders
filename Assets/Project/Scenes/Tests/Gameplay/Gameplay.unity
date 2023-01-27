@@ -6612,7 +6612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf34bd3b4c023c4698621a623f9fab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponCarrier: {fileID: 7904924063053900061}
+  _weaponCarrier: {fileID: 0}
 --- !u!1001 &1440369979
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10743,7 +10743,6 @@ GameObject:
   - component: {fileID: 7904924063053900054}
   - component: {fileID: 7904924063053900055}
   - component: {fileID: 7904924063053900048}
-  - component: {fileID: 7904924063053900061}
   - component: {fileID: 7904924063053900060}
   - component: {fileID: 7904924063053900050}
   m_Layer: 0
@@ -10889,21 +10888,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd10fd8a10157f6498d166b9d30e551d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerLook: {fileID: 7904924063053900054}
+  _weaponCarrier: {fileID: 7904924063255415228}
   _droppedPoint: {fileID: 7904924063529337380}
---- !u!114 &7904924063053900061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7904924063053900042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22a7424c44de29d429b3c384a5e4ba83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _detector: {fileID: 7904924062561220574}
-  _carrier: {fileID: 7904924063255415226}
 --- !u!1 &7904924063112031344
 GameObject:
   m_ObjectHideFlags: 0
@@ -11244,6 +11231,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7904924063255415226}
+  - component: {fileID: 7904924063255415228}
   m_Layer: 0
   m_Name: Weapon Carier
   m_TagString: Untagged
@@ -11251,6 +11239,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7904924063255415228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7904924063255415227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a7424c44de29d429b3c384a5e4ba83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _detector: {fileID: 7904924062561220574}
+  _carrier: {fileID: 7904924063255415226}
 --- !u!114 &7904924063268398256
 MonoBehaviour:
   m_ObjectHideFlags: 0

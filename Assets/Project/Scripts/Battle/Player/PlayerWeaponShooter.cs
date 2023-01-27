@@ -7,19 +7,19 @@ using Zenject;
 namespace Invaders.Battle
 {
     [RequireComponent(typeof(IPlayerLookService))]
-    [RequireComponent(typeof(ICarrier<IThingPortable<IWeapon>>))]
     public class PlayerWeaponShooter : MonoBehaviour
     {
+        [SerializeField] private WeaponCarrier _weaponCarrier;
         [SerializeField] private Transform _droppedPoint;
 
-        private ICarrier<IThingPortable<IWeapon>> _carier;
-        private IPlayerLookService _look;
         private IClickedService _clicked;
         private IHolderService _holder;
+        private IPlayerThingCarier _picker;
         private IWeaponReloaderObserverService _reloader;
 
+        private IPlayerLookService _look;
+        private ICarrier<IThingPortable<IWeapon>> _carier;
         private IPlayerShooter _shooter;
-        private IPlayerThingCarier _picker;
 
         [Inject]
         private void Construct(IHolderService holder, IClickedService clicked, IPlayerThingCarier picker, IWeaponReloaderObserverService reloader)
@@ -32,8 +32,8 @@ namespace Invaders.Battle
 
         private void Awake()
         {
-            _look = GetComponent<IPlayerLookService>();
-            _carier = GetComponent<ICarrier<IThingPortable<IWeapon>>>();
+            _look = GetComponent< IPlayerLookService>();
+            _carier = _weaponCarrier;
         }
 
         private void OnEnable() =>
