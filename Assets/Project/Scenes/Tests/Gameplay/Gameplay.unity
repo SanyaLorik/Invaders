@@ -3300,8 +3300,8 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 1
-  m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_LookAt: {fileID: 7904924063053900053}
+  m_Follow: {fileID: 7904924063053900053}
   m_Lens:
     FieldOfView: 40
     OrthographicSize: 10
@@ -6612,7 +6612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf34bd3b4c023c4698621a623f9fab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponCarrier: {fileID: 0}
+  _weaponCarrier: {fileID: 7904924063255415228}
 --- !u!1001 &1440369979
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10888,7 +10888,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd10fd8a10157f6498d166b9d30e551d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerLook: {fileID: 7904924063053900054}
   _weaponCarrier: {fileID: 7904924063255415228}
   _droppedPoint: {fileID: 7904924063529337380}
 --- !u!1 &7904924063112031344
