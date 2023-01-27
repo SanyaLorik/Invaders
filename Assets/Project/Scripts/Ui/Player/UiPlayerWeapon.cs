@@ -13,7 +13,7 @@ namespace Invaders.Ui
         [SerializeField] private TMP_Text _numberOfBullet;
         [SerializeField] private Image _reloadingStatus;
 
-        IWeaponHavingObserver _having;
+        private IWeaponHavingObserver _having;
         private IWeaponAmmoObserver _ammoObserver;
         private IWeaponReloadingObserver _reloadedObserver;
 
