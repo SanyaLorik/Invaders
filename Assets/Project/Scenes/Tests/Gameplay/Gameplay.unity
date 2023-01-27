@@ -3364,7 +3364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8640466422c8cff40ba56047bd3ae0c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawner: {fileID: 1022539782}
+  _player: {fileID: 7904924063053900054}
 --- !u!1001 &749806725
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4328,7 +4328,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1022539781}
   - {fileID: 993860413}
   - {fileID: 1654085467}
   - {fileID: 1423654795}
@@ -4351,7 +4350,6 @@ MonoBehaviour:
   _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 993860414}
-  - {fileID: 1022539782}
   - {fileID: 1654085468}
   - {fileID: 1423654796}
   - {fileID: 741842000}
@@ -4778,53 +4776,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputSystem: {fileID: 1625404092}
---- !u!1 &1022539780
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1022539781}
-  - component: {fileID: 1022539782}
-  m_Layer: 0
-  m_Name: PlayerSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1022539781
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1022539780}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 916018407}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1022539782
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1022539780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acdc41918340b24428961f9df29bc16a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _player: {fileID: 7730808278357720403, guid: 4d5e1a1d513c9c849b9497148803f6a7, type: 3}
-  _spawnpoint: {fileID: 1348170076}
-  _container: {fileID: 351431237}
 --- !u!1001 &1035919655
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6710,7 +6661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf34bd3b4c023c4698621a623f9fab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawner: {fileID: 1022539782}
+  _weaponCarrier: {fileID: 7904924063053900061}
 --- !u!1001 &1440369979
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7650,7 +7601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03e64f10021a4fd68580f8fef72e5351, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawner: {fileID: 1022539782}
+  _player: {fileID: 7904924063053900054}
 --- !u!1 &1696151652
 GameObject:
   m_ObjectHideFlags: 0

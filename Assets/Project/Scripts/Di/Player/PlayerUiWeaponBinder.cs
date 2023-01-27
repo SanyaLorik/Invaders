@@ -7,14 +7,13 @@ namespace Invaders.Di
 {
     public class PlayerUiWeaponBinder : MonoInstaller
     {
-        [SerializeField] private PlayerSpawner _spawner;
+        [SerializeField] private WeaponCarrier _weaponCarrier;
         
         private PlayerWeaponUiObserver _information;
 
         public override void InstallBindings()
         {
-            ICarrierObserver<IThingPortable<IWeapon>> weaponCarrier = _spawner.SpawnedPlayer.GetComponent<ICarrierObserver<IThingPortable<IWeapon>>>();
-            _information = new PlayerWeaponUiObserver(weaponCarrier);
+            _information = new PlayerWeaponUiObserver(_weaponCarrier);
 
             BindAmmoInformationObserver();
             BindReloadingInformationObserver();

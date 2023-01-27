@@ -1,3 +1,4 @@
+using Invaders.Entities;
 using Invaders.Movement;
 using UnityEngine;
 using Zenject;
@@ -6,7 +7,7 @@ namespace Invaders.Di
 {
     public class PlayerMovementBinder : MonoInstaller
     {
-        [SerializeField] private PlayerSpawner _spawner;
+        [SerializeField] private Player _player;
         
         public override void InstallBindings() =>
             BindLook();
@@ -15,7 +16,7 @@ namespace Invaders.Di
         {
             Container
                 .Bind<IPlayerLookService>()
-                .FromInstance(_spawner.SpawnedPlayer)
+                .FromInstance(_player)
                 .AsCached()
                 .NonLazy();
         }
