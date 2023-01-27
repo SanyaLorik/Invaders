@@ -1,4 +1,5 @@
 ﻿using Invaders.Battle;
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -12,6 +13,7 @@ namespace Invaders.Di
         {
             BindAmmoInformation();
             BindReloadingInformation();
+            BindHaving();
         }
 
         private void BindAmmoInformation()
@@ -30,6 +32,15 @@ namespace Invaders.Di
                 .FromInstance(_information)
                 .AsCached()
                 .NonLazy();
+        }
+
+        private void BindHaving()
+        {
+            Container
+               .Bind<IWeaponHavingObserver>()
+               .FromInstance(_information)
+               .AsCached()
+               .NonLazy();
         }
     }
 }

@@ -5,8 +5,9 @@ using UnityEngine;
 namespace Invaders.Battle
 {
     [RequireComponent(typeof(ICarrierObserver<IThingPortable<IWeapon>>))]
-    public class PlayerWeaponUiObserver : MonoBehaviour, IWeaponAmmoObserver, IWeaponReloadingObserver
+    public class PlayerWeaponUiObserver : MonoBehaviour, IWeaponHavingObserver, IWeaponAmmoObserver, IWeaponReloadingObserver
     {
+        public event Action OnDropped = delegate { };
         public event Action<int, int> OnNumberOfBulletChanged = delegate { };
         public event Action OnOutOfAmmo = delegate { };
         public event Action OnReloadingStarted = delegate { };
@@ -38,8 +39,12 @@ namespace Invaders.Battle
             SetInformationAboutWeaponFire();
         }
 
-        private void OnDrop() =>
+        private void OnDrop()
+        {
             ClearInformationAboutWeaponFire();
+            OnDropped.Invoke();
+            OnReloadingStopped.Invoke();
+        }
 
         private void SetInformationAboutWeaponFire()
         {
@@ -59,8 +64,6 @@ namespace Invaders.Battle
             _weapon.OnStopReloading(null);
 
             ReloadedTime = 0;
-
-            OnNumberOfBulletChanged.Invoke(0, 0);
         }
     }
 }

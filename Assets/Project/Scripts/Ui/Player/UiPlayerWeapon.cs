@@ -13,20 +13,24 @@ namespace Invaders.Ui
         [SerializeField] private TMP_Text _numberOfBullet;
         [SerializeField] private Image _reloadingStatus;
 
+        IWeaponHavingObserver _having;
         private IWeaponAmmoObserver _ammoObserver;
         private IWeaponReloadingObserver _reloadedObserver;
 
         private CancellationTokenSource _cancellationToken;
 
         [Inject]
-        private void Construct(IWeaponAmmoObserver ammo, IWeaponReloadingObserver reloaded)
+        private void Construct(IWeaponHavingObserver having, IWeaponAmmoObserver ammo, IWeaponReloadingObserver reloaded)
         {
+            _having = having;
             _ammoObserver = ammo;
             _reloadedObserver = reloaded;
         }
 
         private void OnEnable()
         {
+            _having.OnDropped += OnShowNoHavingWeapon;
+
             _ammoObserver.OnNumberOfBulletChanged += OnShowChangingNumberOfBullet;
             _ammoObserver.OnOutOfAmmo += OnShowOutOfAmmo;
 
@@ -36,6 +40,8 @@ namespace Invaders.Ui
 
         private void OnDisable()
         {
+            _having.OnDropped -= OnShowNoHavingWeapon;
+
             _ammoObserver.OnNumberOfBulletChanged -= OnShowChangingNumberOfBullet;
             _ammoObserver.OnOutOfAmmo -= OnShowOutOfAmmo;
 
@@ -46,17 +52,17 @@ namespace Invaders.Ui
             _cancellationToken?.Dispose();
         }
 
+        private void OnShowNoHavingWeapon() =>
+             _numberOfBullet.text = $"Оружие нет";
+
         private void OnShowChangingNumberOfBullet(int current, int magazin) =>
             _numberOfBullet.text = $"{current} / {magazin}";
-
 
         private void OnShowOutOfAmmo() =>
              _numberOfBullet.text = $"Патроны кончились";
 
         private void OnStartAnimtionReloading()
         {
-            Debug.Log("Reloading is started.");
-
             _reloadingStatus.fillAmount = 0;
             _cancellationToken = new CancellationTokenSource();
             ProgressAnimationReloading(_cancellationToken.Token).Forget();
@@ -64,8 +70,6 @@ namespace Invaders.Ui
 
         private void OnStopAnimationReloading()
         {
-            Debug.Log("Reloading is stopped.");
-
             _reloadingStatus.fillAmount = 0;
             _cancellationToken?.Cancel();
         }
