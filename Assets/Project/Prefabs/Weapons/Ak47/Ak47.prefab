@@ -133,7 +133,7 @@ MonoBehaviour:
   _damage: 10
   _initialNumberOfBullet: 7
   _numberOfBulletInMagazin: 30
-  _totalNumberOfBullet: 250
+  _totalNumberOfBullet: 60
   _reloadedTime: 5
   _dropppedLenght: 0.25
   <ShootedDelay>k__BackingField: 0.075

@@ -22,6 +22,7 @@ namespace Invaders.Battle
         [SerializeField] [Min(0)] private float _reloadedTime;
 
         private Action<int, int> _changingNumberOfBullets;
+        private Action _outingOfAmmo;
         private Action _startedReloading;
         private Action _stoppedReloading;
 
@@ -103,6 +104,9 @@ namespace Invaders.Battle
             _changingNumberOfBullets?.Invoke(_currentBullet, _currentTotalBullet);
         }
 
+        public void OnOutOfAmmo(Action callaback) =>
+            _outingOfAmmo = callaback;
+
         public void OnReloadingStarted(Action callback) =>
             _startedReloading = callback;
 
@@ -118,7 +122,11 @@ namespace Invaders.Battle
                 return;
 
             _currentBullet--;
-            _changingNumberOfBullets?.Invoke(_currentBullet, _currentTotalBullet);
+
+            if (HaveBulletInMagazin == false && _currentTotalBullet == 0)
+                _outingOfAmmo.Invoke();
+            else
+                _changingNumberOfBullets?.Invoke(_currentBullet, _currentTotalBullet);
         }
 
         private async UniTaskVoid DealyReload(CancellationToken token)

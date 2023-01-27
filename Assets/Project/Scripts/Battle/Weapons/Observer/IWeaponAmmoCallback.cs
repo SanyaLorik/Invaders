@@ -5,5 +5,7 @@ namespace Invaders.Battle
     public interface IWeaponAmmoCallback
     {
         void OnChangeNubmerOfBullet(Action<int, int> callback);
+
+        void OnOutOfAmmo(Action callaback);
     }
 }

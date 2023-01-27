@@ -21,36 +21,42 @@ namespace Invaders.Ui
 
         private void OnEnable()
         {
-            _ammo.OnNumberOfBulletChanged += ChangeNumberOfBullet;
+            _ammo.OnNumberOfBulletChanged += OnShowChangingNumberOfBullet;
+            _ammo.OnOutOfAmmo += OnShowOutOfAmmo;
 
-            _reloaded.OnStartReloaded += StartAnimtionReloading;
-            _reloaded.OnStopReloaded += StopAnimationReloading;
+            _reloaded.OnStartReloaded += OnStartAnimtionReloading;
+            _reloaded.OnStopReloaded += OnStopAnimationReloading;
         }
 
         private void OnDisable()
         {
-            _ammo.OnNumberOfBulletChanged -= ChangeNumberOfBullet;
+            _ammo.OnNumberOfBulletChanged -= OnShowChangingNumberOfBullet;
+            _ammo.OnOutOfAmmo -= OnShowOutOfAmmo;
 
-            _reloaded.OnStartReloaded -= StartAnimtionReloading;
-            _reloaded.OnStopReloaded -= StopAnimationReloading;
+            _reloaded.OnStartReloaded -= OnStartAnimtionReloading;
+            _reloaded.OnStopReloaded -= OnStopAnimationReloading;
         }
 
-        private void ChangeNumberOfBullet(int current, int magazin) =>
+        private void OnShowChangingNumberOfBullet(int current, int magazin) =>
             _numberOfBullet.text = $"{current} / {magazin}";
 
-        private void StartAnimtionReloading()
+
+        private void OnShowOutOfAmmo() =>
+             _numberOfBullet.text = $"Патроны кончились";
+
+        private void OnStartAnimtionReloading()
         {
             Debug.Log("Reloading is started.");
+        }
+
+        private void OnStopAnimationReloading()
+        {
+            Debug.Log("Reloading is stopped.");
         }
 
         private void ProgressAnimationReloading()
         {
 
-        }
-
-        private void StopAnimationReloading()
-        {
-            Debug.Log("Reloading is stopped.");
         }
     }
 }

@@ -8,6 +8,7 @@ namespace Invaders.Battle
     public class PlayerWeaponUiObserver : MonoBehaviour, IWeaponAmmoObserver, IWeaponReloadingObserver
     {
         public event Action<int, int> OnNumberOfBulletChanged = delegate { };
+        public event Action OnOutOfAmmo = delegate { };
         public event Action OnStartReloaded = delegate { };
         public event Action OnStopReloaded = delegate { };
 
@@ -43,6 +44,7 @@ namespace Invaders.Battle
         private void SetInformationAboutWeaponFire()
         {
             _weapon.OnChangeNubmerOfBullet((remaining, total) => OnNumberOfBulletChanged.Invoke(remaining, total));
+            _weapon.OnOutOfAmmo(() => OnOutOfAmmo.Invoke());
             _weapon.OnReloadingStarted(() => OnStartReloaded.Invoke());
             _weapon.OnReloadingStopped(() => OnStopReloaded.Invoke());
 
@@ -52,6 +54,7 @@ namespace Invaders.Battle
         private void ClearInformationAboutWeaponFire()
         {
             _weapon.OnChangeNubmerOfBullet(null);
+            _weapon.OnOutOfAmmo(null);
             _weapon.OnReloadingStarted(null);
             _weapon.OnReloadingStopped(null);
 
