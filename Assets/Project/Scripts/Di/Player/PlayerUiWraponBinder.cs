@@ -1,5 +1,6 @@
 ﻿using Invaders.Battle;
-using System;
+using Invaders.Gear;
+using System.Threading;
 using UnityEngine;
 using Zenject;
 
@@ -7,10 +8,14 @@ namespace Invaders.Di
 {
     public class PlayerUiWraponBinder : MonoInstaller
     {
-        [SerializeField] private PlayerWeaponUiObserver _information;
+        [SerializeField] private WeaponCarrier _weaponCarrier;
+        
+        private PlayerWeaponUiObserver _information;
 
         public override void InstallBindings()
         {
+            _information = new PlayerWeaponUiObserver(_weaponCarrier);
+
             BindAmmoInformation();
             BindReloadingInformation();
             BindHaving();

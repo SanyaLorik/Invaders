@@ -1,11 +1,9 @@
 ﻿using Invaders.Gear;
 using System;
-using UnityEngine;
 
 namespace Invaders.Battle
 {
-    [RequireComponent(typeof(ICarrierObserver<IThingPortable<IWeapon>>))]
-    public class PlayerWeaponUiObserver : MonoBehaviour, IWeaponHavingObserver, IWeaponAmmoObserver, IWeaponReloadingObserver
+    public class PlayerWeaponUiObserver : IWeaponHavingObserver, IWeaponAmmoObserver, IWeaponReloadingObserver
     {
         public event Action OnDropped = delegate { };
         public event Action<int, int> OnNumberOfBulletChanged = delegate { };
@@ -16,16 +14,15 @@ namespace Invaders.Battle
         private ICarrierObserver<IThingPortable<IWeapon>> _carrier;
         private IWeaponFire _weapon;
 
-        private void Awake() =>
-            _carrier = GetComponent<ICarrierObserver<IThingPortable<IWeapon>>>();
-
-        private void OnEnable()
+        public PlayerWeaponUiObserver(ICarrierObserver<IThingPortable<IWeapon>> carrier)
         {
+            _carrier = carrier;
+
             _carrier.OnTaken += OnTaken;
             _carrier.OnDropped += OnDrop;
         }
 
-        private void OnDisable()
+        ~PlayerWeaponUiObserver()
         {
             _carrier.OnTaken -= OnTaken;
             _carrier.OnDropped -= OnDrop;

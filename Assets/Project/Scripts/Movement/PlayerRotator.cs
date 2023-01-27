@@ -1,5 +1,4 @@
-﻿using System;
-using Invaders.InputSystem;
+﻿using Invaders.InputSystem;
 using UnityEngine;
 using Zenject;
 

@@ -3759,7 +3759,6 @@ GameObject:
   - component: {fileID: 589350837}
   - component: {fileID: 589350840}
   - component: {fileID: 589350841}
-  - component: {fileID: 589350842}
   - component: {fileID: 589350839}
   m_Layer: 0
   m_Name: Player
@@ -3922,18 +3921,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _droppedPoint: {fileID: 1056550017}
---- !u!114 &589350842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 589350831}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 004e25f67bc5bfc4a84cb650d4cae120, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &637920672
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8508,7 +8495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf34bd3b4c023c4698621a623f9fab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _information: {fileID: 589350842}
+  _weaponCarrier: {fileID: 589350840}
 --- !u!1 &1434967790
 GameObject:
   m_ObjectHideFlags: 0
