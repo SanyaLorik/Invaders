@@ -3,7 +3,7 @@ using System;
 
 namespace Invaders.Pysiol
 {
-    public abstract class Physiology : IPhysiology<int>, ICurrentValueProvider<int>
+    public abstract class Physiology : IPhysiology<int>
     {
         private const int _minimum = 0;
 
