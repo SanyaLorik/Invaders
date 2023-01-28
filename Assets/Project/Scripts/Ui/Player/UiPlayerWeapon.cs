@@ -81,13 +81,14 @@ namespace Invaders.Ui
 
             do
             {
+                await UniTask.DelayFrame(1, cancellationToken: token);
+
                 float ratio = expandedTime / reloadedTime;
                 _reloadingStatus.fillAmount = ratio;
 
                 expandedTime += Time.deltaTime;
-                await UniTask.DelayFrame(1, cancellationToken: token);
             } 
-            while (expandedTime < reloadedTime);
+            while (expandedTime <= reloadedTime);
         }
     }
 }
