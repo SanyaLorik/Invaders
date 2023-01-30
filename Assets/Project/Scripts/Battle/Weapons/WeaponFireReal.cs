@@ -37,7 +37,7 @@ namespace Invaders.Battle
         private void Drop()
         {
             Vector3 direction = transform.forward + Vector3.up;
-            float lenght = SpecificMath.CalculateLenght(_rigidbody.mass, _dropppedLenght);
+            float lenght = SpecificMath.CalculateForceIgnoreMass(_rigidbody.mass, _dropppedLenght);
 
             _rigidbody.AddForce(direction * lenght, ForceMode.Impulse);
         }
