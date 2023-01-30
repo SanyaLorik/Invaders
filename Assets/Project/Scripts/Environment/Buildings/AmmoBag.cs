@@ -10,57 +10,57 @@ namespace Invaders.Environment.Buildings
 {
     public class AmmoBag : MonoBehaviour
     {
-        [SerializeField] private Collider _detector;
-        [SerializeField][Range(0, 1)] private float _ratioOfTotalAmmo;
-        [SerializeField][Min(0)] private float _delay;
+    [SerializeField] private Collider _detector;
+    [SerializeField][Range(0, 1)] private float _ratioOfTotalAmmo;
+    [SerializeField][Min(0)] private float _delay;
 
-        private CancellationTokenSource _tokenSource;
-        private CompositeDisposable _disposable;
+    private CancellationTokenSource _tokenSource;
+    private CompositeDisposable _disposable;
 
-        private void OnEnable()
+    private void OnEnable()
+    {
+    _disposable = new CompositeDisposable();
+
+    _detector
+        .OnTriggerEnterAsObservable()
+        .Subscribe(collision =>
         {
-            _disposable = new CompositeDisposable();
+            if (collision.TryGetComponent(out IAmmoReplenishable replenishable) == false)
+                return;
 
-            _detector
-                .OnTriggerEnterAsObservable()
-                .Subscribe(collision =>
-                {
-                    if (collision.TryGetComponent(out IAmmoReplenishable replenishable) == false)
-                        return;
+            _tokenSource = new CancellationTokenSource();
+            Replenish(replenishable, _tokenSource.Token).Forget();
+        })
+        .AddTo(_disposable);
 
-                    _tokenSource = new CancellationTokenSource();
-                    Replenish(replenishable, _tokenSource.Token).Forget();
-                })
-                .AddTo(_disposable);
-
-            _detector
-                .OnTriggerExitAsObservable()
-                .Subscribe(collision =>
-                {
-                    if (collision.TryGetComponent(out IAmmoReplenishable replenishable) == false)
-                        return;
-
-                    _tokenSource.Cancel();
-                })
-                .AddTo(_disposable);
-        }
-
-        private void OnDisable()
+    _detector
+        .OnTriggerExitAsObservable()
+        .Subscribe(collision =>
         {
-            _disposable?.Dispose();
-            _tokenSource?.Dispose();
-        }
+            if (collision.TryGetComponent(out IAmmoReplenishable replenishable) == false)
+                return;
 
-        private async UniTaskVoid Replenish(IAmmoReplenishable replenishable, CancellationToken token)
-        {
-            int millisecond = (int)(_delay * 1000);
+            _tokenSource.Cancel();
+        })
+        .AddTo(_disposable);
+    }
 
-            do
-            {
-                await UniTask.Delay(millisecond);
-                replenishable.Replenish(_ratioOfTotalAmmo);
-            }
-            while (token.IsCancellationRequested == false);
-        }
+    private void OnDisable()
+    {
+    _disposable?.Dispose();
+    _tokenSource?.Dispose();
+    }
+
+    private async UniTaskVoid Replenish(IAmmoReplenishable replenishable, CancellationToken token)
+    {
+    int millisecond = (int)(_delay * 1000);
+
+    do
+    {
+        await UniTask.Delay(millisecond);
+        replenishable.Replenish(_ratioOfTotalAmmo);
+    }
+    while (token.IsCancellationRequested == false);
+    }
     }
 }

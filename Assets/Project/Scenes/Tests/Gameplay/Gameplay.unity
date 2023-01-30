@@ -2797,6 +2797,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 538232075}
     m_Modifications:
+    - target: {fileID: 2491682010985407118, guid: 47d84dba8e208fb4fbde2de7c0265742, type: 3}
+      propertyPath: _lenght
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3652894051154014161, guid: 47d84dba8e208fb4fbde2de7c0265742, type: 3}
       propertyPath: m_Name
       value: Barrel_1
@@ -2845,7 +2849,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5491250782907815941, guid: 47d84dba8e208fb4fbde2de7c0265742, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -11044,7 +11049,6 @@ GameObject:
   - component: {fileID: 7904924063053900060}
   - component: {fileID: 7904924063053900050}
   - component: {fileID: 7904924063053900061}
-  - component: {fileID: 7904924063053900062}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -11201,18 +11205,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: {fileID: 464655540}
---- !u!114 &7904924063053900062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7904924063053900042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f34420284a6e244c8561c36a00097c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7904924063112031344
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,27 +5,26 @@ using UnityEngine;
 
 namespace Invaders.Battle
 {
-    [RequireComponent(typeof(Collider))]
-    public class Explosion : MonoBehaviour, IDamageable<int>
+    public struct Explosion
     {
-        [SerializeField][Min(0)] private int _health;
-        [SerializeField][Min(0)] private int _damage;
-        [SerializeField][Min(0)] private float _radius;
-        [SerializeField][Min(0)] private float _lenght;
+        private IDamageable<int> _ignore;
+        private Transform _source;
+        private int _damage;
+        private float _radius;
+        private float _lenght;
 
-        public void Damage(int damage)
+        public Explosion(IDamageable<int> ignore, Transform source, int damage, float radius, float lenght)
         {
-            _health -= damage;
-            if (_health > 0)
-                return;
-
-            Explode();
-            Destroy(gameObject);
+            _ignore = ignore;
+            _source = source;
+            _damage = damage;
+            _radius = radius;
+            _lenght = lenght;
         }
 
-        private void Explode()
+        public void Explode()
         {
-            Collider[] objects = Physics.OverlapSphere(transform.position, _radius);
+            Collider[] objects = Physics.OverlapSphere(_source.position, _radius);
 
             foreach (var rigidbody in GetRigidbodies(objects))
                 Discard(rigidbody);
@@ -42,7 +41,7 @@ namespace Invaders.Battle
                     yield return rigidbody;
             }
         }
-
+        
         private IEnumerable<IDamageable<int>> FindDamageables(IEnumerable<Collider> objects)
         {
             foreach (var o in objects)
@@ -50,7 +49,7 @@ namespace Invaders.Battle
                 if (o.TryGetComponent(out IDamageable<int> damage) == false)
                     continue;
 
-                if (damage == (IDamageable<int>) this)
+                if (damage == _ignore)
                     continue;
 
                 yield return damage;
@@ -65,7 +64,7 @@ namespace Invaders.Battle
         
         private Vector3 CalculateDirection(Vector3 target)
         {
-            Vector3 direction = target - transform.position;
+            Vector3 direction = target - _source.position;
             direction.Normalize();
             direction.y = 0;
 
