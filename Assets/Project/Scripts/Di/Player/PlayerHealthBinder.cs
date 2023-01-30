@@ -1,12 +1,11 @@
 ﻿using Invaders.Additionals;
 using Invaders.Pysiol;
-using System;
 using UnityEngine;
 using Zenject;
 
 namespace Invaders.Di
 {
-    public class PlayerUiHealthBinder: MonoInstaller
+    public class PlayerHealthBinder: MonoInstaller
     {
         [Header("Health")]
         [SerializeField][Min(0)] private int _initialHealth;
