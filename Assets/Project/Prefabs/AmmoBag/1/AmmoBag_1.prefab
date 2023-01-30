@@ -107,9 +107,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4880726262462469185}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 0.46288306, y: 0.36628842, z: 0.4955004}
   m_Center: {x: 0, y: -0.026211768, z: 0.014978141}
 --- !u!114 &2443592671514827819
@@ -125,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _detector: {fileID: 2920755502122986919}
-  _ratioOfTotalAmmo: 1
+  _ratioOfReplenishment: 0.111
   _delay: 5
 --- !u!1 &4946984650167362682
 GameObject:
@@ -167,9 +175,17 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4946984650167362682}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Radius: 0.75
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &4880726262454021977
@@ -177,6 +193,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 4880726262259376765}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: fe79e7b9ec434424e9400eb21a2b3560, type: 3}
@@ -240,6 +257,9 @@ PrefabInstance:
       value: AmmoBag
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe79e7b9ec434424e9400eb21a2b3560, type: 3}
 --- !u!4 &4913827210906863794 stripped
 Transform:
