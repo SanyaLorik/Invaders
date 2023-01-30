@@ -2,6 +2,7 @@
 using Invaders.InputSystem;
 using Invaders.Pysiol;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using Zenject;
 
 namespace Invaders.Movement
@@ -43,13 +44,13 @@ namespace Invaders.Movement
         {
             if (_direction == Vector3.zero)
                 return;
-            
+
             _movement.Move(_direction);
         }
 
         private void OnSetDirection(Vector3 direction) =>
             _direction = direction;
-        
+
         private void OnStop()
         {
             _direction = Vector3.zero;
