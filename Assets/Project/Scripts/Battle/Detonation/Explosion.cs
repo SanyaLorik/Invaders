@@ -21,28 +21,28 @@ namespace Invaders.Battle
             Destroy(gameObject);
         }
 
-        private IEnumerable<IDamageable<int>> Damageables
-        {
-            get
-            {
-                var objects = Physics.OverlapSphere(transform.position, _radius);
-                foreach (var o in objects)
-                {
-                    if (o.TryGetComponent(out IDamageable<int> damage) == false)
-                        continue;
-                    /*
-                    if (damage == this)
-                        continue;
-                    */
-                    yield return damage;
-                }
-            }
-        }
-
         private void Explode()
         {
             foreach (var damageable in Damageables)
                 damageable.Damage(_damage);
+        }
+
+        private IEnumerable<IDamageable<int>> Damageables
+        {
+            get
+            {
+                Collider[] objects = Physics.OverlapSphere(transform.position, _radius);
+                foreach (var o in objects)
+                {
+                    if (o.TryGetComponent(out IDamageable<int> damage) == false)
+                        continue;
+
+                    if (damage == (IDamageable<int>)this)
+                        continue;
+
+                    yield return damage;
+                }
+            }
         }
     }
 }
