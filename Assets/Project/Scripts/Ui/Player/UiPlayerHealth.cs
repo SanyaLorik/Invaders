@@ -22,6 +22,6 @@ namespace Invaders.Ui
             _healthObserver.OnChanged -= OnShowChangeHealth;
 
         private void OnShowChangeHealth(int remaining, int total) =>
-            _health.text = $"{remaining}/{total}";
+            _health.text = $"HP {remaining}/{total}";
     }
 }
