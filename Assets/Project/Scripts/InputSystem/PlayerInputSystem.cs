@@ -6,7 +6,7 @@ namespace Invaders.InputSystem
 {
     public class PlayerInputSystem : 
         MonoBehaviour, 
-        IMovementService, IPointPositionOnScreenService, IClickedService, IHolderService, IPlayerThingCarier, IWeaponReloaderObserverService,
+        IMovementService, IPointPositionOnScreenService, IClickedService, IHolderService, IUsedService, IPlayerThingCarier, IWeaponReloaderObserverService,
         ISceneReloaderObserverService
     {
         public event Action<Vector3> OnMove = delegate { };
@@ -15,6 +15,7 @@ namespace Invaders.InputSystem
         public event Action OnClicked = delegate { };
         public event Action OnHeld = delegate { };
         public event Action OnUnheld = delegate { };
+        public event Action OnUsed = delegate { };
         public event Action OnTakenOrDropped = delegate { };
         public event Action OnWeaponReloaded = delegate { };
         public event Action OnSceneReloaded = delegate { };
@@ -36,6 +37,8 @@ namespace Invaders.InputSystem
             _inputSystem.Player.Click.started += Hold;
             _inputSystem.Player.Click.canceled += Unhold;
 
+            _inputSystem.Player.Use.performed += Use;
+
             _inputSystem.Player.DroppedWeapon.performed += TakeOrDrop;
 
             _inputSystem.Player.ReloadWeapon.performed += ReloadWeapon;
@@ -56,6 +59,8 @@ namespace Invaders.InputSystem
             
             _inputSystem.Player.Click.started -= Hold;
             _inputSystem.Player.Click.canceled -= Unhold;
+
+            _inputSystem.Player.Use.performed -= Use;
 
             _inputSystem.Player.DroppedWeapon.performed -= TakeOrDrop;
 
@@ -96,6 +101,9 @@ namespace Invaders.InputSystem
         
         private void Unhold(InputAction.CallbackContext _) =>
             OnUnheld.Invoke();
+
+        private void Use(InputAction.CallbackContext _) =>
+            OnUsed.Invoke();
 
         private void TakeOrDrop(InputAction.CallbackContext _) =>
             OnTakenOrDropped.Invoke();
