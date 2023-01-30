@@ -1,5 +1,6 @@
 ﻿using Invaders.Pysiol;
 using UnityEngine;
+using Zenject;
 
 namespace Invaders.Entities
 {
@@ -7,19 +8,16 @@ namespace Invaders.Entities
     [RequireComponent(typeof(Rigidbody))]
     public class Player : MonoBehaviour, IPlayer
     {
-        [Header("Health")]
-        [SerializeField] [Min(0)] private int _initialHealth;
-        [SerializeField] [Min(0)] private int _maximumHealth;
-       
         private IPhysiology<int> _health;
 
-        private void Awake() =>
-            _health = new Health(_initialHealth, _maximumHealth);
+        [Inject]
+        private void Construct(IPhysiology<int> heath) =>
+            _health = heath;
 
         public Health Value => _health as Health;
 
         public Vector3 Direction => transform.forward;
-        
+
         public void Damage(int damage) =>
             _health.TakeAway(damage);
     }
