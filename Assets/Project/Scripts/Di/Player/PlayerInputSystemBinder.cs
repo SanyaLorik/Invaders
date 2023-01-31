@@ -1,4 +1,5 @@
 ﻿using Invaders.InputSystem;
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -14,6 +15,7 @@ namespace Invaders.Di
             BindLook();
             BindClick();
             BindHold();
+            BindUse();
             BindDropWeapon();
             BindReloadWeapon();
             BindReloadScene();
@@ -53,6 +55,15 @@ namespace Invaders.Di
                 .FromInstance(_inputSystem)
                 .AsCached()
                 .NonLazy();
+        }
+
+        private void BindUse()
+        {
+            Container
+               .Bind<IUsedService>()
+               .FromInstance(_inputSystem)
+               .AsCached()
+               .NonLazy();
         }
 
         private void BindDropWeapon()
