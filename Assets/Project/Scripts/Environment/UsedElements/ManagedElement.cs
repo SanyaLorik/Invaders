@@ -7,6 +7,8 @@ namespace Invaders.Environment.UsedElements
     {
         [SerializeField] private ManagementElement _managementElement;
 
+        [field: SerializeField][field: Range(0f, 60f)] protected float Duration { get; private set; }
+
         private Tween _tween;
 
         private bool _isOpened = false;
@@ -20,8 +22,9 @@ namespace Invaders.Environment.UsedElements
         private void OnOpenOrClose()
         {
             _tween?.Kill();
-
             _tween = _isOpened == true ? Open() : Close();
+            //_tween.Play();
+
             _isOpened = !_isOpened;
         }
 
