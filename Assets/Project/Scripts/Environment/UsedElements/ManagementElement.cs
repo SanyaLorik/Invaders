@@ -3,9 +3,15 @@ using UnityEngine;
 
 namespace Invaders.Environment.UsedElements
 {
-    public abstract class ManagementElement : MonoBehaviour
+    public abstract class ManagementElement : MonoBehaviour, IUsedElement
     {
-        public event Action OnActived = delegate { };   
-        public event Action OnDisactived = delegate { };   
+        public event Action OnUsed = delegate { };
+
+        public bool IsAllow { get; private set; } = true;
+
+        public virtual void Use()
+        {
+            OnUsed.Invoke();
+        }
     }
 }
