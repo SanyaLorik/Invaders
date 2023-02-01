@@ -4628,7 +4628,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8107188612440630059, guid: 41ade2e36757e8a40be93e4bdfc7888c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.12
+      value: 6.4
       objectReference: {fileID: 0}
     - target: {fileID: 8107188612440630059, guid: 41ade2e36757e8a40be93e4bdfc7888c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6227,7 +6227,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1208589783}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6235,7 +6235,7 @@ Transform:
   - {fileID: 920531310}
   - {fileID: 929794840}
   - {fileID: 1566688057}
-  m_Father: {fileID: 1696151653}
+  m_Father: {fileID: 1676395374}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1215529232
@@ -6458,7 +6458,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1297537190}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6466,8 +6466,8 @@ Transform:
   - {fileID: 1753950228}
   - {fileID: 2089814404}
   - {fileID: 2143295393}
-  m_Father: {fileID: 1696151653}
-  m_RootOrder: 5
+  m_Father: {fileID: 1676395374}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1299960836 stripped
 Transform:
@@ -8205,6 +8205,39 @@ Transform:
   m_Father: {fileID: 1696151653}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1676395373
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1676395374}
+  m_Layer: 0
+  m_Name: Replenishments
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1676395374
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676395373}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1297537191}
+  - {fileID: 1208589784}
+  m_Father: {fileID: 1696151653}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1696151652
 GameObject:
   m_ObjectHideFlags: 0
@@ -8233,13 +8266,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1676395374}
   - {fileID: 1215529233}
   - {fileID: 347983001}
   - {fileID: 771347215}
   - {fileID: 95057437}
   - {fileID: 538232075}
-  - {fileID: 1297537191}
-  - {fileID: 1208589784}
   - {fileID: 1653668031}
   - {fileID: 419004594}
   - {fileID: 528353445}
