@@ -31,10 +31,10 @@ namespace Invaders.Battle
         {
             ChangePhysics(false);
             Transfer(position);
-            Drop();
+            Throw();
         }
 
-        private void Drop()
+        private void Throw()
         {
             Vector3 direction = transform.forward + Vector3.up;
             float lenght = SpecificMath.CalculateForceIgnoreMass(_rigidbody.mass, _dropppedLenght);

@@ -21,6 +21,8 @@ namespace Invaders.Battle
         private ICarrier<IThingPortable<IWeapon>> _carier;
         private IPlayerShooter _shooter;
 
+        private IWeapon _current;
+
         [Inject]
         private void Construct(IHolderService holder, IClickedService clicked, IPlayerThingCarier picker, IWeaponReloaderObserverService reloader)
         {
@@ -80,12 +82,18 @@ namespace Invaders.Battle
         {
             _carier.Drop(_droppedPoint.position);
             _shooter?.Disable();
+
+            _current.Drop();
+            _current = null;
         }
 
         private void Take()
         {
             IWeapon weapon = _carier.Take().Thing;
             Arm(weapon);
+
+            _current = weapon;
+            _current.PickUp();
         }
     }
 }

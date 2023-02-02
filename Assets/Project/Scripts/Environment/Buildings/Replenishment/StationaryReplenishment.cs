@@ -8,6 +8,7 @@ using UnityEngine;
 namespace Invaders.Environment.Buildings
 {
     public abstract class StationaryReplenishment<T> : MonoBehaviour
+        where T : IReplenishment
     {
         [SerializeField] private Collider _detector;
         [SerializeField][Min(0)] private float _delay;
@@ -57,7 +58,9 @@ namespace Invaders.Environment.Buildings
 
             do
             {
-                await UniTask.Delay(millisecond);
+                await UniTask.WaitWhile(() => replenishable.IsAllowReplenished == false, cancellationToken: token);
+                await UniTask.Delay(millisecond, cancellationToken: token);
+
                 ChangeValue(replenishable);
             }
             while (token.IsCancellationRequested == false);

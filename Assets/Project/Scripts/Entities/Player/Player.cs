@@ -1,4 +1,5 @@
 ﻿using Invaders.Pysiol;
+using System;
 using UnityEngine;
 using Zenject;
 
@@ -17,6 +18,8 @@ namespace Invaders.Entities
         public Health Value => _health as Health;
 
         public Vector3 Direction => transform.forward;
+
+        public bool IsAllowReplenished => true;
 
         public void Damage(int damage) =>
             _health.TakeAway(damage);

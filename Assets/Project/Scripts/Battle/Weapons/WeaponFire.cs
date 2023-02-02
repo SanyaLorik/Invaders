@@ -18,7 +18,7 @@ namespace Invaders.Battle
         [Header("Bullets")]
         [SerializeField] [Min(0)] private int _initialNumberOfBulletInMagazin;
         [SerializeField] [Min(0)] private int _initialTotalNumberOfBullet;
-        [SerializeField][Min(0)] private int _numberOfBulletInMagazin;
+        [SerializeField] [Min(0)] private int _numberOfBulletInMagazin;
         [SerializeField] [Min(0)] private int _totalNumberOfBullet;
         [SerializeField] [Min(0)] private float _reloadedTime;
 
@@ -45,7 +45,15 @@ namespace Invaders.Battle
             _tokenSource?.Dispose();
         }
 
+        public bool IsAllowReplenished { get; private set; }
+
         public float ReloaingTime => _reloadedTime;
+
+        public override void PickUp() =>
+            IsAllowReplenished = true;
+
+        public override void Drop() =>
+           IsAllowReplenished = false;
 
         public override void Shoot(Vector3 direction)
         {
