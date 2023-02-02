@@ -70,7 +70,10 @@ namespace Invaders.Ui
 
         private void OnStopAnimationReloading()
         {
-            _reloadingStatus.fillAmount = 0;
+            // temporarily
+            if (_reloadingStatus is not { })
+                _reloadingStatus.fillAmount = 0;
+
             _cancellationToken?.Cancel();
         }
 
