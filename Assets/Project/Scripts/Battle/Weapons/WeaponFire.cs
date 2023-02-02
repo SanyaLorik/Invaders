@@ -141,11 +141,11 @@ namespace Invaders.Battle
             await UniTask.Delay(millisecond, cancellationToken: token);
 
             _currentTotalBullet += _currentBullet;
-            _currentBullet = 0;
 
-            if (_currentTotalBullet < _currentBullet)
+            if (_currentTotalBullet <= _numberOfBulletInMagazin)
             {
                 _currentBullet = _currentTotalBullet;
+                _currentTotalBullet = 0;
             }
             else
             {
