@@ -1,4 +1,5 @@
-﻿using Invaders.Environment.Global;
+﻿using DG.Tweening;
+using Invaders.Environment.Global;
 using UnityEngine;
 using Zenject;
 
@@ -56,7 +57,7 @@ namespace Invaders.Environment.Illumination
             Vector3 euler = transform.localRotation.eulerAngles;
             euler.y = angleY;
 
-            transform.rotation = Quaternion.Euler(euler);
+            transform.DORotate(euler, GlobalCoverageTimer.Interval.Seconds).SetEase(Ease.Linear);
         }
     }
 }
