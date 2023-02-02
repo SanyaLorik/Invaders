@@ -11322,6 +11322,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Headgun
       objectReference: {fileID: 0}
+    - target: {fileID: 7577157392004419361, guid: 57cc75d48c71e6844bcead42fd590b21, type: 3}
+      propertyPath: _totalNumberOfBullet
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
