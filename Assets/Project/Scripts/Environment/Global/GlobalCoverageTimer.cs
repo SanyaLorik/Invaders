@@ -6,8 +6,8 @@ namespace Invaders.Environment.Global
 {
     public class GlobalCoverageTimer : IGlobalCoverageGapObserver, IGlobalCoverageTimerObserver
     {
-        public event Action OnDayCome = delegate { };
-        public event Action OnNightCome = delegate { };
+        public event Action OnDayCame = delegate { };
+        public event Action OnNightCame = delegate { };
         public event Action<int, int> OnStepInterval = delegate { };
 
         private readonly int _dayMinute;
@@ -41,7 +41,7 @@ namespace Invaders.Environment.Global
 
             do
             {
-                OnDayCome.Invoke();
+                OnDayCame.Invoke();
                 for (int i = 0; i < daySecond; i++)
                 {
                     counterSecond++;
@@ -50,7 +50,7 @@ namespace Invaders.Environment.Global
                     await UniTask.Delay(_interval, cancellationToken: token);
                 }
 
-                OnNightCome.Invoke();
+                OnNightCame.Invoke();
                 for (int i = 0; i < nightSecond; i++)
                 {
                     counterSecond++;

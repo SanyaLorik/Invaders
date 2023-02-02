@@ -15,6 +15,7 @@ namespace Invaders.Di
         public override void InstallBindings()
         {
             _globalCoverageTimer = new GlobalCoverageTimer(_dayMinute, _nightMinute);
+            _globalCoverageTimer.StartTimer().Forget();
 
             BindGlobalCoverageObserver();
             BindGlobalCoverageTimerObserver();

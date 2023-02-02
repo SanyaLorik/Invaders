@@ -27,12 +27,36 @@ namespace Invaders.Environment.Illumination
 
         private void OnEnable()
         {
+            _globalCoverage.OnDayCame += OnComeDay;
+            _globalCoverage.OnNightCame += OnComeNight;
             _globalTimer.OnStepInterval += OnMoveSun;
         }
 
+        private void OnDisable()
+        {
+            _globalCoverage.OnDayCame -= OnComeDay;
+            _globalCoverage.OnNightCame -= OnComeNight;
+            _globalTimer.OnStepInterval -= OnMoveSun;
+        }
+
+        private void OnComeDay() =>
+            _light.color = _day;
+
+        private void OnComeNight() =>
+            _light.color = _night;
+
         private void OnMoveSun(int counter, int total)
         {
+            float angleY = 360 * counter / total;
+            Rotate(angleY);
+        }
 
+        private void Rotate(float angleY)
+        {
+            Vector3 euler = transform.localRotation.eulerAngles;
+            euler.y = angleY;
+
+            transform.rotation = Quaternion.Euler(euler);
         }
     }
 }

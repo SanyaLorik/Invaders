@@ -20,14 +20,14 @@ namespace Invaders.Environment.Illumination
 
         private void OnEnable()
         {
-            _globalCoverage.OnDayCome += OnUnvisiableLight;
-            _globalCoverage.OnNightCome += OnVisiableLight;
+            _globalCoverage.OnDayCame += OnUnvisiableLight;
+            _globalCoverage.OnNightCame += OnVisiableLight;
         }
 
         private void OnDisable()
         {
-            _globalCoverage.OnDayCome -= OnUnvisiableLight;
-            _globalCoverage.OnNightCome -= OnVisiableLight;
+            _globalCoverage.OnDayCame -= OnUnvisiableLight;
+            _globalCoverage.OnNightCame -= OnVisiableLight;
         }
 
         private void OnVisiableLight()
