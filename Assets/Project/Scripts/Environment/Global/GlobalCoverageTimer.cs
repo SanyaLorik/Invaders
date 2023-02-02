@@ -62,7 +62,7 @@ namespace Invaders.Environment.Global
 
                 counterSecond = 0;
             } 
-            while (true);
+            while (token.IsCancellationRequested == false);
         }
 
         public void StopTimer() =>
