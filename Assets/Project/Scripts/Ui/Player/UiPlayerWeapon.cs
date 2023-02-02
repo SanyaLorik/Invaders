@@ -71,7 +71,7 @@ namespace Invaders.Ui
         private void OnStopAnimationReloading()
         {
             // temporarily
-            if (_reloadingStatus is not { })
+            if (_reloadingStatus != null)
                 _reloadingStatus.fillAmount = 0;
 
             _cancellationToken?.Cancel();
