@@ -46,6 +46,8 @@ namespace Invaders.Environment.Buildings
         private void OnDisable()
         {
             _disposable?.Dispose();
+
+            _tokenSource?.Cancel();
             _tokenSource?.Dispose();
         }
 

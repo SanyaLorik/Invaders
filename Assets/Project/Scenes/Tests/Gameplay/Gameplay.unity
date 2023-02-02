@@ -10522,14 +10522,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ak47
       objectReference: {fileID: 0}
-    - target: {fileID: 6627226163272434318, guid: 0cbee1fc8eda663458ed6c428d169768, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8023212129802392860, guid: 0cbee1fc8eda663458ed6c428d169768, type: 3}
-      propertyPath: _currentBullet
-      value: 110
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10816,8 +10808,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1143184345}
-  - {fileID: 1806075184}
   - {fileID: 1750739145}
+  - {fileID: 1806075184}
   - {fileID: 1696151653}
   m_Father: {fileID: 1038576978}
   m_RootOrder: 2
@@ -11322,10 +11314,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Headgun
       objectReference: {fileID: 0}
-    - target: {fileID: 7577157392004419361, guid: 57cc75d48c71e6844bcead42fd590b21, type: 3}
-      propertyPath: _totalNumberOfBullet
-      value: 7
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11813,6 +11801,67 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7dcaf6495cf32ce4880837b4b58f61c3, type: 3}
+--- !u!1001 &3438409822425059600
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3438409824036620002, guid: 4a8e37cb060c3104bbb8462d23e70e8c, type: 3}
+      propertyPath: m_Name
+      value: MiniAmmoBag
+      objectReference: {fileID: 0}
+    - target: {fileID: 3438409824036620003, guid: 4a8e37cb060c3104bbb8462d23e70e8c, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3438409824036620003, guid: 4a8e37cb060c3104bbb8462d23e70e8c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 3438409824036620003, guid: 4a8e37cb060c3104bbb8462d23e70e8c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 3438409824036620003, guid: 4a8e37cb060c3104bbb8462d23e70e8c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.104734
+      objectReference: {fileID: 0}
+    - target: {fileID: 3438409824036620003, guid: 4a8e37cb060c3104bbb8462d23e70e8c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3438409824036620003, guid: 4a8e37cb060c3104bbb8462d23e70e8c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3438409824036620003, guid: 4a8e37cb060c3104bbb8462d23e70e8c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3438409824036620003, guid: 4a8e37cb060c3104bbb8462d23e70e8c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3438409824036620003, guid: 4a8e37cb060c3104bbb8462d23e70e8c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3438409824036620003, guid: 4a8e37cb060c3104bbb8462d23e70e8c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3438409824036620003, guid: 4a8e37cb060c3104bbb8462d23e70e8c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4a8e37cb060c3104bbb8462d23e70e8c, type: 3}
 --- !u!1001 &4880726262856154194
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12016,10 +12065,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1806075184}
     m_Modifications:
-    - target: {fileID: 7399963980558862817, guid: e4f10ba5cca93b14f8e5406e3781259c, type: 3}
-      propertyPath: _damage
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 7399963980558862820, guid: e4f10ba5cca93b14f8e5406e3781259c, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -12067,10 +12112,6 @@ PrefabInstance:
     - target: {fileID: 7399963980558862821, guid: e4f10ba5cca93b14f8e5406e3781259c, type: 3}
       propertyPath: m_Name
       value: Shotgun
-      objectReference: {fileID: 0}
-    - target: {fileID: 7399963980558862821, guid: e4f10ba5cca93b14f8e5406e3781259c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12959,7 +13000,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!4 &7904924063053900053
 Transform:
   m_ObjectHideFlags: 0

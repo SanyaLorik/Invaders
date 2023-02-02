@@ -16,8 +16,9 @@ namespace Invaders.Battle
         [SerializeField] [Min(0)] private int _damage;
 
         [Header("Bullets")]
-        [SerializeField] [Min(0)] private int _initialNumberOfBullet;
-        [SerializeField] [Min(0)] private int _numberOfBulletInMagazin;
+        [SerializeField] [Min(0)] private int _initialNumberOfBulletInMagazin;
+        [SerializeField] [Min(0)] private int _initialTotalNumberOfBullet;
+        [SerializeField][Min(0)] private int _numberOfBulletInMagazin;
         [SerializeField] [Min(0)] private int _totalNumberOfBullet;
         [SerializeField] [Min(0)] private float _reloadedTime;
 
@@ -34,8 +35,8 @@ namespace Invaders.Battle
 
         protected virtual void Awake()
         {
-            _currentBullet = _initialNumberOfBullet;
-            _currentTotalBullet = _totalNumberOfBullet;
+            _currentBullet = _initialNumberOfBulletInMagazin;
+            _currentTotalBullet = _initialTotalNumberOfBullet;
         }
 
         private void OnDisable()
@@ -92,9 +93,9 @@ namespace Invaders.Battle
         public void Replenish(float ratioOfTotalAmmo)
         {
             int bullet = (int)(_totalNumberOfBullet * ratioOfTotalAmmo);
-            int currentAllBullet = _currentTotalBullet + bullet;
-            _currentTotalBullet = Mathf.Clamp(currentAllBullet, 0, _totalNumberOfBullet);
-
+            int currentTotalBullet = _currentTotalBullet + bullet;
+            _currentTotalBullet = Mathf.Clamp(currentTotalBullet, 0, _totalNumberOfBullet);
+           
             _changingNumberOfBullets?.Invoke(_currentBullet, _currentTotalBullet);
         }
 

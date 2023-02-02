@@ -34,7 +34,7 @@ Transform:
   - {fileID: 6792483044553100169}
   - {fileID: 6792483045023962326}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &923721973044800333
 BoxCollider:
@@ -100,9 +100,10 @@ MonoBehaviour:
   _muzzle: {fileID: 6792483045023962326}
   _speed: 50
   _damage: 0
-  _initialNumberOfBullet: 2
+  _initialNumberOfBulletInMagazin: 5
+  _initialTotalNumberOfBullet: 7
   _numberOfBulletInMagazin: 5
-  _totalNumberOfBullet: 25
+  _totalNumberOfBullet: 20
   _reloadedTime: 3
   _dropppedLenght: 0.25
   <TappedDelay>k__BackingField: 0.25

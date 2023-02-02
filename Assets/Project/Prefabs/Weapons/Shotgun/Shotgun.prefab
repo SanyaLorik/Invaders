@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7399963980558862820
 Transform:
   m_ObjectHideFlags: 0
@@ -34,7 +34,7 @@ Transform:
   - {fileID: 7399963981552760043}
   - {fileID: 7399963980867398297}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &7399963980558862819
 BoxCollider:
@@ -99,8 +99,9 @@ MonoBehaviour:
   _missile: {fileID: 7625829949898017995, guid: 4fb359f5cd6429344a30e7ae207eb097, type: 3}
   _muzzle: {fileID: 7399963980867398297}
   _speed: 40
-  _damage: 0
-  _initialNumberOfBullet: 2
+  _damage: 10
+  _initialNumberOfBulletInMagazin: 2
+  _initialTotalNumberOfBullet: 4
   _numberOfBulletInMagazin: 5
   _totalNumberOfBullet: 10
   _reloadedTime: 2

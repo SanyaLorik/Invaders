@@ -49,7 +49,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6627226163272434317
 Transform:
   m_ObjectHideFlags: 0
@@ -131,7 +131,8 @@ MonoBehaviour:
   _muzzle: {fileID: 6627226162521177758}
   _speed: 50
   _damage: 10
-  _initialNumberOfBullet: 7
+  _initialNumberOfBulletInMagazin: 17
+  _initialTotalNumberOfBullet: 45
   _numberOfBulletInMagazin: 30
   _totalNumberOfBullet: 60
   _reloadedTime: 5
