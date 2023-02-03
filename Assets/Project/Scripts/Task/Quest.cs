@@ -1,3 +1,4 @@
+using Invaders.Ui;
 using UnityEngine;
 
 namespace Invaders.Task
@@ -5,8 +6,12 @@ namespace Invaders.Task
     public class Quest : MonoBehaviour
     {
         [SerializeField] private Mission[] _missions;
+        [SerializeField] private UiQuest _ui;
 
         private bool _isComplated = false;
+
+        private void Start() =>
+             OnFindNextMission();
 
         private void OnEnable()
         {
@@ -39,7 +44,9 @@ namespace Invaders.Task
                 if (mission.IsActivated == true)
                     break;
 
+                _ui.UpdateTask(mission.Text);
                 mission.Active();
+
                 break;
             }
         }

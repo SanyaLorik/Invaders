@@ -7,12 +7,22 @@ namespace Invaders.Task
     {
         public event Action OnDone = delegate { };
 
-        [field: SerializeField] public bool IsFinally { get; protected set; }
+        [field: SerializeField] public bool IsFinally { get; private set; }
 
-        [field: SerializeField] public bool IsDone { get; protected set; }
+        [field: SerializeField] public bool IsDone { get; private set; }
 
-        [field: SerializeField] public bool IsActivated { get; protected set; }
+        [field: SerializeField] public bool IsActivated { get; private set; }
 
-        public abstract void Active();
+        [field: SerializeField] public string Text { get; private set; }
+
+        public virtual void Complate()
+        {
+            IsDone = true;
+            IsActivated = false;
+            OnDone.Invoke();
+        }
+
+        public virtual void Active() =>
+            IsActivated = true;
     }
 }
