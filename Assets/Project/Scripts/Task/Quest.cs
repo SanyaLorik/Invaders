@@ -7,6 +7,7 @@ namespace Invaders.Task
     {
         [SerializeField] private Mission[] _missions;
         [SerializeField] private UiQuest _ui;
+        [SerializeField] private MissionPointer _pointer;
 
         private bool _isComplated = false;
 
@@ -27,6 +28,8 @@ namespace Invaders.Task
 
         private void OnFindNextMission()
         {
+            _pointer.Hide();
+
             if (_isComplated == true)
                 return;
 
@@ -44,6 +47,8 @@ namespace Invaders.Task
                 if (mission.IsActivated == true)
                     break;
 
+                _pointer.Show();
+                _pointer.Point(mission.Point);
                 _ui.UpdateTask(mission.Text);
                 mission.Active();
 

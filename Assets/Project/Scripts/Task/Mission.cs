@@ -7,6 +7,8 @@ namespace Invaders.Task
     {
         public event Action OnDone = delegate { };
 
+        [field: SerializeField] public Transform Point { get; private set; }
+
         [field: SerializeField] public bool IsFinally { get; private set; }
 
         [field: SerializeField] public bool IsDone { get; private set; }
@@ -17,7 +19,6 @@ namespace Invaders.Task
 
         public virtual void Complate()
         {
-            print(gameObject.name);
             IsDone = true;
             IsActivated = false;
             OnDone.Invoke();
