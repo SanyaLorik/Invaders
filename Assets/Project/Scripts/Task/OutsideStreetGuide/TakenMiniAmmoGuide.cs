@@ -1,5 +1,4 @@
 ﻿using Cysharp.Threading.Tasks;
-using Invaders.Environment.Buildings;
 using System.Threading;
 using UnityEngine;
 
@@ -7,7 +6,7 @@ namespace Invaders.Task
 {
     public class TakenMiniAmmoGuide : Mission
     {
-        [SerializeField] private MiniAmmoBag _miniAmmomBag;
+        [SerializeField] private GameObject _miniAmmomBag;
 
         private CancellationTokenSource _tokenSource;
 
@@ -18,7 +17,7 @@ namespace Invaders.Task
 
             UniTask.Create(async () =>
             {
-                await UniTask.WaitWhile(() => _miniAmmomBag.gameObject != null, cancellationToken: token);
+                await UniTask.WaitWhile(() => _miniAmmomBag != null, cancellationToken: token);
                 base.Complate();
             });
         }

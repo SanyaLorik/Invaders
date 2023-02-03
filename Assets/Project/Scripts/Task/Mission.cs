@@ -17,6 +17,7 @@ namespace Invaders.Task
 
         public virtual void Complate()
         {
+            print(gameObject.name);
             IsDone = true;
             IsActivated = false;
             OnDone.Invoke();

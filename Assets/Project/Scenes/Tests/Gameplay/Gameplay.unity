@@ -7237,7 +7237,7 @@ MonoBehaviour:
   <IsDone>k__BackingField: 0
   <IsActivated>k__BackingField: 0
   <Text>k__BackingField: "\u041F\u043E\u043F\u043E\u043B\u043D\u0438 \u0431\u043E\u0435\u0437\u0430\u043F\u0430\u0441"
-  _miniAmmomBag: {fileID: 2119957515}
+  _miniAmmomBag: {fileID: 2119957514}
 --- !u!1 &1265507858 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 81db9829959fb934faa8a912ab538448, type: 3}
@@ -12308,17 +12308,11 @@ Transform:
   m_Father: {fileID: 1653668031}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2119957515 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1614190582, guid: 4a8e37cb060c3104bbb8462d23e70e8c, type: 3}
+--- !u!1 &2119957514 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3438409824036620002, guid: 4a8e37cb060c3104bbb8462d23e70e8c, type: 3}
   m_PrefabInstance: {fileID: 3438409822425059600}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47a3269d7afb90b4ca4a15a9e765d61c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2144803389
 PrefabInstance:
   m_ObjectHideFlags: 0
