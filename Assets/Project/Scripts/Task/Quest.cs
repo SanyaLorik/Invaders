@@ -44,8 +44,12 @@ namespace Invaders.Task
                 if (mission.IsActivated == true)
                     break;
 
-                _pointer.Show();
-                _pointer.Point(mission.Point);
+                if (mission.Point != null)
+                {
+                    _pointer.Show();
+                    _pointer.Point(mission.Point);
+                }
+
                 _ui.UpdateTask(mission.Text);
                 mission.Active();
 
