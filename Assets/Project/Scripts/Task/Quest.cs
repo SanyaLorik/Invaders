@@ -30,12 +30,9 @@ namespace Invaders.Task
         {
             _pointer.Hide();
 
-            if (_isComplated == true)
-                return;
-
             foreach(var mission in _missions)
             {
-                if (mission.IsFinally == true)
+                if (mission.IsDone == true && mission.IsFinally == true)
                 {
                     _isComplated = true;
                     break;
@@ -54,6 +51,9 @@ namespace Invaders.Task
 
                 break;
             }
+
+            if (_isComplated == true)
+                _ui.ComplateTask();
         }
     }
 }
