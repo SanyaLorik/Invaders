@@ -7,14 +7,17 @@ namespace Invaders.Task
     {
         public event Action OnDone = delegate { };
 
-        [field: SerializeField] public Transform Point { get; private set; }
+        [field: Header("If point does not exist then do not specify.")]
+        [field: SerializeField] public Transform Point { get; private set; } = null;
 
+        [field: Space]
         [field: SerializeField] public bool IsFinally { get; private set; }
 
         [field: SerializeField] public bool IsDone { get; private set; }
 
         [field: SerializeField] public bool IsActivated { get; private set; }
 
+        [field: Header("Description task.")]
         [field: SerializeField] public string Text { get; private set; }
 
         public virtual void Complate()
