@@ -5732,8 +5732,8 @@ GameObject:
   m_Component:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
-  - component: {fileID: 963194226}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194226}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -9319,7 +9319,6 @@ MonoBehaviour:
   <IsActivated>k__BackingField: 0
   <Text>k__BackingField: "\u041F\u043E\u0445\u043E\u0434\u0438\u0442\u0435"
   _timeMovement: 2
-  _timeLocating: 0
 --- !u!1001 &1570958559
 PrefabInstance:
   m_ObjectHideFlags: 0
