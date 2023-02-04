@@ -7,8 +7,8 @@ namespace Invaders.Di
 {
     public class GlobalCoverageBinder : MonoInstaller
     {
-        [SerializeField][Range(0, 5)] private int _dayMinute;
-        [SerializeField][Range(0, 5)] private int _nightMinute;
+        [SerializeField][Range(0f, 5f)] private float _dayMinute;
+        [SerializeField][Range(0f, 5f)] private float _nightMinute;
 
         private GlobalCoverageTimer _globalCoverageTimer;
 

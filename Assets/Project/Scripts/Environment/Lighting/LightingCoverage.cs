@@ -10,6 +10,7 @@ namespace Invaders.Environment.Illumination
     {
         [SerializeField] private Color _day;
         [SerializeField] private Color _night;
+        [SerializeField][Range(0f, 5f)] private float _switchedDurataion;
 
         private Light _light;
 
@@ -41,12 +42,12 @@ namespace Invaders.Environment.Illumination
         }
 
         private void OnComeDay() =>
-            _light.color = _day;
+                _light.DOColor(_day, _switchedDurataion);
 
         private void OnComeNight() =>
-            _light.color = _night;
+            _light.DOColor(_night, _switchedDurataion);
 
-        private void OnMoveSun(int counter, int total)
+        private void OnMoveSun(float counter, float total)
         {
             float angleY = 360 * counter / total;
             Rotate(angleY);

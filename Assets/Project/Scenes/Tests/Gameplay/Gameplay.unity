@@ -4174,6 +4174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _day: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   _night: {r: 0, g: 0, b: 0, a: 1}
+  _switchedDurataion: 5
 --- !u!1001 &726206397
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6095,8 +6096,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34078da7d0d29c3448498fb461cec942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dayMinute: 1
-  _nightMinute: 1
+  _dayMinute: 0.45
+  _nightMinute: 0.45
 --- !u!1001 &1035919655
 PrefabInstance:
   m_ObjectHideFlags: 0

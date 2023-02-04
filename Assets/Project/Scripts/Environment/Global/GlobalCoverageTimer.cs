@@ -10,14 +10,14 @@ namespace Invaders.Environment.Global
 
         public event Action OnDayCame = delegate { };
         public event Action OnNightCame = delegate { };
-        public event Action<int, int> OnStepInterval = delegate { };
+        public event Action<float, float> OnStepInterval = delegate { };
 
-        private readonly int _dayMinute;
-        private readonly int _nightMinute;
+        private readonly float _dayMinute;
+        private readonly float _nightMinute;
 
         private CancellationTokenSource _tokenSource;
 
-        public GlobalCoverageTimer(int dayMinute, int nightMinute)
+        public GlobalCoverageTimer(float dayMinute, float nightMinute)
         {
             _dayMinute = dayMinute;
             _nightMinute = nightMinute;
@@ -31,10 +31,10 @@ namespace Invaders.Environment.Global
 
         public async UniTaskVoid StartTimer()
         {
-            int daySecond = _dayMinute * 60;
-            int nightSecond = _nightMinute * 60;
+            float daySecond = _dayMinute * 60;
+            float nightSecond = _nightMinute * 60;
 
-            int totalSecond = daySecond + nightSecond;
+            float totalSecond = daySecond + nightSecond;
             int counterSecond = 0;
 
             _tokenSource = new CancellationTokenSource();
