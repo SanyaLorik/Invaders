@@ -14,7 +14,7 @@ namespace Invaders.Task
         private IMovementService _movement;
         private CancellationTokenSource _tokenSource;
 
-        [SerializeField] private float _timeLocating = 0;
+        private float _timeLocating = 0;
 
         [Inject]
         private void Construct(IMovementService movement) =>

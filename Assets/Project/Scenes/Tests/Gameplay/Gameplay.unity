@@ -9318,7 +9318,7 @@ MonoBehaviour:
   <IsDone>k__BackingField: 0
   <IsActivated>k__BackingField: 0
   <Text>k__BackingField: "\u041F\u043E\u0445\u043E\u0434\u0438\u0442\u0435"
-  _timeMovement: 2.93
+  _timeMovement: 2
   _timeLocating: 0
 --- !u!1001 &1570958559
 PrefabInstance:
