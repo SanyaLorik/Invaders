@@ -10,7 +10,10 @@ namespace Invaders.Ui
 {
     public class UiPlayerWeapon : MonoBehaviour
     {
-        [SerializeField] private TMP_Text _numberOfBullet;
+        [SerializeField] private GameObject _panel;
+        [SerializeField] private TMP_Text _name;
+        [SerializeField] private TMP_Text _magazin;
+        [SerializeField] private TMP_Text _remaining;
         [SerializeField] private Image _reloadingStatus;
 
         private IWeaponHavingObserver _having;
@@ -29,7 +32,8 @@ namespace Invaders.Ui
 
         private void OnEnable()
         {
-            _having.OnDropped += OnShowNoHavingWeapon;
+            _having.OnHad += OnShowHavingWeapon;
+            _having.OnNoHad += OnShowNoHavingWeapon;
 
             _ammoObserver.OnNumberOfBulletChanged += OnShowChangingNumberOfBullet;
             _ammoObserver.OnOutOfAmmo += OnShowOutOfAmmo;
@@ -40,7 +44,8 @@ namespace Invaders.Ui
 
         private void OnDisable()
         {
-            _having.OnDropped -= OnShowNoHavingWeapon;
+            _having.OnHad -= OnShowHavingWeapon;
+            _having.OnNoHad -= OnShowNoHavingWeapon;
 
             _ammoObserver.OnNumberOfBulletChanged -= OnShowChangingNumberOfBullet;
             _ammoObserver.OnOutOfAmmo -= OnShowOutOfAmmo;
@@ -52,14 +57,26 @@ namespace Invaders.Ui
             _cancellationToken?.Dispose();
         }
 
+        private void OnShowHavingWeapon(string name)
+        {
+            ShowPanel();
+            _name.text = name;
+        }
+
         private void OnShowNoHavingWeapon() =>
-             _numberOfBullet.text = $"Оружие нет";
+            HidePanel();
 
-        private void OnShowChangingNumberOfBullet(int current, int magazin) =>
-            _numberOfBullet.text = $"{current} / {magazin}";
+        private void OnShowChangingNumberOfBullet(int current, int magazin)
+        {
+            _magazin.text = current.ToString();
+            _remaining.text = magazin.ToString();
+        }
 
-        private void OnShowOutOfAmmo() =>
-             _numberOfBullet.text = $"Патроны кончились";
+        private void OnShowOutOfAmmo()
+        {
+            _magazin.text = "--";
+            _remaining.text = "---";
+        }
 
         private void OnStartAnimtionReloading()
         {
@@ -93,5 +110,11 @@ namespace Invaders.Ui
             } 
             while (expandedTime <= reloadedTime);
         }
+
+        private void ShowPanel() =>
+            _panel.gameObject.SetActive(true);
+
+        private void HidePanel() =>
+            _panel.gameObject.SetActive(false);
     }
 }

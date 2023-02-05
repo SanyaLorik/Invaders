@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5632270c291f2d140a427e376d92da36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Name>k__BackingField: "\u0414\u0440\u043E\u0431\u0430\u0448"
   _missile: {fileID: 7625829949898017995, guid: 4fb359f5cd6429344a30e7ae207eb097, type: 3}
   _muzzle: {fileID: 7399963980867398297}
   _speed: 40

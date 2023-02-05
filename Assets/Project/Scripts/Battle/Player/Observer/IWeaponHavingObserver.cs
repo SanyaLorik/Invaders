@@ -4,6 +4,7 @@ namespace Invaders.Battle
 {
     public interface IWeaponHavingObserver
     {
-        event Action OnDropped;
+        event Action<string> OnHad;
+        event Action OnNoHad;
     }
 }

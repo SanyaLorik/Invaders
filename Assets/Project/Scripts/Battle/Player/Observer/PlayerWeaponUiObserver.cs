@@ -5,7 +5,8 @@ namespace Invaders.Battle
 {
     public class PlayerWeaponUiObserver : IWeaponHavingObserver, IWeaponAmmoObserver, IWeaponReloadingObserver
     {
-        public event Action OnDropped = delegate { };
+        public event Action<string> OnHad = delegate { };
+        public event Action OnNoHad = delegate { };
         public event Action<int, int> OnNumberOfBulletChanged = delegate { };
         public event Action OnOutOfAmmo = delegate { };
         public event Action OnReloadingStarted = delegate { };
@@ -33,13 +34,14 @@ namespace Invaders.Battle
         private void OnTaken(IThingPortable<IWeapon> weaponFire)
         {
             _weapon = weaponFire.Thing as IWeaponFire;
+            OnHad.Invoke(_weapon.Name);
             SetInformationAboutWeaponFire();
         }
 
         private void OnDrop()
         {
             ClearInformationAboutWeaponFire();
-            OnDropped.Invoke();
+            OnNoHad.Invoke();
             OnReloadingStopped.Invoke();
         }
 
