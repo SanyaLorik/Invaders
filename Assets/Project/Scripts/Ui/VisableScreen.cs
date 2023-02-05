@@ -16,5 +16,12 @@ namespace Invaders.Ui
 
         public Tween Fade() =>
             _screen.DOColor(_faded, _duration).OnComplete(() => _screen.gameObject.SetActive(true));
+
+        public void Flash()
+        {
+            _screen.gameObject.SetActive(true);
+            _screen.DOColor(_faded, _duration).OnComplete(() => 
+                _screen.DOColor(_ascended, _duration).OnComplete(() => _screen.gameObject.SetActive(false)));
+        }
     }
 }
