@@ -1,7 +1,7 @@
 using Invaders.Ui;
 using UnityEngine;
 
-namespace Invaders.Scenes
+namespace Invaders.Locations
 {
     public class OutsideStreetinitialization : MonoBehaviour
     {
