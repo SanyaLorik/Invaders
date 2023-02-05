@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using Invaders.Additionals;
 using Invaders.Battle;
 using System.Threading;
 using UniRx;
@@ -54,7 +55,7 @@ namespace Invaders.Environment.Buildings
 
         protected async UniTaskVoid Replenish(T replenishable, float delay, CancellationToken token)
         {
-            int millisecond = (int)(delay * 1000);
+            int millisecond = delay.DelayMillisecond();
 
             do
             {

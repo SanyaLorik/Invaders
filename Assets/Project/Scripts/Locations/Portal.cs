@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using Invaders.Additionals;
 using Invaders.Entities;
 using System;
 using System.Threading;
@@ -37,7 +38,7 @@ namespace Invaders.Locations
 
         private async UniTaskVoid DelayTeleport(CancellationToken token, Transform entity)
         {
-            int delay = (int)(_duration * 1000);
+            int delay = _duration.DelayMillisecond();
 
             await UniTask.Delay(delay, cancellationToken: token);
             entity.position = _point.position;

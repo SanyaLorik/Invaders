@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using Invaders.Additionals;
 using Invaders.InputSystem;
 using Invaders.Movement;
 
@@ -38,8 +39,8 @@ namespace Invaders.Battle
 
         private async UniTaskVoid DelayForShooting()
         {
-            int millisecond = (int)(Weapon.TappedDelay * 1000);
-            await UniTask.Delay(millisecond);
+            int delay = Weapon.TappedDelay.DelayMillisecond();
+            await UniTask.Delay(delay);
             _canShooting = true;
         }
     }

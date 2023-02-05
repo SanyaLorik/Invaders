@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using Invaders.Additionals;
 using Invaders.InputSystem;
 using System;
 using System.Threading;
@@ -54,7 +55,7 @@ namespace Invaders.Task
                 float deltaTime = Time.deltaTime;
                 _timeLocating += deltaTime;
 
-                int delay = (int)(deltaTime * 1000);
+                int delay = deltaTime.DelayMillisecond();
                 await UniTask.Delay(delay, cancellationToken: token);
             }
             while (_timeLocating <= _timeMovement);

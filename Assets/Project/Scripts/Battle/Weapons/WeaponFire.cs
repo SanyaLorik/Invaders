@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using Invaders.Additionals;
 using System;
 using System.Threading;
 using UnityEngine;
@@ -146,8 +147,8 @@ namespace Invaders.Battle
                 _stoppedReloading?.Invoke();
             });
 
-            int millisecond = (int)(_reloadedTime * 1000);
-            await UniTask.Delay(millisecond, cancellationToken: token);
+            int delay = _reloadedTime.DelayMillisecond();
+            await UniTask.Delay(delay, cancellationToken: token);
 
             _currentTotalBullet += _currentBullet;
 

@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using Invaders.Additionals;
 using Invaders.InputSystem;
 using Invaders.Movement;
 using System.Threading;
@@ -40,7 +41,7 @@ namespace Invaders.Battle
 
         private async UniTaskVoid ShootProcess(CancellationToken token)
         {
-            int delay = (int)(Weapon.ShootedDelay * 1000);
+            int delay = Weapon.ShootedDelay.DelayMillisecond();
      
             do
             {
