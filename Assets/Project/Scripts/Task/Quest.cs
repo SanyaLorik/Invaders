@@ -57,7 +57,7 @@ namespace Invaders.Task
             }
 
             if (_isComplated == true)
-                _ui.ComplateTask();
+                _ui.ComplateTask().Forget();
         }
     }
 }
