@@ -1,6 +1,5 @@
 using Invaders.Battle;
 using Invaders.Gear;
-using System;
 using UnityEngine;
 
 namespace Invaders.Task
@@ -15,12 +14,7 @@ namespace Invaders.Task
         private void OnDisable() =>
             _carrier.OnTaken += OnComplate;
 
-        private void OnComplate(IThingPortable<IWeapon> _)
-        {
-            if (IsActivated == false)
-                return;
-
+        private void OnComplate(IThingPortable<IWeapon> _) =>
             base.Complate();
-        }
     }
 }
