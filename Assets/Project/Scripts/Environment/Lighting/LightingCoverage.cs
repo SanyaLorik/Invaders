@@ -42,7 +42,7 @@ namespace Invaders.Environment.Illumination
         }
 
         private void OnComeDay() =>
-                _light.DOColor(_day, _switchedDurataion);
+            _light.DOColor(_day, _switchedDurataion);
 
         private void OnComeNight() =>
             _light.DOColor(_night, _switchedDurataion);
