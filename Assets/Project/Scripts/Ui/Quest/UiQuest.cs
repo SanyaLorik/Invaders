@@ -9,7 +9,10 @@ namespace Invaders.Ui
 
         public void UpdateTask(string text) =>
             _task.text = text;
-        public void ComplateTask() =>
+
+        public void ComplateTask()
+        {
             _task.text = "Начало пройдено!";
+        }
     }
 }
