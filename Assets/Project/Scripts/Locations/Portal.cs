@@ -36,7 +36,7 @@ namespace Invaders.Locations
             _tokenSource?.Cancel();
         }
 
-        private async UniTaskVoid DelayTeleport(CancellationToken token, Transform entity)
+        protected virtual async UniTask DelayTeleport(CancellationToken token, Transform entity)
         {
             int delay = _duration.DelayMillisecond();
 
