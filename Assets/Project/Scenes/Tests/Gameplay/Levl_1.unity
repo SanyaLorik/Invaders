@@ -1836,6 +1836,7 @@ Transform:
   - {fileID: 1705364585}
   - {fileID: 1007625624}
   - {fileID: 2141239065}
+  - {fileID: 2114926568}
   m_Father: {fileID: 2005743397}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7775,7 +7776,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: 67f75a1a64f9c5845aeafc625ed61a45, type: 3}
 --- !u!1001 &1088949383
@@ -26707,6 +26708,76 @@ Transform:
   m_Father: {fileID: 1653668031}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2114926567
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 174362618}
+    m_Modifications:
+    - target: {fileID: 159619318795037074, guid: 194e41b773f21b74ea5295c93431bf7d, type: 3}
+      propertyPath: _addingHealth
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7620935346686096900, guid: 194e41b773f21b74ea5295c93431bf7d, type: 3}
+      propertyPath: m_Name
+      value: MiniMedpack
+      objectReference: {fileID: 0}
+    - target: {fileID: 7620935346686096901, guid: 194e41b773f21b74ea5295c93431bf7d, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7620935346686096901, guid: 194e41b773f21b74ea5295c93431bf7d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 7620935346686096901, guid: 194e41b773f21b74ea5295c93431bf7d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7620935346686096901, guid: 194e41b773f21b74ea5295c93431bf7d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 7620935346686096901, guid: 194e41b773f21b74ea5295c93431bf7d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7620935346686096901, guid: 194e41b773f21b74ea5295c93431bf7d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7620935346686096901, guid: 194e41b773f21b74ea5295c93431bf7d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7620935346686096901, guid: 194e41b773f21b74ea5295c93431bf7d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7620935346686096901, guid: 194e41b773f21b74ea5295c93431bf7d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7620935346686096901, guid: 194e41b773f21b74ea5295c93431bf7d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7620935346686096901, guid: 194e41b773f21b74ea5295c93431bf7d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 194e41b773f21b74ea5295c93431bf7d, type: 3}
+--- !u!4 &2114926568 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7620935346686096901, guid: 194e41b773f21b74ea5295c93431bf7d, type: 3}
+  m_PrefabInstance: {fileID: 2114926567}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2119957514 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3438409824036620002, guid: 4a8e37cb060c3104bbb8462d23e70e8c, type: 3}
@@ -26805,7 +26876,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: 0ef9490f9df1712468447dd4998503f2, type: 3}
 --- !u!1 &2139485333
