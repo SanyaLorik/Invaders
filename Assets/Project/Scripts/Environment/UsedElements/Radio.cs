@@ -11,7 +11,6 @@ namespace Invaders.Environment.UsedElements
         [SerializeField] private GameObject _model;
         [SerializeField] private Rigidbody _part1;
         [SerializeField] private Rigidbody _part2;
-        [SerializeField][Range(0f, 10f)] private float _force;
 
         private AudioSource _audioSource;
 
@@ -54,9 +53,6 @@ namespace Invaders.Environment.UsedElements
 
             _part1.gameObject.SetActive(true);
             _part2.gameObject.SetActive(true);
-            /*
-            _part1.AddForce((Vector3.up + Vector3.left) * _force, ForceMode.Impulse);
-            _part2.AddForce((Vector3.up + Vector3.right) * _force, ForceMode.Impulse);*/
         }
     }
 }
