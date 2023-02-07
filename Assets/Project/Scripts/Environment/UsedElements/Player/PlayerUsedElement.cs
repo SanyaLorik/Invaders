@@ -38,5 +38,19 @@ namespace Invaders.Environment.UsedElements
 
             used.Use();
         }
+
+#if UNITY_EDITOR
+        private void OnDrawGizmos()
+        {
+            Gizmos.DrawRay(transform.position, transform.forward * _distance);
+
+            /*
+            Vector3 scale = transform.localScale;
+            Vector3 position = transform.position;
+
+            Gizmos.DrawWireCube(position, scale);
+            */
+        }
+#endif
     }
 }
