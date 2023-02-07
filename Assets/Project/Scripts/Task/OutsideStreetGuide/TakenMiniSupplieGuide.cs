@@ -4,10 +4,9 @@ using UnityEngine;
 
 namespace Invaders.Task
 {
-    public class OpeningDoorGuide : Mission
+    public class TakenMiniSupplieGuide : Mission
     {
-        [SerializeField] private Transform _door;
-        [SerializeField] private float _angeY;
+        [SerializeField] private GameObject _supplie;
 
         private CancellationTokenSource _tokenSource;
 
@@ -18,7 +17,7 @@ namespace Invaders.Task
 
             UniTask.Create(async () =>
             {
-                await UniTask.WaitWhile(() => _door.eulerAngles.y <= _angeY, cancellationToken: token);
+                await UniTask.WaitWhile(() => _supplie != null, cancellationToken: token);
                 base.Complate();
             });
         }

@@ -1,12 +1,13 @@
 ﻿using Cysharp.Threading.Tasks;
+using Invaders.Environment.UsedElements;
 using System.Threading;
 using UnityEngine;
 
 namespace Invaders.Task
 {
-    public class TakenMiniAmmoGuide : Mission
+    public class RadioActivator : Mission
     {
-        [SerializeField] private GameObject _miniAmmomBag;
+        [SerializeField] private Radio _radio;
 
         private CancellationTokenSource _tokenSource;
 
@@ -17,15 +18,14 @@ namespace Invaders.Task
 
             UniTask.Create(async () =>
             {
-                await UniTask.WaitWhile(() => _miniAmmomBag != null, cancellationToken: token);
+                await UniTask.WaitWhile(() => _radio.IsPlayed == false, cancellationToken: token);
+                await UniTask.Delay(2000, cancellationToken: token); // 2000 - delay for listing music
+
                 base.Complate();
             });
         }
 
-        private void OnDisable()
-        {
+        private void OnDisable() =>
             _tokenSource?.Cancel();
-            _tokenSource?.Dispose();
-        }
     }
 }

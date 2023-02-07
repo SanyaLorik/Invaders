@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Invaders.Task
 {
-    public class OpeningDoorGuide : Mission
+    public class TeleportingDustRoom : Mission
     {
-        [SerializeField] private Transform _door;
-        [SerializeField] private float _angeY;
+        [SerializeField] private Transform _player;
+        [SerializeField] private Transform _teleportPoint;
 
         private CancellationTokenSource _tokenSource;
 
@@ -18,7 +18,7 @@ namespace Invaders.Task
 
             UniTask.Create(async () =>
             {
-                await UniTask.WaitWhile(() => _door.eulerAngles.y <= _angeY, cancellationToken: token);
+                await UniTask.WaitWhile(() => _teleportPoint.position != _player.position, cancellationToken: token);
                 base.Complate();
             });
         }

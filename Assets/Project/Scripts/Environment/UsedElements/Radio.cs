@@ -14,10 +14,10 @@ namespace Invaders.Environment.UsedElements
 
         private AudioSource _audioSource;
 
-        private bool _isPlayed = false;
-
         private void Awake() =>
             _audioSource = GetComponent<AudioSource>();
+
+        public bool IsPlayed { get; private set; } = false;
 
         public bool IsAllow { get; private set; } = true;
 
@@ -26,12 +26,12 @@ namespace Invaders.Environment.UsedElements
             if (IsAllow == false)
                 return;
 
-            if (_isPlayed == true)
+            if (IsPlayed == true)
                 Stop();
             else
                 Play();
 
-            _isPlayed = !_isPlayed;
+            IsPlayed = !IsPlayed;
         }
 
         private void Play() =>
