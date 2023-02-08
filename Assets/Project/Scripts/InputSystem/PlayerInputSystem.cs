@@ -21,6 +21,7 @@ namespace Invaders.InputSystem
         public event Action OnSceneReloaded = delegate { };
 
         private InvadersInputSystem _inputSystem;
+        //private readonly Vector3 _offsetAngle = new Vector3(90, 0, 0);
 
         private void Awake() =>
             _inputSystem = new InvadersInputSystem();
@@ -77,10 +78,10 @@ namespace Invaders.InputSystem
             var direction = new Vector3()
             {
                 x = value.x,
-                y = 0,
                 z = value.y,
             };
 
+            direction = Quaternion.AngleAxis(90, Vector3.up) * direction;
             OnMove.Invoke(direction);
         }
 
