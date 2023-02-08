@@ -5613,7 +5613,7 @@ GameObject:
   - component: {fileID: 121899616}
   - component: {fileID: 121899617}
   m_Layer: 0
-  m_Name: TeleportingDustRoomGuide
+  m_Name: TeleportingDustRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5835,7 +5835,7 @@ GameObject:
   - component: {fileID: 143446086}
   - component: {fileID: 143446087}
   m_Layer: 0
-  m_Name: TakenWeaponGuide
+  m_Name: TakenWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20804,7 +20804,7 @@ GameObject:
   - component: {fileID: 1199035562}
   - component: {fileID: 1199035563}
   m_Layer: 0
-  m_Name: TakenMiniMedpacGuide
+  m_Name: TakenMiniMedpac
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25989,7 +25989,7 @@ GameObject:
   - component: {fileID: 1252577718}
   - component: {fileID: 1252577719}
   m_Layer: 0
-  m_Name: TakenMiniAmmoGuide
+  m_Name: TakenMiniAmmo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26434,7 +26434,7 @@ GameObject:
   - component: {fileID: 1338719703}
   - component: {fileID: 1338719704}
   m_Layer: 0
-  m_Name: RadioDisactivatorGuide
+  m_Name: RadioDisactivator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27747,7 +27747,7 @@ GameObject:
   - component: {fileID: 1539041067}
   - component: {fileID: 1539041068}
   m_Layer: 0
-  m_Name: Quest
+  m_Name: Tutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27900,7 +27900,7 @@ GameObject:
   - component: {fileID: 1567438596}
   - component: {fileID: 1567438597}
   m_Layer: 0
-  m_Name: MovementPlayerGuide
+  m_Name: MovementPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38256,7 +38256,7 @@ GameObject:
   - component: {fileID: 1725443902}
   - component: {fileID: 1725443903}
   m_Layer: 0
-  m_Name: OpeningDoorGuide
+  m_Name: OpeningDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43916,7 +43916,7 @@ GameObject:
   - component: {fileID: 1871797440}
   - component: {fileID: 1871797441}
   m_Layer: 0
-  m_Name: RadioActivatorGuide
+  m_Name: RadioActivator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
