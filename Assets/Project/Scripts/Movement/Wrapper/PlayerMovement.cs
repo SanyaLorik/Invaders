@@ -1,5 +1,4 @@
 ﻿using Invaders.Additionals;
-using Invaders.Engine;
 using Invaders.InputSystem;
 using Invaders.Pysiol;
 using UnityEngine;
@@ -7,7 +6,7 @@ using Zenject;
 
 namespace Invaders.Movement
 {
-    public class PlayerMovement : MonoBehaviour/*, IFixedUpdateable*/
+    public class PlayerMovement : MonoBehaviour
     {
         [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] [Min(0)] private int _initialSpeed;
@@ -56,13 +55,5 @@ namespace Invaders.Movement
             _direction = Vector3.zero;
             _movement.Move(_direction);
         }
-        /*
-        void IFixedUpdateable.FixedUpdate()
-        {
-            if (_direction == Vector3.zero)
-                return;
-
-            _movement.Move(_direction);
-        }*/
     }
 }
