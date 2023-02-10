@@ -8,11 +8,10 @@ namespace Invaders.Movement
     {
         private Vector3 _normal;
 
-        public Vector3 Project(Vector3 forward) =>
-            forward - Vector3.Dot(forward, _normal) * _normal;
-
         private void OnCollisionEnter(Collision collision) =>
             _normal = collision.contacts[0].normal;
+        public Vector3 Project(Vector3 forward) =>
+            forward - Vector3.Dot(forward, _normal) * _normal;
 
         private void OnDrawGizmos()
         {
