@@ -1,6 +1,5 @@
 ﻿using Invaders.Additionals;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 namespace Invaders.Movement
 {
@@ -20,7 +19,7 @@ namespace Invaders.Movement
         public void Move(Vector3 direction)
         {
             Vector3 directionAlongSurface = _surfaceSlider.Project(direction);
-            Vector3 offset = directionAlongSurface * (_speed.Current);
+            Vector3 offset = directionAlongSurface * _speed.Current * Time.fixedDeltaTime;
 
             _rigidbody.MovePosition(_rigidbody.position + offset);
         }

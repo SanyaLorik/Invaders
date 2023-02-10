@@ -46254,6 +46254,7 @@ GameObject:
   - component: {fileID: 7904924063053900060}
   - component: {fileID: 7904924063053900050}
   - component: {fileID: 7904924063053900061}
+  - component: {fileID: 7904924063053900064}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -46362,6 +46363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aab8a453ab04f30985acaf52e72db97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _surfaceSlider: {fileID: 7904924063053900064}
   _rigidbody: {fileID: 7904924063053900052}
   _initialSpeed: 10
   _maximumSpeed: 100
@@ -46431,6 +46433,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _distance: 5
+--- !u!114 &7904924063053900064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7904924063053900042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f34420284a6e244c8561c36a00097c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7904924063255415226
 Transform:
   m_ObjectHideFlags: 0
