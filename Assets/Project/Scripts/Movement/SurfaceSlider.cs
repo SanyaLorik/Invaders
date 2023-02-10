@@ -10,6 +10,7 @@ namespace Invaders.Movement
 
         private void OnCollisionEnter(Collision collision) =>
             _normal = collision.contacts[0].normal;
+
         public Vector3 Project(Vector3 forward) =>
             forward - Vector3.Dot(forward, _normal) * _normal;
 
