@@ -12,11 +12,8 @@ namespace Invaders.Additionals
             if (Physics.Raycast(origin, direction, out RaycastHit hit, distance) == false)
                 return false;
 
-            if (hit.transform.TryGetComponent(out T result) == false)
-                return false;
-
-            t = result;
-            return true;
+            t = hit.transform.GetComponent<T>();
+	 	    return t != null;
         }
     }
 }
