@@ -81,7 +81,6 @@ namespace Invaders.InputSystem
                 z = value.y,
             };
 
-            direction = Quaternion.AngleAxis(90, Vector3.up) * direction;
             OnMove.Invoke(direction);
         }
 
