@@ -8,11 +8,6 @@ namespace Invaders.Movement
     {
         [SerializeField][Min(0)] private int _groundLayerId;
 
-        private void Update()
-        {
-            print(IsGround);
-        }
-
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.layer == _groundLayerId)
