@@ -18,6 +18,12 @@ namespace Invaders.Movement
 
         public void Move(Vector3 direction)
         {
+            if (direction == Vector3.zero)
+            {
+                _rigidbody.velocity = Vector3.zero;
+                return;
+            }
+
             Vector3 velocity = direction * _speed.Current;
             _rigidbody.velocity = new Vector3()
             {

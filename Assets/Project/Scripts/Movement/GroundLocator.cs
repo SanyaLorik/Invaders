@@ -19,6 +19,7 @@ namespace Invaders.Movement
             if (collision.gameObject.layer == _groundLayerId)
                 IsGround = false;
         }
+
         public bool IsGround { get; private set; }
     }
 }

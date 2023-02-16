@@ -40,21 +40,13 @@ namespace Invaders.Movement
             _movementService.OnStopped -= OnStop;
         }
         
-        private void FixedUpdate()
-        {
-            if (_direction == Vector3.zero)
-                return;
-
+        private void FixedUpdate() =>
             _movement.Move(_direction);
-        }
 
         private void OnSetDirection(Vector3 direction) =>
             _direction = direction;
 
-        private void OnStop()
-        {
+        private void OnStop() =>
             _direction = Vector3.zero;
-            _movement.Move(_direction);
-        }
     }
 }
