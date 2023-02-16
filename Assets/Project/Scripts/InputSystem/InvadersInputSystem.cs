@@ -91,6 +91,15 @@ namespace Invaders.InputSystem
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Confirm"",
+                    ""type"": ""Button"",
+                    ""id"": ""dda4e361-1c3e-4fa0-99dd-837e190c0b16"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -355,6 +364,17 @@ namespace Invaders.InputSystem
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""ReloadScene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""891bbb80-2fd6-4172-975d-fc707ace03d2"",
+                    ""path"": ""<Keyboard>/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Confirm"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -949,6 +969,7 @@ namespace Invaders.InputSystem
             m_Player_DroppedWeapon = m_Player.FindAction("DroppedWeapon", throwIfNotFound: true);
             m_Player_ReloadWeapon = m_Player.FindAction("ReloadWeapon", throwIfNotFound: true);
             m_Player_ReloadScene = m_Player.FindAction("ReloadScene", throwIfNotFound: true);
+            m_Player_Confirm = m_Player.FindAction("Confirm", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1027,6 +1048,7 @@ namespace Invaders.InputSystem
         private readonly InputAction m_Player_DroppedWeapon;
         private readonly InputAction m_Player_ReloadWeapon;
         private readonly InputAction m_Player_ReloadScene;
+        private readonly InputAction m_Player_Confirm;
         public struct PlayerActions
         {
             private @InvadersInputSystem m_Wrapper;
@@ -1038,6 +1060,7 @@ namespace Invaders.InputSystem
             public InputAction @DroppedWeapon => m_Wrapper.m_Player_DroppedWeapon;
             public InputAction @ReloadWeapon => m_Wrapper.m_Player_ReloadWeapon;
             public InputAction @ReloadScene => m_Wrapper.m_Player_ReloadScene;
+            public InputAction @Confirm => m_Wrapper.m_Player_Confirm;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1068,6 +1091,9 @@ namespace Invaders.InputSystem
                     @ReloadScene.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReloadScene;
                     @ReloadScene.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReloadScene;
                     @ReloadScene.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReloadScene;
+                    @Confirm.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnConfirm;
+                    @Confirm.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnConfirm;
+                    @Confirm.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnConfirm;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -1093,6 +1119,9 @@ namespace Invaders.InputSystem
                     @ReloadScene.started += instance.OnReloadScene;
                     @ReloadScene.performed += instance.OnReloadScene;
                     @ReloadScene.canceled += instance.OnReloadScene;
+                    @Confirm.started += instance.OnConfirm;
+                    @Confirm.performed += instance.OnConfirm;
+                    @Confirm.canceled += instance.OnConfirm;
                 }
             }
         }
@@ -1256,6 +1285,7 @@ namespace Invaders.InputSystem
             void OnDroppedWeapon(InputAction.CallbackContext context);
             void OnReloadWeapon(InputAction.CallbackContext context);
             void OnReloadScene(InputAction.CallbackContext context);
+            void OnConfirm(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {

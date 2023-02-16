@@ -6,7 +6,7 @@ namespace Invaders.InputSystem
 {
     public class PlayerInputSystem : 
         MonoBehaviour, 
-        IMovementService, IPointPositionOnScreenService, IClickedService, IHolderService, IUsedService, IPlayerThingCarier, IWeaponReloaderObserverService,
+        IMovementService, IPointPositionOnScreenService, IClickedService, IHolderService, IUsedService, IPlayerThingCarier, IWeaponReloaderObserverService, IPlayerConfirmation,
         ISceneReloaderObserverService
     {
         public event Action<Vector3> OnMove = delegate { };
@@ -19,6 +19,7 @@ namespace Invaders.InputSystem
         public event Action OnTakenOrDropped = delegate { };
         public event Action OnWeaponReloaded = delegate { };
         public event Action OnSceneReloaded = delegate { };
+        public event Action OnConfirmed = delegate { };
 
         private InvadersInputSystem _inputSystem;
         //private readonly Vector3 _offsetAngle = new Vector3(90, 0, 0);
@@ -46,6 +47,8 @@ namespace Invaders.InputSystem
 
             _inputSystem.Player.ReloadScene.performed += ReloadScene;
 
+            _inputSystem.Player.Confirm.performed += Confirm;
+
             _inputSystem.Enable();
         }
 
@@ -68,6 +71,8 @@ namespace Invaders.InputSystem
             _inputSystem.Player.ReloadWeapon.performed -= ReloadWeapon;
 
             _inputSystem.Player.ReloadScene.performed -= ReloadScene;
+
+            _inputSystem.Player.Confirm.performed -= Confirm;
 
             _inputSystem.Disable();
         }
@@ -113,5 +118,8 @@ namespace Invaders.InputSystem
 
         private void ReloadScene(InputAction.CallbackContext _) =>
             OnSceneReloaded.Invoke();
+
+        private void Confirm(InputAction.CallbackContext _) =>
+            OnConfirmed.Invoke();
     }
 }

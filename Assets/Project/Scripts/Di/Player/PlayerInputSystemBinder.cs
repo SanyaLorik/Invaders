@@ -19,6 +19,7 @@ namespace Invaders.Di
             BindDropWeapon();
             BindReloadWeapon();
             BindReloadScene();
+            BindConfirm();
         }
 
         private void BindMovement()
@@ -88,6 +89,15 @@ namespace Invaders.Di
         {
             Container
                 .Bind<ISceneReloaderObserverService>()
+                .FromInstance(_inputSystem)
+                .AsCached()
+                .NonLazy();
+        }
+
+        private void BindConfirm()
+        {
+            Container
+                .Bind<IPlayerConfirmation>()
                 .FromInstance(_inputSystem)
                 .AsCached()
                 .NonLazy();
