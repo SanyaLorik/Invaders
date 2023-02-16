@@ -1,12 +1,11 @@
 ﻿using Cinemachine;
-using Cysharp.Threading.Tasks;
+using Invaders.Environment.UsedElements;
 using Invaders.Ui;
-using System.Threading;
 using UnityEngine;
 
 namespace Invaders.Locations
 {
-    public class EffectPortal : Portal
+    public class EffectPortal : Portal, IConfirmable
     {
         [Header("Transition")]
         [SerializeField] private VisableScreen _visableScreen;
@@ -16,10 +15,10 @@ namespace Invaders.Locations
         [SerializeField] private Vector3 _rotation;
         [SerializeField][Range(1f, 10f)] private float _distance;
 
-        protected override async UniTask DelayTeleport(CancellationToken token, Transform entity)
+        public void Confirm()
         {
             ActiveEffect();
-            await base.DelayTeleport(token, entity);
+            Telepot();
         }
 
         private void ActiveEffect()

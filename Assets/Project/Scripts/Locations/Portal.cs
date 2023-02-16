@@ -14,6 +14,7 @@ namespace Invaders.Locations
         [SerializeField] private Transform _point;
         [SerializeField][Range(0f, 2f)] private float _duration;
 
+        private Transform _player;
         private CancellationTokenSource _tokenSource;
 
         private void OnDisable() =>
@@ -21,11 +22,10 @@ namespace Invaders.Locations
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.GetComponent<IPlayer>() == null)
+            if (other.GetComponent<Player>() == null)
                 return;
 
-            _tokenSource = new CancellationTokenSource();
-            DelayTeleport(_tokenSource.Token, other.transform).Forget();
+            _player = other.transform;
         }
 
         private void OnTriggerExit(Collider other)
@@ -33,10 +33,20 @@ namespace Invaders.Locations
             if (other.GetComponent<IPlayer>() == null)
                 return;
 
+            _player = null; 
             _tokenSource?.Cancel();
         }
 
-        protected virtual async UniTask DelayTeleport(CancellationToken token, Transform entity)
+        protected void Telepot()
+        {
+            if (_player == null)
+                return;
+
+            _tokenSource = new CancellationTokenSource();
+            DelayTeleport(_tokenSource.Token, _player.transform).Forget();
+        }
+
+        private async UniTask DelayTeleport(CancellationToken token, Transform entity)
         {
             int delay = _duration.DelayMillisecond();
 
