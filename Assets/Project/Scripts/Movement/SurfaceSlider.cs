@@ -14,6 +14,7 @@ namespace Invaders.Movement
         public Vector3 Project(Vector3 forward) =>
             forward - Vector3.Dot(forward, _normal) * _normal;
 
+#if UNITY_EDITOR
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.white;
@@ -21,5 +22,6 @@ namespace Invaders.Movement
             Gizmos.color = Color.red;
             Gizmos.DrawLine(transform.position, transform.position + Project(transform.forward));
         }
+#endif
     }
 }
