@@ -8,7 +8,6 @@ namespace Invaders.Movement
 {
     public class PlayerMovement : MonoBehaviour
     {
-        [SerializeField] private SurfaceSlider _surfaceSlider;
         [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] [Min(0)] private int _initialSpeed;
         [SerializeField] [Min(0)] private int _maximumSpeed;
@@ -25,8 +24,7 @@ namespace Invaders.Movement
         private void Awake()
         {
             _speed = new Speed(_initialSpeed, _maximumSpeed);
-            //_movement = new VelocityMovement(_rigidbody, _speed);
-            _movement = new PositionMovement(_rigidbody, _speed, _surfaceSlider);
+            _movement = new VelocityMovement(_rigidbody, _speed);
         }
 
         private void OnEnable()
