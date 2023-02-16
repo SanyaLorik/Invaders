@@ -20,6 +20,7 @@ namespace Invaders.Di
             BindReloadWeapon();
             BindReloadScene();
             BindConfirm();
+            BindSneaking();
         }
 
         private void BindMovement()
@@ -101,6 +102,15 @@ namespace Invaders.Di
                 .FromInstance(_inputSystem)
                 .AsCached()
                 .NonLazy();
+        }
+
+        private void BindSneaking()
+        {
+            Container
+               .Bind<ISneakingService>()
+               .FromInstance(_inputSystem)
+               .AsCached()
+               .NonLazy();
         }
     }
 }

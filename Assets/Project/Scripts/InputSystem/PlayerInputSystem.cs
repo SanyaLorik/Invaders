@@ -6,7 +6,7 @@ namespace Invaders.InputSystem
 {
     public class PlayerInputSystem : 
         MonoBehaviour, 
-        IMovementService, IPointPositionOnScreenService, IClickedService, IHolderService, IUsedService, IPlayerThingCarier, IWeaponReloaderObserverService, IPlayerConfirmation,
+        IMovementService, IPointPositionOnScreenService, IClickedService, IHolderService, IUsedService, IPlayerThingCarier, IWeaponReloaderObserverService, IPlayerConfirmation, ISneakingService,
         ISceneReloaderObserverService
     {
         public event Action<Vector3> OnMove = delegate { };
@@ -20,9 +20,10 @@ namespace Invaders.InputSystem
         public event Action OnWeaponReloaded = delegate { };
         public event Action OnSceneReloaded = delegate { };
         public event Action OnConfirmed = delegate { };
+        public event Action OnSneakingStarted = delegate { };
+        public event Action OnSneakingStopped = delegate { };
 
         private InvadersInputSystem _inputSystem;
-        //private readonly Vector3 _offsetAngle = new Vector3(90, 0, 0);
 
         private void Awake() =>
             _inputSystem = new InvadersInputSystem();
@@ -49,6 +50,9 @@ namespace Invaders.InputSystem
 
             _inputSystem.Player.Confirm.performed += Confirm;
 
+            _inputSystem.Player.Sneaking.performed += OnStartSneaking;
+            _inputSystem.Player.Sneaking.canceled += OnStopSneaking;
+
             _inputSystem.Enable();
         }
 
@@ -73,6 +77,9 @@ namespace Invaders.InputSystem
             _inputSystem.Player.ReloadScene.performed -= ReloadScene;
 
             _inputSystem.Player.Confirm.performed -= Confirm;
+
+            _inputSystem.Player.Sneaking.performed -= OnStartSneaking;
+            _inputSystem.Player.Sneaking.canceled -= OnStopSneaking;
 
             _inputSystem.Disable();
         }
@@ -121,5 +128,11 @@ namespace Invaders.InputSystem
 
         private void Confirm(InputAction.CallbackContext _) =>
             OnConfirmed.Invoke();
+
+        private void OnStartSneaking(InputAction.CallbackContext _) =>
+            OnSneakingStarted.Invoke();
+
+        private void OnStopSneaking(InputAction.CallbackContext _) =>
+            OnSneakingStopped.Invoke();
     }
 }

@@ -100,6 +100,15 @@ namespace Invaders.InputSystem
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Sneaking"",
+                    ""type"": ""Button"",
+                    ""id"": ""4b0505ad-ba87-47b0-9c40-26368700535d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -375,6 +384,17 @@ namespace Invaders.InputSystem
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""290c8384-98f7-4b83-b54f-016d633663c1"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Sneaking"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -970,6 +990,7 @@ namespace Invaders.InputSystem
             m_Player_ReloadWeapon = m_Player.FindAction("ReloadWeapon", throwIfNotFound: true);
             m_Player_ReloadScene = m_Player.FindAction("ReloadScene", throwIfNotFound: true);
             m_Player_Confirm = m_Player.FindAction("Confirm", throwIfNotFound: true);
+            m_Player_Sneaking = m_Player.FindAction("Sneaking", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1049,6 +1070,7 @@ namespace Invaders.InputSystem
         private readonly InputAction m_Player_ReloadWeapon;
         private readonly InputAction m_Player_ReloadScene;
         private readonly InputAction m_Player_Confirm;
+        private readonly InputAction m_Player_Sneaking;
         public struct PlayerActions
         {
             private @InvadersInputSystem m_Wrapper;
@@ -1061,6 +1083,7 @@ namespace Invaders.InputSystem
             public InputAction @ReloadWeapon => m_Wrapper.m_Player_ReloadWeapon;
             public InputAction @ReloadScene => m_Wrapper.m_Player_ReloadScene;
             public InputAction @Confirm => m_Wrapper.m_Player_Confirm;
+            public InputAction @Sneaking => m_Wrapper.m_Player_Sneaking;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1094,6 +1117,9 @@ namespace Invaders.InputSystem
                     @Confirm.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnConfirm;
                     @Confirm.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnConfirm;
                     @Confirm.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnConfirm;
+                    @Sneaking.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSneaking;
+                    @Sneaking.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSneaking;
+                    @Sneaking.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSneaking;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -1122,6 +1148,9 @@ namespace Invaders.InputSystem
                     @Confirm.started += instance.OnConfirm;
                     @Confirm.performed += instance.OnConfirm;
                     @Confirm.canceled += instance.OnConfirm;
+                    @Sneaking.started += instance.OnSneaking;
+                    @Sneaking.performed += instance.OnSneaking;
+                    @Sneaking.canceled += instance.OnSneaking;
                 }
             }
         }
@@ -1286,6 +1315,7 @@ namespace Invaders.InputSystem
             void OnReloadWeapon(InputAction.CallbackContext context);
             void OnReloadScene(InputAction.CallbackContext context);
             void OnConfirm(InputAction.CallbackContext context);
+            void OnSneaking(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {
