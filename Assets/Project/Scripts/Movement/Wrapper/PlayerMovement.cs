@@ -25,7 +25,7 @@ namespace Invaders.Movement
         private void Awake()
         {
             _speed = new Speed(_initialSpeed, _maximumSpeed);
-            _movement = new PositionMovement(_rigidbody, _speed, _surfaceSlider);
+            _movement = new VelocityMovement(_rigidbody, _speed);
         }
 
         private void OnEnable()
