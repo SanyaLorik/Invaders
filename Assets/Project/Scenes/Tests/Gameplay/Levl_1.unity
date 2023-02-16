@@ -46395,7 +46395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aab8a453ab04f30985acaf52e72db97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _surfaceSlider: {fileID: 7904924063053900064}
+  _groundLocator: {fileID: 7904924063053900064}
   _rigidbody: {fileID: 7904924063053900052}
   _initialSpeed: 10
   _maximumSpeed: 100
@@ -46474,10 +46474,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7904924063053900042}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f34420284a6e244c8561c36a00097c4, type: 3}
+  m_Script: {fileID: 11500000, guid: d74d85b7c61671b49a5673fe7bb22dc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _groundLayerId: 7
+  _distance: 15
 --- !u!4 &7904924063255415226
 Transform:
   m_ObjectHideFlags: 0

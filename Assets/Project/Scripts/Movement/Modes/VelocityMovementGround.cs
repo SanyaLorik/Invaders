@@ -7,11 +7,13 @@ namespace Invaders.Movement
     {
         private readonly Rigidbody _rigidbody;
         private readonly ICurrentValueProvider<int> _speed;
+        private readonly GroundLocator _groundLocator;
 
-        public VelocityMovementGround(Rigidbody rigidbody, ICurrentValueProvider<int> speed, GroundLocator locator)
+        public VelocityMovementGround(Rigidbody rigidbody, ICurrentValueProvider<int> speed, GroundLocator groundLocator)
         {
             _rigidbody = rigidbody;
             _speed = speed;
+            _groundLocator = groundLocator;
         }
 
         public void Move(Vector3 direction)
@@ -20,7 +22,7 @@ namespace Invaders.Movement
             _rigidbody.velocity = new Vector3()
             {
                 x = velocity.x,
-                y = _rigidbody.velocity.y,
+                y = _groundLocator.IsGround == true ? 0 : Physics.gravity.y,
                 z = velocity.z
             };
         }

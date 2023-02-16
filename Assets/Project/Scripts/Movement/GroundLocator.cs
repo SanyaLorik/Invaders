@@ -2,9 +2,28 @@
 
 namespace Invaders.Movement
 {
+    [RequireComponent(typeof(Collider))]
+    [RequireComponent(typeof(Rigidbody))]
     public class GroundLocator : MonoBehaviour
     {
         [SerializeField][Min(0)] private int _groundLayerId;
-        [SerializeField][Range(0f, 3f)] private float _distance;
+
+        private void Update()
+        {
+            print(IsGround);
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.layer == _groundLayerId)
+                IsGround = true;
+        }
+
+        private void OnCollisionExit(Collision collision)
+        {
+            if (collision.gameObject.layer == _groundLayerId)
+                IsGround = false;
+        }
+        public bool IsGround { get; private set; }
     }
 }
