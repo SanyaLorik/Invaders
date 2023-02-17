@@ -25,12 +25,12 @@ namespace Invaders.Movement
         }
 
         private void OnEnable() =>
-            _pointPositionOnScreenService.OnLooked += PointPositionOnScreen;
+            _pointPositionOnScreenService.OnLooked += OnPointPositionOnScreen;
 
         private void OnDisable() =>
-            _pointPositionOnScreenService.OnLooked -= PointPositionOnScreen;
+            _pointPositionOnScreenService.OnLooked -= OnPointPositionOnScreen;
         
-        private void PointPositionOnScreen(Vector2 mouse)
+        private void OnPointPositionOnScreen(Vector2 mouse)
         {
             var player = (Vector2)_camera.WorldToScreenPoint(_rigidbody.transform.position);
             float atan2 = Mathf.Atan2(mouse.y - player.y, mouse.x - player.x) * Mathf.Rad2Deg;
