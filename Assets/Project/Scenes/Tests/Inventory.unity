@@ -1263,6 +1263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvas: {fileID: 1221747640}
   _draggableArea: {fileID: 259430875}
+  _returnedDuration: 0.11
 --- !u!1 &288169602
 GameObject:
   m_ObjectHideFlags: 0

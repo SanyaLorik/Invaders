@@ -11,6 +11,7 @@ namespace Invaders.Ui
 
         [Header("Items")]
         [SerializeField] private Transform _draggableArea;
+        [SerializeField][Range(0f, 1f)] private float _returnedDuration;
 
         private InventorySlot _inventorySlot;
         private Transform _returnedToTakenPosition;
@@ -49,7 +50,8 @@ namespace Invaders.Ui
 
         private void ReturnToTakenPosition()
         {
-            _inventorySlot.Item.DOMove(_returnedToTakenPosition.transform.position, 0.25f)
+            _inventorySlot.Item
+                .DOMove(_returnedToTakenPosition.transform.position, _returnedDuration  )
                 .SetEase(Ease.Linear)
                 .OnComplete(() =>_inventorySlot.Item.SetParent(_returnedToTakenPosition));
         }
