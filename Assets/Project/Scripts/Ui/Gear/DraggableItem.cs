@@ -6,8 +6,10 @@ namespace Invaders.Ui
 {
     [RequireComponent(typeof(RectTransform))]
     [RequireComponent(typeof(Image))]
-    public class UiItemDragging : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
+    public class DraggableItem : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
     {
+        public Canvas canvas;
+
         private RectTransform _rect;
 
         private void Awake()
@@ -22,7 +24,7 @@ namespace Invaders.Ui
 
         public void OnDrag(PointerEventData eventData)
         {
-            _rect.anchoredPosition += eventData.delta;
+            _rect.anchoredPosition += eventData.delta / canvas.scaleFactor;
         }
 
         public void OnEndDrag(PointerEventData eventData)
