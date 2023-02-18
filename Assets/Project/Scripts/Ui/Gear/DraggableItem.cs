@@ -21,6 +21,7 @@ namespace Invaders.Ui
 
             _returnedToTakenPosition = eventData.pointerEnter.transform;
             _inventorySlot = inventorySlot;
+            _inventorySlot.Item.SetParent(_draggableArea);
         }
 
         public void OnDrag(PointerEventData eventData)
