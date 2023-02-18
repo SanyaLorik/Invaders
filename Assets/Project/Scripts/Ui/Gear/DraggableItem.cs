@@ -11,50 +11,39 @@ namespace Invaders.Ui
         [Header("Items")]
         [SerializeField] private Transform _draggableArea;
 
-        private RectTransform _item;
-
-        private Transform _returned;
+        private InventorySlot _inventorySlot;
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            if (eventData.pointerEnter == null)
+            if (eventData.pointerEnter == null || eventData.pointerEnter.TryGetComponent(out InventorySlot inventorySlot) == false)
                 return;
 
-            if (eventData.pointerEnter.TryGetComponent(out InventorySlot inventorySlot) == false)
-                return;
-
-            _returned = inventorySlot.transform;
-            _item = inventorySlot.Item;
-            _item.SetParent(_draggableArea);
+            _inventorySlot = inventorySlot;
         }
 
         public void OnDrag(PointerEventData eventData)
         {
-            if (_item != null)
-                _item.anchoredPosition += eventData.delta / _canvas.scaleFactor;
+            if (_inventorySlot != null)
+                _inventorySlot.Item.anchoredPosition += eventData.delta / _canvas.scaleFactor;
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            if (_item == null)
+            if (_inventorySlot == null)
                 return;
 
-            if (eventData.pointerEnter == null)
-                return;
-
-            if (eventData.pointerEnter.TryGetComponent(out InventorySlot inventorySlot) == false)
+            if (eventData.pointerEnter == null || eventData.pointerEnter.TryGetComponent(out InventorySlot inventorySlot) == false)
             {
-                _item.SetParent(_returned);
-                _item.localPosition = Vector3.zero;
+                ReturnToTakenPosition();
                 return;
             }
 
-            _item.SetParent(inventorySlot.transform);
-            _item.transform.localPosition = Vector3.zero;
+            _inventorySlot.SwapPlace(inventorySlot);
+        }
 
-            inventorySlot.Item.SetParent(_returned);
-            inventorySlot.Item.localPosition = Vector3.zero;
-            _item = null;
+        private void ReturnToTakenPosition()
+        {
+
         }
     }
 }
