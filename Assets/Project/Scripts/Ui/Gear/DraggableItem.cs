@@ -12,19 +12,23 @@ namespace Invaders.Ui
         [SerializeField] private Transform _draggableArea;
 
         private InventorySlot _inventorySlot;
+        private Transform _returnedToTakenPosition;
 
         public void OnBeginDrag(PointerEventData eventData)
         {
             if (eventData.pointerEnter == null || eventData.pointerEnter.TryGetComponent(out InventorySlot inventorySlot) == false)
                 return;
 
+            _returnedToTakenPosition = eventData.pointerEnter.transform;
             _inventorySlot = inventorySlot;
         }
 
         public void OnDrag(PointerEventData eventData)
         {
-            if (_inventorySlot != null)
-                _inventorySlot.Item.anchoredPosition += eventData.delta / _canvas.scaleFactor;
+            if (_inventorySlot == null)
+                return;
+
+            _inventorySlot.Item.anchoredPosition += eventData.delta / _canvas.scaleFactor;
         }
 
         public void OnEndDrag(PointerEventData eventData)
@@ -43,7 +47,8 @@ namespace Invaders.Ui
 
         private void ReturnToTakenPosition()
         {
-
+            _inventorySlot.Item.SetParent(_returnedToTakenPosition);
+            _inventorySlot.Item.localPosition = Vector3.zero;
         }
     }
 }
