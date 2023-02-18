@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -48,8 +49,9 @@ namespace Invaders.Ui
 
         private void ReturnToTakenPosition()
         {
-            _inventorySlot.Item.SetParent(_returnedToTakenPosition);
-            _inventorySlot.Item.localPosition = Vector3.zero;
+            _inventorySlot.Item.DOMove(_returnedToTakenPosition.transform.position, 0.25f)
+                .SetEase(Ease.Linear)
+                .OnComplete(() =>_inventorySlot.Item.SetParent(_returnedToTakenPosition));
         }
     }
 }
