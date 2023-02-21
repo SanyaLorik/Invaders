@@ -2,6 +2,7 @@
 
 namespace Invaders.Ui
 {
+
     public class InventorySlot : MonoBehaviour
     {
         [field: SerializeField] public RectTransform Draggable { get; set; }
