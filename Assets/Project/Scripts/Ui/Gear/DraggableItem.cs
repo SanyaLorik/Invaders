@@ -27,7 +27,7 @@ namespace Invaders.Ui
 
             _returnedToTakenPosition = eventData.pointerEnter.transform;
             _inventorySlot = inventorySlot;
-            _inventorySlot.Item.SetParent(_draggableArea);
+            _inventorySlot.Draggable.SetParent(_draggableArea);
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -35,7 +35,7 @@ namespace Invaders.Ui
             if (_inventorySlot == null)
                 return;
 
-            _inventorySlot.Item.anchoredPosition += eventData.delta / _canvas.scaleFactor;
+            _inventorySlot.Draggable.anchoredPosition += eventData.delta / _canvas.scaleFactor;
         }
 
         public void OnEndDrag(PointerEventData eventData)
@@ -59,12 +59,12 @@ namespace Invaders.Ui
 
         private void ReturnToTakenPosition()
         {
-            _inventorySlot.Item
+            _inventorySlot.Draggable
                 .DOMove(_returnedToTakenPosition.transform.position, _returnedDuration)
                 .SetEase(Ease.Linear)
                 .OnComplete(() => 
                 { 
-                    _inventorySlot.Item.SetParent(_returnedToTakenPosition);
+                    _inventorySlot.Draggable.SetParent(_returnedToTakenPosition);
                     Clear();
                 });
         }
