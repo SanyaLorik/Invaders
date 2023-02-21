@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -19,6 +20,9 @@ namespace Invaders.Ui
         public void OnBeginDrag(PointerEventData eventData)
         {
             if (eventData.pointerEnter == null || eventData.pointerEnter.TryGetComponent(out InventorySlot inventorySlot) == false)
+                return;
+
+            if (inventorySlot.IsEmpty == true)
                 return;
 
             _returnedToTakenPosition = eventData.pointerEnter.transform;
@@ -45,15 +49,27 @@ namespace Invaders.Ui
                 return;
             }
 
-            _inventorySlot.SwapPlace(inventorySlot);
+            if (inventorySlot.IsEmpty == true)
+                inventorySlot.SetItem(_inventorySlot.TakeItem());
+            else
+                _inventorySlot.SwapPlace(inventorySlot);
+
+            Clear();
         }
 
         private void ReturnToTakenPosition()
         {
             _inventorySlot.Item
-                .DOMove(_returnedToTakenPosition.transform.position, _returnedDuration  )
+                .DOMove(_returnedToTakenPosition.transform.position, _returnedDuration)
                 .SetEase(Ease.Linear)
-                .OnComplete(() =>_inventorySlot.Item.SetParent(_returnedToTakenPosition));
+                .OnComplete(() => 
+                { 
+                    _inventorySlot.Item.SetParent(_returnedToTakenPosition);
+                    Clear();
+                });
         }
+
+        private void Clear() =>
+            _inventorySlot = null;
     }
 }
