@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Invaders.Ui
 {
-    public class VisableScreen : MonoBehaviour 
+    public class VisableScreen : MonoBehaviour
     {
         [SerializeField] private Image _screen;
         [SerializeField] private Color _ascended;
@@ -20,7 +20,7 @@ namespace Invaders.Ui
         public void Flash()
         {
             _screen.gameObject.SetActive(true);
-            _screen.DOColor(_faded, _duration).OnComplete(() => 
+            _screen.DOColor(_faded, _duration).OnComplete(() =>
                 _screen.DOColor(_ascended, _duration).OnComplete(() => _screen.gameObject.SetActive(false)));
         }
     }
