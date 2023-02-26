@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Invaders.Ui
 {
-    public class InventoryDistributor : MonoBehaviour
+    public class PlayerInventory : MonoBehaviour
     {
         [SerializeField] private InventorySlot[] _inventorySlots;
 
@@ -17,7 +17,12 @@ namespace Invaders.Ui
             item.Hide();
             cell.Occopy(item);
         }
+        /*
+        public IInventoryItem Take()
+        {
 
+        }
+        */
         public void Remove(int hashCode)
         {
             ItemCell cell = _inventorySlots.Where(i => i.IsEmpty == false).FirstOrDefault(i => i.ItemCell.GetHashCode() == hashCode).ItemCell;
@@ -25,6 +30,8 @@ namespace Invaders.Ui
                 return;
 
             IInventoryItem item = cell.Free();
+            if (item is MonoBehaviour monoBehaviour)
+                Destroy(monoBehaviour.gameObject);
         }    
     }
 }
