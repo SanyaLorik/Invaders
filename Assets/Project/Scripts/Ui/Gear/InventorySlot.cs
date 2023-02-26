@@ -2,33 +2,34 @@
 
 namespace Invaders.Ui
 {
-
     public class InventorySlot : MonoBehaviour
     {
-        [field: SerializeField] public RectTransform Draggable { get; set; }
+        [field: SerializeField] public ItemCell ItemCell { get; private set; }
 
-        public bool IsEmpty => Draggable == null;
+        public RectTransform Draggable => ItemCell.Draggable;
 
-        public void SetItem(RectTransform rect)
+        public bool IsEmpty => ItemCell.IsEmpty;
+
+        public void SetItem(ItemCell itemCell)
         {
-            Draggable = rect;
+            ItemCell = itemCell;
 
             Draggable.SetParent(transform);
             Draggable.localPosition = Vector3.zero;
         }
 
-        public RectTransform TakeItem()
+        public ItemCell TakeItem()
         {
-            RectTransform item = Draggable;
-            Draggable = null;
+            ItemCell item = ItemCell;
+            ItemCell = null;
 
             return item;
         }
 
         public void SwapPlace(InventorySlot inventorySlot)
         {
-            RectTransform taken = inventorySlot.TakeItem();
-            RectTransform given = TakeItem();
+            ItemCell taken = inventorySlot.TakeItem();
+            ItemCell given = TakeItem();
 
             SetItem(taken);
             inventorySlot.SetItem(given);
