@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Invaders.Gear;
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -49,7 +50,7 @@ namespace Invaders.Ui
                 return;
             }
 
-            if (inventorySlot is SpeciallyInventorySlot specially)
+            if (inventorySlot is SpeciallyInventorySlot<IItem> specially)
             {
                 if (specially.CanSetItem(_inventorySlot.ItemCell.Item) == true)
                     specially.SetItem(_inventorySlot.TakeItem());
@@ -58,10 +59,13 @@ namespace Invaders.Ui
             }
             else
             {
+                /*
                 if (inventorySlot.IsEmpty == true)
                     inventorySlot.SetItem(_inventorySlot.TakeItem());
                 else
                     _inventorySlot.SwapPlace(inventorySlot);
+                */
+                _inventorySlot.SwapPlace(inventorySlot);
             }
 
             Clear();

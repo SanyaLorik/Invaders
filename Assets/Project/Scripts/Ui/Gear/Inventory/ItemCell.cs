@@ -3,6 +3,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 namespace Invaders.Ui
 {
@@ -17,7 +18,7 @@ namespace Invaders.Ui
 
         public IInventoryItem Item { get; private set; }
 
-        public bool IsEmpty => /*Item == null*/false;
+        public bool IsEmpty => Item == null/*false*/;
 
         public void Occopy(IInventoryItem item)
         {
@@ -28,13 +29,13 @@ namespace Invaders.Ui
             _count.text = item.Count.ToString();
         }
 
-        public IInventoryItem Free() 
+        public void Free() 
         {
+            Item = null;
+
             _icon.sprite = null;
             _name.text = string.Empty;
             _count.text = string.Empty;
-
-            return Item;
         }
     }
 }

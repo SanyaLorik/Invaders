@@ -42,9 +42,9 @@ GameObject:
   - component: {fileID: 6627226163272434317}
   - component: {fileID: 1789550021296295936}
   - component: {fileID: -8740151296320870455}
-  - component: {fileID: 8023212129802392860}
+  - component: {fileID: -2331404982726862573}
   m_Layer: 0
-  m_Name: Ak47
+  m_Name: Ak47Test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,7 +115,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8023212129802392860
+--- !u!114 &-2331404982726862573
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6627226163272434318}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4c0535ef3c6e24459a0c3ce571d578c, type: 3}
+  m_Script: {fileID: 11500000, guid: 3db94c08507f6214b8e4ae10c2dbae79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <Name>k__BackingField: "\u041A\u0430\u043B\u0430\u0448"
@@ -139,6 +139,7 @@ MonoBehaviour:
   _reloadedTime: 5
   _dropppedLenght: 0.25
   <ShootedDelay>k__BackingField: 0.075
+  <Icon>k__BackingField: {fileID: 21300000, guid: 56c672b7b8a1b5f459426da2922bba63, type: 3}
 --- !u!1 &6627226163546066248
 GameObject:
   m_ObjectHideFlags: 0

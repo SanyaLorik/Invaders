@@ -1,8 +1,8 @@
-﻿using Invaders.Gear;
+﻿using Invaders.Ui;
 using System.Linq;
 using UnityEngine;
 
-namespace Invaders.Ui
+namespace Invaders.Gear
 {
     public class PlayerInventory : MonoBehaviour
     {
@@ -10,14 +10,19 @@ namespace Invaders.Ui
         [SerializeField] private InventorySlot[] _inventorySlots;
 
         [Header("Specially")]
-        [SerializeField] private InventorySlot _used;
+        [SerializeField] private SpeciallyInventorySlot<IUsedItem> _used;
         [SerializeField] private InventorySlot _grenade;
         [SerializeField] private InventorySlot _thrown;
         [SerializeField] private InventorySlot _deleted;
 
+        private void OnEnable()
+        {
+            
+        }
+
         public void Add(IInventoryItem item)
         {
-            ItemCell cell = _inventorySlots.FirstOrDefault(i => i.IsEmpty == true).ItemCell;
+            ItemCell cell = _inventorySlots.FirstOrDefault(i => i.IsEmpty == true)?.ItemCell;
             if (cell == null)
                 return;
 
@@ -27,11 +32,12 @@ namespace Invaders.Ui
         
         public void Remove(IInventoryItem item)
         {
-            ItemCell cell = _inventorySlots.Where(i => i.IsEmpty == false).FirstOrDefault(i => i.ItemCell.Item == item).ItemCell;
+            ItemCell cell = _inventorySlots.Where(i => i.IsEmpty == false)?.FirstOrDefault(i => i.ItemCell.Item == item)?.ItemCell;
             if (cell == null)
                 return;
 
-            IInventoryItem free = cell.Free();
+            IInventoryItem free = cell.Item;
+            cell.Free();
             if (item is MonoBehaviour monoBehaviour)
                 Destroy(monoBehaviour.gameObject);
         }    
