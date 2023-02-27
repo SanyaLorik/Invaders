@@ -6,7 +6,14 @@ namespace Invaders.Ui
 {
     public class PlayerInventory : MonoBehaviour
     {
+        [Header("Store")]
         [SerializeField] private InventorySlot[] _inventorySlots;
+
+        [Header("Specially")]
+        [SerializeField] private InventorySlot _used;
+        [SerializeField] private InventorySlot _grenade;
+        [SerializeField] private InventorySlot _thrown;
+        [SerializeField] private InventorySlot _deleted;
 
         public void Add(IInventoryItem item)
         {
@@ -17,19 +24,14 @@ namespace Invaders.Ui
             item.Hide();
             cell.Occopy(item);
         }
-        /*
-        public IInventoryItem Take()
+        
+        public void Remove(IInventoryItem item)
         {
-
-        }
-        */
-        public void Remove(int hashCode)
-        {
-            ItemCell cell = _inventorySlots.Where(i => i.IsEmpty == false).FirstOrDefault(i => i.ItemCell.GetHashCode() == hashCode).ItemCell;
+            ItemCell cell = _inventorySlots.Where(i => i.IsEmpty == false).FirstOrDefault(i => i.ItemCell.Item == item).ItemCell;
             if (cell == null)
                 return;
 
-            IInventoryItem item = cell.Free();
+            IInventoryItem free = cell.Free();
             if (item is MonoBehaviour monoBehaviour)
                 Destroy(monoBehaviour.gameObject);
         }    

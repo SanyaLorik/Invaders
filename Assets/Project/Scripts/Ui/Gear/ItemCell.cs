@@ -15,13 +15,13 @@ namespace Invaders.Ui
 
         [field: SerializeField] public RectTransform Draggable { get; private set; }
 
-        private IInventoryItem _item;
+        public IInventoryItem Item { get; private set; }
 
-        public bool IsEmpty => _item == null;
+        public bool IsEmpty => /*Item == null*/false;
 
         public void Occopy(IInventoryItem item)
         {
-            _item = item;
+            Item = item;
 
             _icon.sprite = item.Icon;
             _name.text = item.Name;
@@ -34,7 +34,7 @@ namespace Invaders.Ui
             _name.text = string.Empty;
             _count.text = string.Empty;
 
-            return _item;
+            return Item;
         }
     }
 }

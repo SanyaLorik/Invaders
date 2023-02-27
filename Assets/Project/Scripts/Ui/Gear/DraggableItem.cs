@@ -49,10 +49,20 @@ namespace Invaders.Ui
                 return;
             }
 
-            if (inventorySlot.IsEmpty == true)
-                inventorySlot.SetItem(_inventorySlot.TakeItem());
+            if (inventorySlot is SpeciallyInventorySlot specially)
+            {
+                if (specially.CanSetItem(_inventorySlot.ItemCell.Item) == true)
+                    specially.SetItem(_inventorySlot.TakeItem());
+                else
+                    ReturnToTakenPosition();
+            }
             else
-                _inventorySlot.SwapPlace(inventorySlot);
+            {
+                if (inventorySlot.IsEmpty == true)
+                    inventorySlot.SetItem(_inventorySlot.TakeItem());
+                else
+                    _inventorySlot.SwapPlace(inventorySlot);
+            }
 
             Clear();
         }

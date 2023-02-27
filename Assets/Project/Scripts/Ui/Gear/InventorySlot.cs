@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Assets.Project.Scripts.Battle.Grenades;
+using Invaders.Gear;
+using UnityEngine;
 
 namespace Invaders.Ui
 {
@@ -10,7 +12,7 @@ namespace Invaders.Ui
 
         public bool IsEmpty => ItemCell.IsEmpty;
 
-        public void SetItem(ItemCell itemCell)
+        public virtual void SetItem(ItemCell itemCell)
         {
             ItemCell = itemCell;
 
@@ -34,5 +36,26 @@ namespace Invaders.Ui
             SetItem(taken);
             inventorySlot.SetItem(given);
         }
+    }
+    public class SpeciallyInventorySlot : InventorySlot
+    {
+        public virtual bool CanSetItem(IInventoryItem item) =>
+            IsEmpty == true && item as IUsedItem != null;
+    }
+
+    public class UsedInventorySlot : SpeciallyInventorySlot 
+    {
+        public override bool CanSetItem(IInventoryItem item) =>
+            IsEmpty == true && item as IUsedItem != null;
+    }
+
+    public class GrenadeInventorySlot : SpeciallyInventorySlot
+    {
+        public override bool CanSetItem(IInventoryItem item) =>
+            IsEmpty == true && item as IGrenade != null;
+    }
+    public class ThrownInventorySlot : SpeciallyInventorySlot
+    {
+
     }
 }

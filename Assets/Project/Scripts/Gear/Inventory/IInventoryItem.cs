@@ -2,11 +2,9 @@ using UnityEngine;
 
 namespace Invaders.Gear
 {
-    public interface IInventoryItem
+    public interface IInventoryItem : IItem
     {
         Sprite Icon { get; }
-
-        string Name { get; }
 
         uint Count { get; }
 
