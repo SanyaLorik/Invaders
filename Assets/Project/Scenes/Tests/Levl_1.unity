@@ -19567,7 +19567,7 @@ MonoBehaviour:
   _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 993860414}
-  - {fileID: 1423654796}
+  - {fileID: 0}
   - {fileID: 1105463658}
   - {fileID: 1014484553}
   _installerPrefabs: []
@@ -27089,7 +27089,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1423654795}
-  - component: {fileID: 1423654796}
   m_Layer: 0
   m_Name: PlayerUiWeapon
   m_TagString: Untagged
@@ -27112,19 +27111,6 @@ Transform:
   m_Father: {fileID: 916018407}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1423654796
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1423654794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bf34bd3b4c023c4698621a623f9fab2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weaponCarrier: {fileID: 7904924063255415228}
 --- !u!1001 &1423803662
 PrefabInstance:
   m_ObjectHideFlags: 0

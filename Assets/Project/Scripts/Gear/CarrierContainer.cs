@@ -1,18 +1,16 @@
-﻿using Invaders.Additionals;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Invaders.Gear
 {
-    public struct CarrierContainer<T>
-        where T : IPortable
+    public struct CarrierContainer
     {
-        public CarrierContainer(T potable, Transform position)
+        public CarrierContainer(IItem potable, Transform position)
         {
             Portable = potable;
             Position = position;
         }
 
-        public T Portable { get; }
+        public IItem Portable { get; }
 
         public Transform Position { get; }
     }
