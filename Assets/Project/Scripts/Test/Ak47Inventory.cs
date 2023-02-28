@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Invaders.Test
 {
-    public class Ak47Inventory : Ak47, IInventoryItem
+    public class Ak47Inventory : Ak47, IInventoryItem, IUsedItem
     {
         [field: SerializeField] public Sprite Icon {get; set;}
 

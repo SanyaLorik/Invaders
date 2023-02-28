@@ -8,7 +8,7 @@ namespace Invaders.Ui
         public abstract bool CanSetItem(IInventoryItem item);
     }
 
-    public abstract class SpeciallyInventorySlot<T> : InventorySlot
+    public abstract class SpeciallyInventorySlot<T> : SpeciallyInventorySlot
         where T : IItem
     {
         public event Action<T> OnTaken;
@@ -17,16 +17,15 @@ namespace Invaders.Ui
         {
             base.SetItem(itemCell);
 
-            itemCell.Item.Show();
-            OnTaken.Invoke((T)itemCell.Item);
+            ItemCell.Item?.Show();
+            if (itemCell.Item is T t)
+                OnTaken?.Invoke(t);
         }
 
         public override ItemCell TakeItem()
         {
-            ItemCell.Item.Hide();
+            ItemCell.Item?.Hide();
             return base.TakeItem();
         }
-
-        public abstract bool CanSetItem(IInventoryItem item);
     }
 }
