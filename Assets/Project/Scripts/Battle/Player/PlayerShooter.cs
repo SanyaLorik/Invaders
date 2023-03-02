@@ -1,8 +1,9 @@
-﻿using Invaders.Movement;
+﻿using Invaders.Gear;
+using Invaders.Movement;
 
 namespace Invaders.Battle
 {
-    public abstract class PlayerShooter<T> : IPlayerShooter
+    public abstract class PlayerShooter<T> : IPlayerInteractableHandler
         where T : IWeapon
     {
         private readonly IPlayerLookService _look;

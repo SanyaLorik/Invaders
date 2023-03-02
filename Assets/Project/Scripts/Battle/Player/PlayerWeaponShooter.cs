@@ -9,35 +9,29 @@ namespace Invaders.Battle
     [RequireComponent(typeof(IPlayerLookService))]
     public class PlayerWeaponShooter : MonoBehaviour
     {
-        [SerializeField] private WeaponCarrier _weaponCarrier;
         [SerializeField] private Transform _droppedPoint;
 
         private IClickedService _clicked;
         private IHolderService _holder;
-        private IPlayerThingCarier _picker;
-        private IWeaponReloaderObserverService _reloader;
+        private IWeaponReloaderService _reloader;
 
         private IPlayerLookService _look;
-        private ICarrier<IThingPortable<IWeapon>> _carier;
-        private IPlayerShooter _shooter;
+        private IPlayerInteractableHandler _shooter;
 
-        private IWeapon _current;
+        //private IWeapon _current;
 
         [Inject]
-        private void Construct(IHolderService holder, IClickedService clicked, IPlayerThingCarier picker, IWeaponReloaderObserverService reloader)
+        private void Construct(IHolderService holder, IClickedService clicked, IWeaponReloaderService reloader)
         {
             _clicked = clicked;
             _holder = holder;
-            _picker = picker;
             _reloader = reloader;
         }
 
-        private void Awake()
-        {
-            _look = GetComponent< IPlayerLookService>();
-            _carier = _weaponCarrier;
-        }
+        private void Awake() =>
+            _look = GetComponent<IPlayerLookService>();
 
+        /*
         private void OnEnable() =>
             _picker.OnTakenOrDropped += OnChangeDropOrTake;
 
@@ -46,7 +40,7 @@ namespace Invaders.Battle
             _picker.OnTakenOrDropped -= OnChangeDropOrTake;
             _shooter?.Disable();
         }
-
+        */
         public float ReloadedTime { get; private set; }
 
         private void Arm(IWeapon weapon)
@@ -66,6 +60,7 @@ namespace Invaders.Battle
             _shooter.Enable();
         }
 
+        /*
         private void OnChangeDropOrTake()
         {
             if (_carier.HasPortable == true)
@@ -95,5 +90,6 @@ namespace Invaders.Battle
             _current = weapon;
             _current.PickUp();
         }
+        */
     }
 }

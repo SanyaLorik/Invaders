@@ -2,7 +2,7 @@
 
 namespace Invaders.InputSystem
 {
-    public interface IPlayerThingCarier
+    public interface IPlayerCarierService
     {
         event Action OnTakenOrDropped;
     }

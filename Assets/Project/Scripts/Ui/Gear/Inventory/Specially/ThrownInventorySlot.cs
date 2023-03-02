@@ -4,7 +4,7 @@ namespace Invaders.Ui
 {
     public class ThrownInventorySlot : SpeciallyInventorySlot<IItem>
     {
-        public override bool CanSetItem(IInventoryItem item)
+        public override bool CanSetItem(IItem item)
         {
             throw new System.NotImplementedException();
         }

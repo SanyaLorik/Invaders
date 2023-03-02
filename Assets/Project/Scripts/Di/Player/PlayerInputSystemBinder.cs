@@ -71,7 +71,7 @@ namespace Invaders.Di
         private void BindDropWeapon()
         {
             Container
-                .Bind<IPlayerThingCarier>()
+                .Bind<IPlayerCarierService>()
                 .FromInstance(_inputSystem)
                 .AsCached()
                 .NonLazy();
@@ -80,7 +80,7 @@ namespace Invaders.Di
         private void BindReloadWeapon()
         {
             Container
-                .Bind<IWeaponReloaderObserverService>()
+                .Bind<IWeaponReloaderService>()
                 .FromInstance(_inputSystem)
                 .AsCached()
                 .NonLazy();

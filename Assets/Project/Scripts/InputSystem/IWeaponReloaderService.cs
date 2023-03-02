@@ -2,7 +2,7 @@
 
 namespace Invaders.InputSystem
 {
-    public interface IWeaponReloaderObserverService
+    public interface IWeaponReloaderService
     {
         event Action OnWeaponReloaded;
     }

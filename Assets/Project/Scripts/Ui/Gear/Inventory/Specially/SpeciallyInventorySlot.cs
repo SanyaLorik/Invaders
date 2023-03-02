@@ -5,13 +5,14 @@ namespace Invaders.Ui
 {
     public abstract class SpeciallyInventorySlot : InventorySlot
     {
-        public abstract bool CanSetItem(IInventoryItem item);
+        public abstract bool CanSetItem(IItem item);
     }
 
     public abstract class SpeciallyInventorySlot<T> : SpeciallyInventorySlot
         where T : IItem
     {
         public event Action<T> OnTaken;
+        public event Action OnDeprived;
 
         public override void SetItem(ItemCell itemCell)
         {
@@ -25,6 +26,8 @@ namespace Invaders.Ui
         public override ItemCell TakeItem()
         {
             ItemCell.Item?.Hide();
+            OnDeprived.Invoke();
+
             return base.TakeItem();
         }
     }

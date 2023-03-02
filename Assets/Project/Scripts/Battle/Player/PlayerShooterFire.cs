@@ -6,9 +6,9 @@ namespace Invaders.Battle
     public abstract class PlayerShooterFire<T> : PlayerShooter<T>
         where T : IWeaponFire
     {
-        private readonly IWeaponReloaderObserverService _reloader;
+        private readonly IWeaponReloaderService _reloader;
 
-        public PlayerShooterFire(IPlayerLookService look, T weapon, IWeaponReloaderObserverService reloader) : base(look, weapon) =>
+        public PlayerShooterFire(IPlayerLookService look, T weapon, IWeaponReloaderService reloader) : base(look, weapon) =>
             _reloader = reloader;
 
         public override void Enable() =>

@@ -12,7 +12,7 @@ namespace Invaders.Battle
 
         private CancellationTokenSource _tokenSource;
 
-        public PlayerShooterHolding(IPlayerLookService look, IWeaponRapidFire weapon, IWeaponReloaderObserverService reloader, IHolderService holder) : base(look, weapon, reloader) =>
+        public PlayerShooterHolding(IPlayerLookService look, IWeaponRapidFire weapon, IWeaponReloaderService reloader, IHolderService holder) : base(look, weapon, reloader) =>
             _holder = holder;
 
         public override void Enable()
