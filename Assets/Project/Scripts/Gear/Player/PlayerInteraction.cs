@@ -1,5 +1,4 @@
 ﻿using Invaders.Ui;
-using System;
 using UnityEngine;
 
 namespace Invaders.Gear
@@ -9,7 +8,6 @@ namespace Invaders.Gear
         [SerializeField] private SpeciallyInventorySlot<IItem> _usedSlot;
 
         private IPlayerInteractableHandler _interactableHandler;
-        private IItem _item;
 
         private void OnEnable()
         {
@@ -21,17 +19,19 @@ namespace Invaders.Gear
         {
             _usedSlot.OnTaken -= OnTake;
             _usedSlot.OnDeprived -= OnDeprive;
+
+            _interactableHandler?.Disable();
         }
 
         private void OnTake(IItem item)
         {
-            _item = item;
-            _interactableHandler = 
+            //_interactableHandler = 
+            _interactableHandler.Enable();
         }
 
         private void OnDeprive()
         {
-            throw new NotImplementedException();
+            _interactableHandler.Disable();
         }
     }
 }
