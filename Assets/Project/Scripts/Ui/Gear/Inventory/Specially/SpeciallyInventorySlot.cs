@@ -26,7 +26,7 @@ namespace Invaders.Ui
         public override ItemCell TakeItem()
         {
             ItemCell.Item?.Hide();
-            OnDeprived.Invoke();
+            OnDeprived?.Invoke();
 
             return base.TakeItem();
         }
