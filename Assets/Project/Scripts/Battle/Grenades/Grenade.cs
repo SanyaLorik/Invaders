@@ -48,14 +48,8 @@ namespace Assets.Project.Scripts.Battle.Grenades
             throw new System.NotImplementedException();
         }
 
-        public void Show()
-        {
-            throw new System.NotImplementedException();
-        }
+        public abstract void Show();
 
-        public void Hide()
-        {
-            throw new System.NotImplementedException();
-        }
+        public abstract void Hide();
     }
 }

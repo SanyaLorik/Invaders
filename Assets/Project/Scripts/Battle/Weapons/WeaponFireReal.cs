@@ -21,15 +21,26 @@ namespace Invaders.Battle
             _rigidbody = GetComponent<Rigidbody>();
         }
 
-        public void Take() =>
-            ChangePhysics(true);
-
-        public void Throw(Vector3 position)
+        public override void PickUp()
         {
+            base.PickUp();
+            ChangePhysics(true);
+        }
+
+        public override void Drop()
+        {
+            base.Drop();
+
             ChangePhysics(false);
-            Transfer(position);
+            Transfer();
             Throw();
         }
+
+        public override void Show() =>
+            gameObject.SetActive(true);
+
+        public override void Hide() =>
+            gameObject.SetActive(false);
 
         private void Throw()
         {
@@ -39,11 +50,8 @@ namespace Invaders.Battle
             _rigidbody.AddForce(direction * lenght, ForceMode.Impulse);
         }
 
-        private void Transfer(Vector3 position)
-        {
+        private void Transfer() =>
             transform.SetParent(_world);
-            transform.position = position;
-        }
 
         private void ChangePhysics(bool isActive) =>
             _collider.isTrigger = _rigidbody.isKinematic = isActive;

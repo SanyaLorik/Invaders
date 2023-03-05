@@ -40,10 +40,10 @@ namespace Assets.Project.Scripts.Battle.Grenades
         private void ChangePhysics(bool isActive) =>
             _collider.isTrigger = _rigidbody.isKinematic = isActive;*/
 
-        private void Hide() =>
-            gameObject.SetActive(false);
-
-        private void Show() =>
+        public override void Show() =>
             gameObject.SetActive(true);
+
+        public override void Hide() =>
+            gameObject.SetActive(false);
     }
 }

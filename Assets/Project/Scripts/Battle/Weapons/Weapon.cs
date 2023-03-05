@@ -6,9 +6,9 @@ namespace Invaders.Battle
     {
         [field: SerializeField] public string Name { get; private set; }
 
-        public Sprite Icon => throw new System.NotImplementedException();
+        [field: SerializeField] public Sprite Icon { get; private set; }
 
-        public string Description => throw new System.NotImplementedException();
+        public abstract string Description { get; }
 
         public abstract void PickUp();
 
@@ -16,19 +16,10 @@ namespace Invaders.Battle
 
         public abstract void Shoot(Vector3 direction);
 
-        public void Use()
-        {
-            throw new System.NotImplementedException();
-        }
+        public abstract void Use();
 
-        public void Show()
-        {
-            throw new System.NotImplementedException();
-        }
+        public abstract void Show();
 
-        public void Hide()
-        {
-            throw new System.NotImplementedException();
-        }
+        public abstract void Hide();
     }
 }

@@ -46,6 +46,8 @@ namespace Invaders.Battle
             _tokenSource?.Dispose();
         }
 
+        public override string Description => $"Я есть {Name} с {_currentTotalBullet} внутри";
+
         public bool IsAllowReplenished { get; private set; }
 
         public float ReloaingTime => _reloadedTime;
@@ -55,6 +57,14 @@ namespace Invaders.Battle
 
         public override void Drop() =>
            IsAllowReplenished = false;
+
+        public override void Use()
+        {
+            /*
+             * decide to do with the method
+             */
+            Debug.LogWarning("Use method is empty!");
+        }
 
         public override void Shoot(Vector3 direction)
         {
