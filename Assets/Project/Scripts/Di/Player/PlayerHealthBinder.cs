@@ -5,7 +5,8 @@ using Zenject;
 
 namespace Invaders.Di
 {
-    public class PlayerHealthBinder: MonoInstaller
+
+    public class PlayerHealthBinder : MonoInstaller
     {
         [Header("Health")]
         [SerializeField][Min(0)] private int _initialHealth;

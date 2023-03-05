@@ -9,8 +9,6 @@ namespace Invaders.Battle
     [RequireComponent(typeof(IPlayerLookService))]
     public class PlayerWeaponShooter : MonoBehaviour
     {
-        [SerializeField] private Transform _droppedPoint;
-
         private IClickedService _clicked;
         private IHolderService _holder;
         private IWeaponReloaderService _reloader;
