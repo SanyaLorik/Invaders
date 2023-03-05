@@ -10,14 +10,24 @@ namespace Invaders.Gear
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent(out IItem item) == true)
-                _items.Add(item);
+            if (other.TryGetComponent(out IItem item) == false)
+                return;
+
+            if (item.CanTaken == false)
+                return;
+
+            _items.Add(item);
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.TryGetComponent(out IItem item) == true)
-                _items.Remove(item);
+            if (other.TryGetComponent(out IItem item) == false)
+                return;
+
+            if (item.CanTaken == false)
+                return;
+
+            _items.Remove(item);
         }
 
         public bool HaveItemInArea => _items.Count > 0;

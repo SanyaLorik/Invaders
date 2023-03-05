@@ -21,6 +21,7 @@ namespace Invaders.Di
             BindReloadScene();
             BindConfirm();
             BindSneaking();
+            BindInventoryOpenOrClose();
         }
 
         private void BindMovement()
@@ -111,6 +112,15 @@ namespace Invaders.Di
                .FromInstance(_inputSystem)
                .AsCached()
                .NonLazy();
+        }
+
+        private void BindInventoryOpenOrClose()
+        {
+            Container
+                .Bind<IInventoryService>()
+                .FromInstance(_inputSystem)
+                .AsCached()
+                .NonLazy();
         }
     }
 }

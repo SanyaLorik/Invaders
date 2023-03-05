@@ -6,7 +6,7 @@ namespace Invaders.InputSystem
 {
     public class PlayerInputSystem : 
         MonoBehaviour, 
-        IMovementService, IPointPositionOnScreenService, IClickedService, IHolderService, IUsedService, IPlayerReceiverService, IWeaponReloaderService, IPlayerConfirmationService, ISneakingService,
+        IMovementService, IPointPositionOnScreenService, IClickedService, IHolderService, IUsedService, IPlayerReceiverService, IWeaponReloaderService, IPlayerConfirmationService, ISneakingService, IInventoryService,
         ISceneReloaderObserverService
     {
         public event Action<Vector3> OnMove = delegate { };
@@ -22,6 +22,7 @@ namespace Invaders.InputSystem
         public event Action OnConfirmed = delegate { };
         public event Action OnSneakingStarted = delegate { };
         public event Action OnSneakingStopped = delegate { };
+        public event Action OnInventoryOpenedOrClosed = delegate { };
 
         private InvadersInputSystem _inputSystem;
 
@@ -50,8 +51,10 @@ namespace Invaders.InputSystem
 
             _inputSystem.Player.Confirm.performed += Confirm;
 
-            _inputSystem.Player.Sneaking.performed += OnStartSneaking;
-            _inputSystem.Player.Sneaking.canceled += OnStopSneaking;
+            _inputSystem.Player.Sneaking.performed += StartSneaking;
+            _inputSystem.Player.Sneaking.canceled += StopSneaking;
+
+            _inputSystem.Player.OpenCloseInventory.performed += OpenCloseInventory;
 
             _inputSystem.Enable();
         }
@@ -78,8 +81,10 @@ namespace Invaders.InputSystem
 
             _inputSystem.Player.Confirm.performed -= Confirm;
 
-            _inputSystem.Player.Sneaking.performed -= OnStartSneaking;
-            _inputSystem.Player.Sneaking.canceled -= OnStopSneaking;
+            _inputSystem.Player.Sneaking.performed -= StartSneaking;
+            _inputSystem.Player.Sneaking.canceled -= StopSneaking;
+
+            _inputSystem.Player.OpenCloseInventory.performed -= OpenCloseInventory;
 
             _inputSystem.Disable();
         }
@@ -129,10 +134,13 @@ namespace Invaders.InputSystem
         private void Confirm(InputAction.CallbackContext _) =>
             OnConfirmed.Invoke();
 
-        private void OnStartSneaking(InputAction.CallbackContext _) =>
+        private void StartSneaking(InputAction.CallbackContext _) =>
             OnSneakingStarted.Invoke();
 
-        private void OnStopSneaking(InputAction.CallbackContext _) =>
+        private void StopSneaking(InputAction.CallbackContext _) =>
             OnSneakingStopped.Invoke();
+
+        private void OpenCloseInventory(InputAction.CallbackContext _) =>
+            OnInventoryOpenedOrClosed.Invoke();
     }
 }

@@ -10,6 +10,8 @@ namespace Invaders.Gear
 
         string Description { get; }
 
+        bool CanTaken { get; }
+
         void PickUp();
 
         void Drop();

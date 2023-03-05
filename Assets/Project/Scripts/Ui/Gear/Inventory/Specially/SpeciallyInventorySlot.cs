@@ -1,5 +1,6 @@
 ﻿using Invaders.Gear;
 using System;
+using static UnityEditor.Progress;
 
 namespace Invaders.Ui
 {
@@ -19,16 +20,19 @@ namespace Invaders.Ui
             base.SetItem(itemCell);
 
             ItemCell.Item?.Show();
-            if (itemCell.Item is T t)
-                OnTaken?.Invoke(t);
+            if (itemCell.Item != null)
+                OnTaken?.Invoke((T)itemCell.Item);
         }
 
         public override ItemCell TakeItem()
         {
-            ItemCell.Item?.Hide();
-            OnDeprived?.Invoke();
+            if (ItemCell.Item != null)
+            {
+                ItemCell.Item.Hide();
+                OnDeprived?.Invoke();
+            }
 
-            return base.TakeItem();
+            return base.TakeItem(); 
         }
     }
 }

@@ -24,12 +24,17 @@ namespace Invaders.Battle
         public override void PickUp()
         {
             base.PickUp();
+
+            CanTaken = false;
+
             ChangePhysics(true);
         }
 
         public override void Drop()
         {
             base.Drop();
+
+            CanTaken = true;
 
             ChangePhysics(false);
             Transfer();

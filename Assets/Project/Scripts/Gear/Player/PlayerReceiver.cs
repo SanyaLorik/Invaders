@@ -15,15 +15,11 @@ namespace Invaders.Gear
         private void Construct(IPlayerReceiverService receiver) =>
             _receiver = receiver;
 
-        private void OnEnable()
-        {
+        private void OnEnable() =>
             _receiver.OnReceived += OnReceive;
-        }
 
-        private void OnDisable()
-        {
+        private void OnDisable() =>
             _receiver.OnReceived -= OnReceive;
-        }
 
         private void OnReceive()
         {

@@ -10,6 +10,8 @@ namespace Invaders.Battle
 
         public abstract string Description { get; }
 
+        public bool CanTaken { get; protected set; } = true;
+
         public abstract void PickUp();
 
         public abstract void Drop();

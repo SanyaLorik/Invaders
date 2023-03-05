@@ -18,6 +18,8 @@ namespace Assets.Project.Scripts.Battle.Grenades
 
         public string Description => throw new System.NotImplementedException();
 
+        public bool CanTaken => throw new System.NotImplementedException();
+
         protected CancellationTokenSource _tokenSource;
 
         protected virtual void OnDisable() =>
