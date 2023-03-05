@@ -2,7 +2,7 @@
 
 namespace Invaders.InputSystem
 {
-    public interface IPlayerConfirmation
+    public interface IPlayerConfirmationService
     {
         event Action OnConfirmed;
     }

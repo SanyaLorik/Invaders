@@ -98,7 +98,7 @@ namespace Invaders.Di
         private void BindConfirm()
         {
             Container
-                .Bind<IPlayerConfirmation>()
+                .Bind<IPlayerConfirmationService>()
                 .FromInstance(_inputSystem)
                 .AsCached()
                 .NonLazy();

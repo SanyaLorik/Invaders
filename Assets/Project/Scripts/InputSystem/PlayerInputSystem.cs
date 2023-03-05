@@ -6,7 +6,7 @@ namespace Invaders.InputSystem
 {
     public class PlayerInputSystem : 
         MonoBehaviour, 
-        IMovementService, IPointPositionOnScreenService, IClickedService, IHolderService, IUsedService, IPlayerCarierService, IWeaponReloaderService, IPlayerConfirmation, ISneakingService,
+        IMovementService, IPointPositionOnScreenService, IClickedService, IHolderService, IUsedService, IPlayerCarierService, IWeaponReloaderService, IPlayerConfirmationService, ISneakingService,
         ISceneReloaderObserverService
     {
         public event Action<Vector3> OnMove = delegate { };

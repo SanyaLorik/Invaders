@@ -9,7 +9,7 @@ namespace Invaders.Di
 
         public override void InstallBindings()
         {
-            //_information = new PlayerWeaponUiObserver(_weaponCarrier);
+            _information = new PlayerWeaponUiObserver();
 
             BindAmmoInformationObserver();
             BindReloadingInformationObserver();

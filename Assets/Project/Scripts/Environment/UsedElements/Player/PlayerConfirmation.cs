@@ -12,10 +12,10 @@ namespace Invaders.Environment.UsedElements
         [SerializeField] private UiConfirmation _ui;
 
         private IConfirmable _confirmable;
-        private IPlayerConfirmation _confirmation;
+        private IPlayerConfirmationService _confirmation;
 
         [Inject]
-        private void Construct(IPlayerConfirmation confirmation) =>
+        private void Construct(IPlayerConfirmationService confirmation) =>
             _confirmation = confirmation;
 
         private void OnEnable() =>

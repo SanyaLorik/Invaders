@@ -5874,7 +5874,6 @@ MonoBehaviour:
   <IsActivated>k__BackingField: 0
   <Text>k__BackingField: "\u041F\u043E\u0434\u0431\u0435\u0440\u0438 \u043F\u0438\u0441\u0442\u043E\u043B\u0435\u0442.
     G"
-  _carrier: {fileID: 7904924063255415228}
 --- !u!1001 &164027460
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19567,7 +19566,7 @@ MonoBehaviour:
   _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 993860414}
-  - {fileID: 0}
+  - {fileID: 1423654796}
   - {fileID: 1105463658}
   - {fileID: 1014484553}
   _installerPrefabs: []
@@ -27089,6 +27088,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1423654795}
+  - component: {fileID: 1423654796}
   m_Layer: 0
   m_Name: PlayerUiWeapon
   m_TagString: Untagged
@@ -27111,6 +27111,18 @@ Transform:
   m_Father: {fileID: 916018407}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1423654796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423654794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bf34bd3b4c023c4698621a623f9fab2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1423803662
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46603,7 +46615,6 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1847731936}
-  - {fileID: 7904924063255415226}
   - {fileID: 7904924063529337380}
   - {fileID: 7904924062561220575}
   m_Father: {fileID: 2005743397}
@@ -46649,7 +46660,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd10fd8a10157f6498d166b9d30e551d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponCarrier: {fileID: 7904924063255415228}
   _droppedPoint: {fileID: 7904924063529337380}
 --- !u!114 &7904924063053900061
 MonoBehaviour:
@@ -46730,52 +46740,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ui:
     _panel: {fileID: 221894397}
---- !u!4 &7904924063255415226
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7904924063255415227}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.65, y: -0.25, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7904924063053900053}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7904924063255415227
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7904924063255415226}
-  - component: {fileID: 7904924063255415228}
-  m_Layer: 0
-  m_Name: Weapon Carier
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &7904924063255415228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7904924063255415227}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22a7424c44de29d429b3c384a5e4ba83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _detector: {fileID: 7904924062561220574}
-  _carrier: {fileID: 7904924063255415226}
 --- !u!4 &7904924063529337380
 Transform:
   m_ObjectHideFlags: 0
