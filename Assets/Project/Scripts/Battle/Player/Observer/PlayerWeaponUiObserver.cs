@@ -1,5 +1,4 @@
-﻿using Invaders.Gear;
-using System;
+﻿using System;
 
 namespace Invaders.Battle
 {
@@ -12,28 +11,13 @@ namespace Invaders.Battle
         public event Action OnReloadingStarted = delegate { };
         public event Action OnReloadingStopped = delegate { };
 
-        private ICarrierObserver<IThingPortable<IWeapon>> _carrier;
         private IWeaponFire _weapon;
-
-        public PlayerWeaponUiObserver(ICarrierObserver<IThingPortable<IWeapon>> carrier)
-        {
-            _carrier = carrier;
-
-            _carrier.OnTaken += OnTaken;
-            _carrier.OnDropped += OnDrop;
-        }
-
-        ~PlayerWeaponUiObserver()
-        {
-            _carrier.OnTaken -= OnTaken;
-            _carrier.OnDropped -= OnDrop;
-        }
 
         public float ReloadedTime { get; private set; }
 
-        private void OnTaken(IThingPortable<IWeapon> weaponFire)
+        private void OnTaken()
         {
-            _weapon = weaponFire.Thing as IWeaponFire;
+            _weapon = null;
             OnHad.Invoke(_weapon.Name);
             SetInformationAboutWeaponFire();
         }

@@ -1,7 +1,7 @@
 ﻿namespace Invaders.Gear
 {
     public interface IInventory<Tkey, TValue>
-    where TValue : IInventoryItem
+        where TValue : IItem
     {
         bool HavePlace { get; }
 

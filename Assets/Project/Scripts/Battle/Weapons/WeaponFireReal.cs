@@ -1,12 +1,11 @@
 ﻿using Invaders.Additionals;
-using Invaders.Gear;
 using UnityEngine;
 
 namespace Invaders.Battle
 {
     [RequireComponent(typeof(Collider))]
     [RequireComponent(typeof(Rigidbody))]
-    public abstract class WeaponFireReal : WeaponFire, IThingPortable<IWeapon>
+    public abstract class WeaponFireReal : WeaponFire
     {
         [SerializeField][Min(0)] private float _dropppedLenght;
 
@@ -21,8 +20,6 @@ namespace Invaders.Battle
             _collider = GetComponent<Collider>();
             _rigidbody = GetComponent<Rigidbody>();
         }
-
-        public IWeapon Thing => this;
 
         public void Take() =>
             ChangePhysics(true);

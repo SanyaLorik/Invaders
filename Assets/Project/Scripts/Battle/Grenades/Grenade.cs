@@ -14,6 +14,10 @@ namespace Assets.Project.Scripts.Battle.Grenades
 
         [field: SerializeField] public string Name { get; private set; }
 
+        public Sprite Icon => throw new System.NotImplementedException();
+
+        public string Description => throw new System.NotImplementedException();
+
         protected CancellationTokenSource _tokenSource;
 
         protected virtual void OnDisable() =>
@@ -38,5 +42,20 @@ namespace Assets.Project.Scripts.Battle.Grenades
         public abstract void Drop();
 
         protected abstract void ActiveEffect();
+
+        public void Use()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Show()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Hide()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

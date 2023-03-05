@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Invaders.Gear
 {
     public class Inventory<Tkey, TValue> : IInventory<Tkey, TValue>
-    where TValue : IInventoryItem
+        where TValue : IItem
     {
         private readonly IDictionary<Tkey, TValue> _items = new Dictionary<Tkey, TValue>();
         private readonly int _capacity;

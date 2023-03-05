@@ -10,17 +10,12 @@ namespace Invaders.Gear
         [SerializeField] private InventorySlot[] _inventorySlots;
 
         [Header("Specially")]
-        [SerializeField] private SpeciallyInventorySlot<IUsedItem> _used;
+        [SerializeField] private SpeciallyInventorySlot<IItem> _used;
         [SerializeField] private InventorySlot _grenade;
         [SerializeField] private InventorySlot _thrown;
         [SerializeField] private InventorySlot _deleted;
 
-        private void OnEnable()
-        {
-            
-        }
-
-        public void Add(IInventoryItem item)
+        public void Add(IItem item)
         {
             ItemCell cell = _inventorySlots.FirstOrDefault(i => i.IsEmpty == true)?.ItemCell;
             if (cell == null)
@@ -30,13 +25,13 @@ namespace Invaders.Gear
             cell.Occopy(item);
         }
         
-        public void Remove(IInventoryItem item)
+        public void Remove(IItem item)
         {
             ItemCell cell = _inventorySlots.Where(i => i.IsEmpty == false)?.FirstOrDefault(i => i.ItemCell.Item == item)?.ItemCell;
             if (cell == null)
                 return;
 
-            IInventoryItem free = cell.Item;
+            IItem free = cell.Item;
             cell.Free();
             if (item is MonoBehaviour monoBehaviour)
                 Destroy(monoBehaviour.gameObject);

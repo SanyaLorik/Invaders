@@ -1,10 +1,9 @@
 ﻿using Invaders.Battle;
-using Invaders.Gear;
 using UnityEngine;
 
 namespace Invaders.Test
 {
-    public class Ak47Inventory : Ak47, IInventoryItem, IUsedItem
+    public class Ak47Inventory : Ak47
     {
         [field: SerializeField] public Sprite Icon {get; set;}
 

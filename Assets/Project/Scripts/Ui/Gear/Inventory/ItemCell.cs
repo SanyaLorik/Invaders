@@ -3,7 +3,6 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 namespace Invaders.Ui
 {
@@ -12,21 +11,19 @@ namespace Invaders.Ui
     {
         [SerializeField] private Image _icon;
         [SerializeField] private TextMeshProUGUI _name; 
-        [SerializeField] private TextMeshProUGUI _count;
 
         [field: SerializeField] public RectTransform Draggable { get; private set; }
 
-        public IInventoryItem Item { get; private set; }
+        public IItem Item { get; private set; }
 
         public bool IsEmpty => Item == null/*false*/;
 
-        public void Occopy(IInventoryItem item)
+        public void Occopy(IItem item)
         {
             Item = item;
 
             _icon.sprite = item.Icon;
             _name.text = item.Name;
-            _count.text = item.Count.ToString();
         }
 
         public void Free() 
@@ -35,7 +32,6 @@ namespace Invaders.Ui
 
             _icon.sprite = null;
             _name.text = string.Empty;
-            _count.text = string.Empty;
         }
     }
 }
