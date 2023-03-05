@@ -128,6 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Name>k__BackingField: "\u041A\u0430\u043B\u0430\u0448"
+  <Icon>k__BackingField: {fileID: 21300000, guid: 56c672b7b8a1b5f459426da2922bba63, type: 3}
   _missile: {fileID: 4231796700084888183, guid: db8279ea2f1d1b6469845a13b1165a28, type: 3}
   _muzzle: {fileID: 6627226162521177758}
   _speed: 50

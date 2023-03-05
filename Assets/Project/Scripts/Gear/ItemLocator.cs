@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Invaders.Gear
 {
     [RequireComponent(typeof(Collider))]
-    public class ItemDetector : MonoBehaviour
+    public class ItemLocator : MonoBehaviour
     {
         private readonly IList<IItem> _items = new List<IItem>();
 

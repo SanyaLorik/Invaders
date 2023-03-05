@@ -71,7 +71,7 @@ namespace Invaders.Di
         private void BindDropWeapon()
         {
             Container
-                .Bind<IPlayerCarierService>()
+                .Bind<IPlayerReceiverService>()
                 .FromInstance(_inputSystem)
                 .AsCached()
                 .NonLazy();

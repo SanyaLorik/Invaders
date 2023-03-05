@@ -6,7 +6,7 @@ namespace Invaders.InputSystem
 {
     public class PlayerInputSystem : 
         MonoBehaviour, 
-        IMovementService, IPointPositionOnScreenService, IClickedService, IHolderService, IUsedService, IPlayerCarierService, IWeaponReloaderService, IPlayerConfirmationService, ISneakingService,
+        IMovementService, IPointPositionOnScreenService, IClickedService, IHolderService, IUsedService, IPlayerReceiverService, IWeaponReloaderService, IPlayerConfirmationService, ISneakingService,
         ISceneReloaderObserverService
     {
         public event Action<Vector3> OnMove = delegate { };
@@ -16,7 +16,7 @@ namespace Invaders.InputSystem
         public event Action OnHeld = delegate { };
         public event Action OnUnheld = delegate { };
         public event Action OnUsed = delegate { };
-        public event Action OnTakenOrDropped = delegate { };
+        public event Action OnReceived = delegate { };
         public event Action OnWeaponReloaded = delegate { };
         public event Action OnSceneReloaded = delegate { };
         public event Action OnConfirmed = delegate { };
@@ -42,7 +42,7 @@ namespace Invaders.InputSystem
 
             _inputSystem.Player.Use.performed += Use;
 
-            _inputSystem.Player.DroppedWeapon.performed += TakeOrDrop;
+            _inputSystem.Player.DroppedWeapon.performed += Receive;
 
             _inputSystem.Player.ReloadWeapon.performed += ReloadWeapon;
 
@@ -70,7 +70,7 @@ namespace Invaders.InputSystem
 
             _inputSystem.Player.Use.performed -= Use;
 
-            _inputSystem.Player.DroppedWeapon.performed -= TakeOrDrop;
+            _inputSystem.Player.DroppedWeapon.performed -= Receive;
 
             _inputSystem.Player.ReloadWeapon.performed -= ReloadWeapon;
 
@@ -117,8 +117,8 @@ namespace Invaders.InputSystem
         private void Use(InputAction.CallbackContext _) =>
             OnUsed.Invoke();
 
-        private void TakeOrDrop(InputAction.CallbackContext _) =>
-            OnTakenOrDropped.Invoke();
+        private void Receive(InputAction.CallbackContext _) =>
+            OnReceived.Invoke();
 
         private void ReloadWeapon(InputAction.CallbackContext _) =>
             OnWeaponReloaded.Invoke();

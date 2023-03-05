@@ -5,7 +5,6 @@ using Zenject;
 
 namespace Invaders.Di
 {
-
     public class PlayerHealthBinder : MonoInstaller
     {
         [Header("Health")]

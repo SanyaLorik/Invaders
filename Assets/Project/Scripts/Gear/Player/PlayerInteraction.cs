@@ -32,6 +32,7 @@ namespace Invaders.Gear
         private void OnTake(IItem item)
         {
             _interactableHandler = _factory.Create(item);
+            print(_interactableHandler);
             _interactableHandler?.Enable();
         }
 
