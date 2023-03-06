@@ -46,6 +46,14 @@ namespace Invaders.Ui
             if (eventData.pointerEnter == null || eventData.pointerEnter.TryGetComponent(out InventorySlot inventorySlot) == false)
             {
                 ReturnToTakenPosition();
+                Clear();
+                return;
+            }
+
+            if (_inventorySlot == inventorySlot)
+            {
+                ReturnToTakenPosition();
+                Clear();
                 return;
             }
 
@@ -58,6 +66,7 @@ namespace Invaders.Ui
             }
             else
             {
+                print(_inventorySlot + " " + inventorySlot);
                 _inventorySlot.SwapPlace(inventorySlot);
             }
 
@@ -66,12 +75,13 @@ namespace Invaders.Ui
 
         private void ReturnToTakenPosition()
         {
-            _inventorySlot.Draggable
+            var inventorySlot = _inventorySlot;
+            inventorySlot.Draggable
                 .DOMove(_returnedToTakenPosition.transform.position, _returnedDuration)
                 .SetEase(Ease.Linear)
                 .OnComplete(() => 
-                { 
-                    _inventorySlot.Draggable.SetParent(_returnedToTakenPosition);
+                {
+                    inventorySlot.Draggable.SetParent(_returnedToTakenPosition);
                     Clear();
                 });
         }
