@@ -25,11 +25,9 @@ namespace Invaders.Factories
         {
             if (item is IWeaponFire weapon)
             {
-                IPlayerInteractableHandler shooter = weapon as IWeaponRapidFire == null ?
+                return weapon as IWeaponRapidFire == null ?
                    new PlayerShooterTapping(_look, weapon as IWeaponTappingFire, _reloader, _clicked) :
                    new PlayerShooterHolding(_look, weapon as IWeaponRapidFire, _reloader, _holder);
-
-                return shooter;
             }
 
             return null;
