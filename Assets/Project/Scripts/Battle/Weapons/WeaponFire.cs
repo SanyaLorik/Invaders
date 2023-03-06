@@ -144,7 +144,7 @@ namespace Invaders.Battle
             _currentBullet--;
 
             if (HaveBulletInMagazin == false && _currentTotalBullet == 0)
-                _outingOfAmmo.Invoke();
+                _outingOfAmmo?.Invoke();
             else
                 _changingNumberOfBullets?.Invoke(_currentBullet, _currentTotalBullet);
         }
