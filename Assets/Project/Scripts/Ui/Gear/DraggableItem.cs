@@ -43,14 +43,7 @@ namespace Invaders.Ui
             if (_inventorySlot == null)
                 return;
 
-            if (eventData.pointerEnter == null || eventData.pointerEnter.TryGetComponent(out InventorySlot inventorySlot) == false)
-            {
-                ReturnToTakenPosition();
-                Clear();
-                return;
-            }
-
-            if (_inventorySlot == inventorySlot)
+            if (eventData.pointerEnter == null || eventData.pointerEnter.TryGetComponent(out InventorySlot inventorySlot) == false || _inventorySlot == inventorySlot)
             {
                 ReturnToTakenPosition();
                 Clear();
@@ -66,7 +59,6 @@ namespace Invaders.Ui
             }
             else
             {
-                print(_inventorySlot + " " + inventorySlot);
                 _inventorySlot.SwapPlace(inventorySlot);
             }
 
