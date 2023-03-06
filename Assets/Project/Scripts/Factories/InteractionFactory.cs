@@ -13,7 +13,6 @@ namespace Invaders.Factories
         private IHolderService _holder;
         private IWeaponReloaderService _reloader;
 
-        [Inject]
         public InteractionFactory(IPlayerLookService look, IHolderService holder, IClickedService clicked, IWeaponReloaderService reloader)
         {
             _look = look;

@@ -16,8 +16,6 @@ namespace Invaders.Gear
 
         void Drop();
 
-        void Use();
-
         void Show();
 
         void Hide();

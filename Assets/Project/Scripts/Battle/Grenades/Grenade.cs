@@ -45,11 +45,6 @@ namespace Assets.Project.Scripts.Battle.Grenades
 
         protected abstract void ActiveEffect();
 
-        public void Use()
-        {
-            throw new System.NotImplementedException();
-        }
-
         public abstract void Show();
 
         public abstract void Hide();

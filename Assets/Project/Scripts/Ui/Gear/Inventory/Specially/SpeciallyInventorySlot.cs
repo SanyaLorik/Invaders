@@ -18,7 +18,6 @@ namespace Invaders.Ui
         {
             base.SetItem(itemCell);
 
-            ItemCell.Item?.Show();
             if (itemCell.Item != null)
                 OnTaken?.Invoke((T)itemCell.Item);
         }
@@ -26,10 +25,7 @@ namespace Invaders.Ui
         public override ItemCell TakeItem()
         {
             if (ItemCell.Item != null)
-            {
-                ItemCell.Item.Hide();
                 OnDeprived?.Invoke();
-            }
 
             return base.TakeItem(); 
         }

@@ -58,14 +58,6 @@ namespace Invaders.Battle
         public override void Drop() =>
            IsAllowReplenished = false;
 
-        public override void Use()
-        {
-            /*
-             * decide to do with the method
-             */
-            Debug.LogWarning("Use method is empty!");
-        }
-
         public override void Shoot(Vector3 direction)
         {
             if (HaveBulletInMagazin == false)

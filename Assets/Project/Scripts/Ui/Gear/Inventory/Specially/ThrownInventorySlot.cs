@@ -11,6 +11,7 @@ namespace Invaders.Ui
         {
             base.SetItem(itemCell);
 
+            itemCell.Item.Show();
             itemCell.Free();
         }
     }

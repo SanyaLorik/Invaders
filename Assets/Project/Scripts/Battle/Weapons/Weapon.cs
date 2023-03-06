@@ -18,8 +18,6 @@ namespace Invaders.Battle
 
         public abstract void Shoot(Vector3 direction);
 
-        public abstract void Use();
-
         public abstract void Show();
 
         public abstract void Hide();
