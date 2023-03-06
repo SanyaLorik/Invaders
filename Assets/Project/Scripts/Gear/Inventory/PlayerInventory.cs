@@ -12,13 +12,7 @@ namespace Invaders.Gear
 
         [Header("Store")]
         [SerializeField] private InventorySlot[] _inventorySlots;
-        /*
-        [Header("Specially")]
-        [SerializeField] private SpeciallyInventorySlot<IItem> _used;
-        [SerializeField] private InventorySlot _grenade;
-        [SerializeField] private InventorySlot _thrown;
-        [SerializeField] private InventorySlot _deleted;
-        */
+
         private IInventoryService _inventoryService;
 
         [Inject]
@@ -37,7 +31,6 @@ namespace Invaders.Gear
             if (cell == null)
                 return;
 
-            item.Hide();
             cell.Occopy(item);
         }
         /*
