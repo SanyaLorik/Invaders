@@ -1,16 +1,15 @@
 ﻿using Invaders.Battle;
 using Zenject;
+using UnityEngine;
 
 namespace Invaders.Di
 {
     public class PlayerUiWeaponBinder : MonoInstaller
     {
-        private PlayerWeaponUiObserver _information;
+        [SerializeField] private PlayerWeaponUiObserver _information;
 
         public override void InstallBindings()
         {
-            _information = new PlayerWeaponUiObserver();
-
             BindAmmoInformationObserver();
             BindReloadingInformationObserver();
             BindHavingObserver();

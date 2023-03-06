@@ -1,6 +1,5 @@
 ﻿using Invaders.InputSystem;
 using Invaders.Ui;
-using System;
 using System.Linq;
 using UnityEngine;
 using Zenject;
@@ -14,6 +13,7 @@ namespace Invaders.Gear
 
         [Header("Store")]
         [SerializeField] private InventorySlot[] _inventorySlots;
+        [SerializeField] private UsedInventorySlot _usedSlot;
         [SerializeField] private ThrownInventorySlot _thrownSlot;
 
         [Header("Receiver Point")]
@@ -39,6 +39,15 @@ namespace Invaders.Gear
 
         public void Add(IItem item)
         {
+            if (_usedSlot.IsEmpty == true)
+            {
+                item?.PickUp();
+                _usedSlot.ItemCell.Occopy(item);
+                _usedSlot.SetItem(_usedSlot.ItemCell);
+                _receiver.Fix(item);
+                return;
+            }
+
             ItemCell cell = _inventorySlots.FirstOrDefault(i => i.IsEmpty == true)?.ItemCell;
             if (cell == null)
                 return;
@@ -49,6 +58,7 @@ namespace Invaders.Gear
 
             _receiver.Fix(item);
         }
+
         /*
         public void Deprive(IItem item)
         {

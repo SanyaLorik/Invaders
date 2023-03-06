@@ -30583,6 +30583,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf34bd3b4c023c4698621a623f9fab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _information: {fileID: 7904924063053900069}
 --- !u!1001 &1423803662
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51276,6 +51277,7 @@ GameObject:
   - component: {fileID: 7904924063053900065}
   - component: {fileID: 7904924063053900050}
   - component: {fileID: 7904924063053900061}
+  - component: {fileID: 7904924063053900069}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -51501,6 +51503,7 @@ MonoBehaviour:
   - {fileID: 565486951}
   - {fileID: 1080194663}
   - {fileID: 430044906}
+  _usedSlot: {fileID: 1446250130}
   _thrownSlot: {fileID: 392195969}
   _receiver:
     _parent: {fileID: 267060444}
@@ -51514,6 +51517,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c072a5ec0972edc4ea4d80e058b663ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _usedSlot: {fileID: 1446250130}
+--- !u!114 &7904924063053900069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7904924063053900042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 004e25f67bc5bfc4a84cb650d4cae120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _usedSlot: {fileID: 1446250130}
