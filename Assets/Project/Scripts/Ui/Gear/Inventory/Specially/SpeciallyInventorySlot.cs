@@ -1,6 +1,5 @@
 ﻿using Invaders.Gear;
 using System;
-using static UnityEditor.Progress;
 
 namespace Invaders.Ui
 {

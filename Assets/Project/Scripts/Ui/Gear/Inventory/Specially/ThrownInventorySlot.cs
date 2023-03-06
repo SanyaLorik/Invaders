@@ -4,9 +4,16 @@ namespace Invaders.Ui
 {
     public class ThrownInventorySlot : SpeciallyInventorySlot<IItem>
     {
-        public override bool CanSetItem(IItem item)
+        public override bool CanSetItem(IItem item) =>
+            IsEmpty == true && item != null;
+
+        public override void SetItem(ItemCell itemCell)
         {
-            throw new System.NotImplementedException();
+            base.SetItem(itemCell);
+
+            itemCell.Item?.Show();
+            itemCell.Item?.Drop();
+            itemCell.Free();
         }
     }
 }
