@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4231796698298077332}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 4231796700084888181}
   - component: {fileID: 4231796700084888180}
   - component: {fileID: 4231796700084888183}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ak47
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,6 +194,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: baf0cd7c2254569448a27d35a1466cfc, type: 3}
       propertyPath: m_Name
       value: Ak47
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: baf0cd7c2254569448a27d35a1466cfc, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: baf0cd7c2254569448a27d35a1466cfc, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

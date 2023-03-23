@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6579125157267628695}
   - component: {fileID: 6579125157267628694}
   - component: {fileID: 6579125157267628698}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Handgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6579125157789285596}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,6 +194,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b4770b3e930b2424580cf6460ab461ee, type: 3}
       propertyPath: m_Name
       value: Handgun
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b4770b3e930b2424580cf6460ab461ee, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: b4770b3e930b2424580cf6460ab461ee, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
