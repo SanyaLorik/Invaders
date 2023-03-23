@@ -78,17 +78,13 @@ namespace Invaders.Gear
         */
         private void OnRemove(IItem item)
         {
-            print("deletrgedee");
             ItemCell cell = _inventorySlots.Where(i => i.IsEmpty == false)?.FirstOrDefault(i => i.ItemCell.Item == item)?.ItemCell;
             if (cell == null)
                 return;
 
-            print("p]awd-");
-            IItem free = cell.Item;
             cell.Free();
             if (item is MonoBehaviour monoBehaviour)
                 Destroy(monoBehaviour.gameObject);
-            print("delete");
         }
 
         private void OnDrop(IItem item)
