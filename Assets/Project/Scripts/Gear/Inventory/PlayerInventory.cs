@@ -46,7 +46,7 @@ namespace Invaders.Gear
         {
             if (_usedSlot.IsEmpty == true)
             {
-                item?.PickUp();
+                item.PickUp();
                 _usedSlot.ItemCell.Occopy(item);
                 _usedSlot.SetItem(_usedSlot.ItemCell);
                 _receiver.Fix(item);
@@ -57,8 +57,8 @@ namespace Invaders.Gear
             if (cell == null)
                 return;
 
-            item?.Hide();
-            item?.PickUp();
+            item.Hide();
+            item.PickUp();
             cell.Occopy(item);
 
             _receiver.Fix(item);
