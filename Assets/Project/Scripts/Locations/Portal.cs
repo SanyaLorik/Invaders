@@ -39,8 +39,6 @@ namespace Invaders.Locations
 
             await UniTask.Delay(delay);
             entity.position = _point.position;
-            print("Teleport end");
-            print(entity + " " + _point);
         }
     }
 }
