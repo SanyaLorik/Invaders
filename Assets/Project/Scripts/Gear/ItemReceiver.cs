@@ -22,7 +22,7 @@ namespace Invaders.Gear
             if (item is MonoBehaviour behaviour == false)
                 return;
 
-            behaviour.transform.SetParent(null);
+            behaviour.transform.SetParent(null); // drop in world 
         }
 }
 }

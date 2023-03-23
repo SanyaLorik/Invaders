@@ -14,6 +14,7 @@ namespace Invaders.Gear
         [Header("Store")]
         [SerializeField] private InventorySlot[] _inventorySlots;
         [SerializeField] private UsedInventorySlot _usedSlot;
+        [SerializeField] private RemovalInventorySlot _removalSlot;
         [SerializeField] private ThrownInventorySlot _thrownSlot;
 
         [Header("Receiver Point")]
@@ -28,12 +29,16 @@ namespace Invaders.Gear
         private void OnEnable()
         {
             _thrownSlot.OnTaken += OnDrop;
+            _removalSlot.OnTaken += OnRemove;
+
             _inventoryService.OnInventoryOpenedOrClosed += OnShowOrClose;
         }
 
         private void OnDisable()
         {
             _thrownSlot.OnTaken -= OnDrop;
+            _removalSlot.OnTaken -= OnRemove;
+
             _inventoryService.OnInventoryOpenedOrClosed -= OnShowOrClose;
         }
 
@@ -70,19 +75,21 @@ namespace Invaders.Gear
             item.Show();
             item.Drop();
         }
-
-        public void Remove(IItem item)
+        */
+        private void OnRemove(IItem item)
         {
+            print("deletrgedee");
             ItemCell cell = _inventorySlots.Where(i => i.IsEmpty == false)?.FirstOrDefault(i => i.ItemCell.Item == item)?.ItemCell;
             if (cell == null)
                 return;
 
+            print("p]awd-");
             IItem free = cell.Item;
             cell.Free();
             if (item is MonoBehaviour monoBehaviour)
                 Destroy(monoBehaviour.gameObject);
+            print("delete");
         }
-        */
 
         private void OnDrop(IItem item)
         {
