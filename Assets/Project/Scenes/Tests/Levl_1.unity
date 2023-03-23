@@ -27056,7 +27056,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: 4290860c3d682a144ae7980fd5e82970, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1713852208}
   m_SourcePrefab: {fileID: 100100000, guid: 4290860c3d682a144ae7980fd5e82970, type: 3}
 --- !u!4 &946810890 stripped
 Transform:
@@ -36999,7 +37002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfd7f70e76f98c7478fe76d26f16b238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Point>k__BackingField: {fileID: 7904924063053900053}
+  <Point>k__BackingField: {fileID: 0}
   <IsFinally>k__BackingField: 0
   <IsDone>k__BackingField: 0
   <IsActivated>k__BackingField: 0
@@ -47602,6 +47605,33 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: 617366e9fc7f78d47baa362f2f9a9981, type: 3}
+--- !u!1 &1713852204 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8164078558771037576, guid: 4290860c3d682a144ae7980fd5e82970, type: 3}
+  m_PrefabInstance: {fileID: 946810889}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1713852208
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1713852204}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2432090755550338912, guid: 4290860c3d682a144ae7980fd5e82970, type: 3}
 --- !u!1 &1715666706
 GameObject:
   m_ObjectHideFlags: 0
@@ -55134,7 +55164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7577157392004419361, guid: 57cc75d48c71e6844bcead42fd590b21, type: 3}
       propertyPath: _initialTotalNumberOfBullet
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7577157392004419361, guid: 57cc75d48c71e6844bcead42fd590b21, type: 3}
       propertyPath: _initialNumberOfBulletInMagazin
