@@ -6,7 +6,7 @@ using Zenject;
 
 namespace Invaders.Factories
 {
-    public class InteractionFactory : PlaceholderFactory<IItem, IPlayerInteractableHandler>, IFactory<IItem, IPlayerInteractableHandler>
+    public class InteractionFactory : PlaceholderFactory<IItem, IPlayerInteractableHandler>
     {
         private IPlayerLookService _look;
         private IClickedService _clicked;
@@ -30,7 +30,7 @@ namespace Invaders.Factories
                    new PlayerShooterHolding(_look, weapon as IWeaponRapidFire, _reloader, _holder);
             }
 
-            return null;
+            return new PlugInteractableHandler();
         }
     }
 }

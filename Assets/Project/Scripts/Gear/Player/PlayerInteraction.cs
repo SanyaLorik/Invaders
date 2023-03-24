@@ -9,14 +9,11 @@ namespace Invaders.Gear
     {
         [SerializeField] private SpeciallyInventorySlot<IItem> _usedSlot;
 
-        private InteractionFactory _factory;
+        private IFactory<IItem, IPlayerInteractableHandler> _factory;
         private IPlayerInteractableHandler _interactableHandler;
 
-        //private IItem _item;
-
         [Inject]
-        private void Construct(InteractionFactory factory) =>
-            _factory = factory;
+        private void Construct(InteractionFactory factory) => _factory = factory;
 
         private void OnEnable()
         {
@@ -38,7 +35,6 @@ namespace Invaders.Gear
             _interactableHandler?.Enable();
         }
 
-        private void OnDeprive() =>
-            _interactableHandler?.Disable();
+        private void OnDeprive() => _interactableHandler?.Disable();
     }
 }
