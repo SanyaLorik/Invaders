@@ -21,12 +21,6 @@ namespace Invaders.Locations
                 _player = other.transform;
         }
 
-        private void OnTriggerExit(Collider other)
-        {
-            if (other.GetComponent<IPlayer>() != null)
-                _player = null; 
-        }
-
         protected void Telepot()
         {
             if (_player != null)
